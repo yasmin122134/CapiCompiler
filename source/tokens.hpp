@@ -8,7 +8,7 @@
 
 #include "push_back_stream.hpp"
 
-namespace stork {
+namespace capy {
 	enum struct reserved_token {
 		inc,
 		dec,

@@ -9,7 +9,7 @@
 #include "tokens.hpp"
 #include "push_back_stream.hpp"
 
-namespace stork {
+namespace capy {
 	token tokenize(push_back_stream& stream);
 }
 

@@ -5,7 +5,7 @@
 #include <utility>
 #include <algorithm>
 
-namespace stork {
+namespace capy {
 	template <typename Key, typename Value>
 	class lookup {
 	public:

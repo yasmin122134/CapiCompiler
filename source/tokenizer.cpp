@@ -7,7 +7,7 @@
 #include "push_back_stream.hpp"
 #include "errors.hpp"
 
-namespace stork {
+namespace capy {
 	namespace {
 		enum struct character_type {
 			eof,
