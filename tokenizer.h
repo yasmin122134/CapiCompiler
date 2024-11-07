@@ -1,14 +1,17 @@
-//
-// Created by yasmi on 07/11/2024.
-//
+#ifndef tokenizer_hpp
+#define tokenizer_hpp
 
-#ifndef CAPICOMPILER_TOKENIZER_H
-#define CAPICOMPILER_TOKENIZER_H
+#include <functional>
+#include <string_view>
+#include <iostream>
+#include <variant>
+
+#include "tokens.hpp"
+#include "push_back_stream.hpp"
+
+namespace stork {
+	token tokenize(push_back_stream& stream);
+}
 
 
-class tokenizer {
-
-};
-
-
-#endif //CAPICOMPILER_TOKENIZER_H
+#endif /* tokenizer_hpp */
