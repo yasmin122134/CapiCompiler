@@ -2,7 +2,7 @@
 #define USER_DAL_FILE_TEST_H
 
 #include <gtest/gtest.h>
-#include <fstream>  // Include this for std::ofstream and std::ifstream
+#include <fstream>  // include this for std::ofstream and std::ifstream
 #include "UserDALFile.h"
 #include "User.h"
 
@@ -17,9 +17,9 @@ protected:
     }
 
     void TearDown() override {
-        // Remove the file after each test
+        // remove the file after each test
         std::remove(testFile.c_str());
     }
 };
 
-#endif // USER_DAL_FILE_TEST_H
+#endif // uSER_DAL_FILE_TEST_H
