@@ -7,5 +7,5 @@ TEST(HelpTest, GetCommandList) {
                                  "recommend [userid] [movieid]\n"
                                  "help";
     
-    EXPECT_EQ(help.getCommandList(), expected_output);
+    EXPECT_EQ(help.execute(), expected_output);
 }
