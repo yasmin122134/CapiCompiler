@@ -16,9 +16,11 @@ public:
     void setId(int id);
     vector<Movie> getMovieVec();
     void setMovieVec(const std::vector<Movie>& movieVec);
+    void addMovie(Movie movie);
 
-    void saveToStream(ofstream &ofstream);
-    void loadFromStream(ifstream &ifstream);
+        // Friend declarations for stream operators
+    friend std::ostream& operator<<(std::ostream& out, const User& user);
+    friend std::istream& operator>>(std::istream& in, User& user);
 
 private:
     int id;

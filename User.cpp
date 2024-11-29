@@ -25,27 +25,27 @@ void User::setMovieVec(const vector<Movie>& movieVec) {
     this->movieVec = movieVec;
 }
 
-void User::saveToStream(ofstream &ofstream) {
-    ofstream << id;
-    for (Movie movie : movieVec) {
-        ofstream << " " << movie.getId();
-        // TODO: implicit conversion of movie to int?
-    }
-    ofstream << "\n";
+void User::addMovie(Movie movie) {
+    movieVec.push_back(movie);
 }
 
-void User::loadFromStream(ifstream &ifstream) {
-    string line;
-    if (getline(ifstream, line)) {
-        istringstream iss(line);
-        iss >> id;
 
-        int movieId;
-        movieVec.clear();
-
-        // Extract movie IDs and populate movieVec
-        while (iss >> movieId) {
-            movieVec.emplace_back(movieId);
-        }
+std::ostream& operator<<(std::ostream& out, const User& user) {
+    out << user.id << " " << user.movieVec.size() << " ";
+    for (const Movie& movie : user.movieVec) {
+        out << movie << " ";
     }
+    return out;
+}
+
+std::istream& operator>>(std::istream& in, User& user) {
+    size_t movieCount;
+    in >> user.id >> movieCount;
+    user.movieVec.clear();
+    for (size_t i = 0; i < movieCount; ++i) {
+        Movie movie;
+        in >> movie;
+        user.movieVec.push_back(movie);
+    }
+    return in;
 }

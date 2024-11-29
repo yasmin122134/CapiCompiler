@@ -15,11 +15,12 @@ void Movie::setId(int id) {
     this->id = id;
 }
 
-void Movie::saveToStream(ofstream &ofstream) {
-    ofstream << id << "\n";
+std::ostream& operator<<(std::ostream& out, const Movie& movie) {
+    out << movie.id;
+    return out;
 }
 
-void Movie::loadFromStream(ifstream &ifstream) {
-    ifstream >> id;
-    ifstream.ignore();
+std::istream& operator>>(std::istream& in, Movie& movie) {
+    in >> movie.id;
+    return in;
 }

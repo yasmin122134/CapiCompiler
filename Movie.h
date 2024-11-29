@@ -13,8 +13,9 @@ public:
     int getId() const ;
     void setId(int id);
 
-    void saveToStream(ofstream &ofstream);
-    void loadFromStream(ifstream &ifstream);
+    // Friend declarations for stream operators
+    friend std::ostream& operator<<(std::ostream& out, const Movie& movie);
+    friend std::istream& operator>>(std::istream& in, Movie& movie);
 
 private:
     int id;
