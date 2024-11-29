@@ -1,4 +1,7 @@
 #include "User.h"
+#include <string>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -24,8 +27,8 @@ void User::setMovieVec(const vector<Movie>& movieVec) {
 
 void User::saveToStream(ofstream &ofstream) {
     ofstream << id;
-    for (int movie : movieVec) {
-        ofstream << " " << movie.getIs();
+    for (Movie movie : movieVec) {
+        ofstream << " " << movie.getId();
         // TODO: implicit conversion of movie to int?
     }
     ofstream << "\n";
@@ -35,14 +38,14 @@ void User::loadFromStream(ifstream &ifstream) {
     string line;
     if (getline(ifstream, line)) {
         istringstream iss(line);
-        iss >> id; // Extract the user ID
+        iss >> id;
 
         int movieId;
-        movieVec.clear(); // Clear current movies
+        movieVec.clear();
 
         // Extract movie IDs and populate movieVec
         while (iss >> movieId) {
-            movieVec.emplace_back(movieId); // Assuming Movie has a constructor that accepts an ID
+            movieVec.emplace_back(movieId);
         }
     }
 }

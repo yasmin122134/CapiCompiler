@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Movie.h"
+#include <fstream>
 
 using namespace std;
 
@@ -23,6 +24,6 @@ private:
     int id;
     vector<Movie> movieVec;
 
-}
+};
 
 #endif USER_H
