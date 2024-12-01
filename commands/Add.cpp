@@ -48,10 +48,18 @@ void Add::execute() {
     
     // Validate user ID format
     if (!isValidInteger(userIDStr)) {
-        throw invalid_argument("Invalid user ID format: " + userIDStr);
+        cout << "Invalid user ID format: " << userIDStr << endl;
+        return;
     }
     
-    int userID = stoi(userIDStr);
+    int userID;
+    try {
+        userID = stoi(userIDStr);
+    } catch (const out_of_range& e) {
+        cout << "User ID is too large: " << userIDStr << endl;
+        return;
+    }
+    
     vector<int> movieIDs;
     
     try {
@@ -60,6 +68,7 @@ void Add::execute() {
         // Process the add operation
         addMovies(userID, movieIDs);
     } catch (const invalid_argument& e) {
-        throw; // Re-throw the validation error
+        cout << e.what() << endl;
+        return;
     }
 }
