@@ -5,10 +5,9 @@
 
 class IUserDAL
 {
-private:
-    /* data */
+
 public:
-    IUserDAL(/* args */);
+    IUserDAL();
     virtual User getUser(int id); // returns user from file and creats new if doesn't exists
     virtual void addUser(User user);
     virtual void removeUser(User user); // remove a specific user from the file
