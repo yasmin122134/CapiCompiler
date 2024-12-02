@@ -20,29 +20,28 @@ void UserDALFile::addUser(const User user) {
     if (!doesExist(user)) {
         users.push_back(user);
         addUserToFile(user);
+    } else if (getUser(user.getId()) != user) {
+            removeUser(user);
+            addUser(user);
     }
 }
 
 // remove from vector and update file
 void UserDALFile::removeUser(User user) {
-    users.erase(remove_if(users.begin(), users.end(), [&](User& u) {
-        return u.getId() == user.getId();
-    }), users.end());
+    users.erase(remove(users.begin(), users.end(), user), users.end());
     saveUsers();
 }
 
 // find and return the desired user by id
 User UserDALFile::getUser(const int id) {
-    auto it = find_if(users.begin(), users.end(), [&](User& u) {
-        return u.getId() == id;
-    });
+    User tempUser(id);
+    auto it = find(users.begin(), users.end(), tempUser);
     if (it != users.end()) {
         return *it;
     }
-    // create if doesnt exist
-    User u(id);
-    addUser(u);
-    return u;
+    // create if doesn't exist
+    addUser(tempUser);
+    return tempUser;
 }
 
 
@@ -53,7 +52,7 @@ vector<User> UserDALFile::getAllUsers() {
 // look for the user in the vector
 bool UserDALFile::doesExist(User user) {
     return any_of(users.begin(), users.end(), [&](User& u) {
-        return u.getId() == user.getId();
+        return u == user;
     });
 }
 
@@ -65,7 +64,7 @@ void UserDALFile::clear() {
 
 // read file and load the users into the vector
 void UserDALFile::loadUsers() {
-     ifstream file(filename);
+    ifstream file(filename);
     if (file.is_open()) {
         User user;
         string line;

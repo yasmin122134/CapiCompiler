@@ -17,6 +17,8 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Movie& movie);
     friend std::istream& operator>>(std::istream& in, Movie& movie);
 
+    bool operator==(const Movie& other) const;
+    bool operator!=(const Movie& other) const;
 private:
     int id;
 };

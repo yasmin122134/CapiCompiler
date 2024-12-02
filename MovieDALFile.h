@@ -26,4 +26,4 @@ private:
     void addMovieToFile(Movie movie);
 };
 
-#endif MOVIEDALFILE_H
+#endif // MOVIEDALFILE_H
