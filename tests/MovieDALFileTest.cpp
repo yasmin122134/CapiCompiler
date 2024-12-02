@@ -8,7 +8,6 @@
 
 TEST_F(MovieDALFileTest, AddAndRetrieveMovie) {
     MovieDALFile dal;
-
     // add a Movie and retrieve it
     Movie Movie1(1);
     dal.addMovie(Movie1);
