@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <sstream>
-#include "../commands/Reccomend.h"
+#include "../commands/Recommend.h"
 #include "../MovieDALFile.h"
 #include "../UserDALFile.h"
 

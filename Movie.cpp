@@ -6,7 +6,6 @@ using namespace std;
 
 Movie::Movie(int id) : id(id) {}
 
-
 int Movie::getId() const {
     return id;
 }
@@ -26,5 +25,9 @@ std::istream& operator>>(std::istream& in, Movie& movie) {
 }
 
 bool Movie::operator==(const Movie& other) const {
-    return (this->id == other.getId());
+    return id == other.id;
+}
+
+bool Movie::operator<(const Movie& other) const {
+    return id < other.id;
 }

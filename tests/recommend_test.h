@@ -3,7 +3,8 @@
 
 #include <gtest/gtest.h>
 #include <sstream>
-#include "Recommend.h"
+#include "../commands/Recommend.h"
+
 
 class RecommendTest : public ::testing::Test {
 protected:
