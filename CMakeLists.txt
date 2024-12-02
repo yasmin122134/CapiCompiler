@@ -24,7 +24,7 @@ set(SOURCE_FILES
     User.cpp
     MovieDALFile.cpp
     UserDALFile.cpp
-    commands/Recommend.cpp
+    commands/Add.cpp
     IMovieDAL.h
     IUserDAL.h
     commands/Icommand.h
@@ -32,7 +32,7 @@ set(SOURCE_FILES
 
 # Set test files
 set(TEST_FILES
-    tests/recommend_test.cpp
+    tests/add_test.cpp
 )
 
 # Add test executable
