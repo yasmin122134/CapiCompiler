@@ -7,12 +7,12 @@ class IMovieDAL
 {
 
 public:
-    IMovieDAL();
-    virtual Movie getMovie(int id); // returns movie from file and creats new if doesn't exists
-    virtual void addMovie(Movie movie);
-    virtual void removeMovie(Movie movie); // remove a specific Movie from the file
-    virtual bool doesExist(Movie movie);
-    virtual void clear();
+    virtual ~IMovieDAL() = default;
+    virtual Movie getMovie(int id) = 0; // returns movie from file and creats new if doesn't exists
+    virtual void addMovie(Movie movie) = 0;
+    virtual void removeMovie(Movie movie) = 0; // remove a specific Movie from the file
+    virtual bool doesExist(Movie movie) = 0;
+    virtual void clear() = 0;
 };
 
 #endif IMovieDAL_H
