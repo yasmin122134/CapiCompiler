@@ -1,10 +1,17 @@
 #include "Recommend.h"
+#include <sstream>
+#include <iostream>
+#include <map>
+#include <vector>
+#include <algorithm>
 
-Recommend::Recommend(IMovieDAL* movieDal, IUserDAL* userDal) 
-    : movieDal(movieDal), userDal(userDal) {}
+using namespace std;
+
+Recommend::Recommend(IMovieDAL* movieDAL, IUserDAL* userDAL) 
+    : movieDAL(movieDAL), userDAL(userDAL) {}
 
 void Recommend::execute(std::string inputLine) {
-    std::istringstream iss(inputLine);
+    istringstream iss(inputLine);
     int userId, movieId;
     iss >> userId >> movieId;
     vector<int> recommendations = recommend(userId, movieId);
@@ -14,45 +21,44 @@ void Recommend::execute(std::string inputLine) {
     cout << endl;
 }
 
-static vector<User> usersThatWatchedMovie(int movieId, IUserDAL* userDal) {
-    vector<User> users = userDal->getAllUsers();
-    vector<User> watchers;
-    for (const User& user : users) {
-        auto movies = user.getMovieVec();
-        if (std::find(movies.begin(), movies.end(), movieId) != movies.end()) {
-            watchers.push_back(user);
+vector<User> Recommend::usersThatWatchedMovie(int movieId) {
+    vector<User> users = userDAL->getAllUsers();
+    vector<User> usersThatWatchedMovie;
+    for (User user : users) {
+        if (find(user.getMovieVec().begin(), user.getMovieVec().end(), movieId) != user.getMovieVec().end()) {
+            usersThatWatchedMovie.push_back(user);
         }
     }
-    return watchers;
+    return usersThatWatchedMovie;
 }
 
-static int ammountOfCommonMovies(User user1, User user2) {
+int Recommend::ammountOfCommonMovies(User user1, User user2) {
     int intersectionSize = 0;
-    for (int movieId : user1.getMovieVec()) {
-        if (user2.getMovieVec().find(movieId) != user2.getMovieVec().end()) {
+    for (Movie movie : user1.getMovieVec()) {
+        if (find(user2.getMovieVec().begin(), user2.getMovieVec().end(), movie) != user2.getMovieVec().end()) {
             intersectionSize++;
         }
     }
     return intersectionSize;
 }
 
-static map<Movie, int> calculateSimilarityScores(int userId, int movieId) {
-    User user = User::getUser(userId);
-    vector<User> movieViewersOfOriginalMovie = usersThatWatchedMovie(movieId, userDal);
+map<Movie, int> Recommend::calculateSimilarityScores(int userId, int movieId) {
+    User user = userDAL->getUser(userId);
+    vector<User> movieViewersOfOriginalMovie = usersThatWatchedMovie(movieId);
     map<Movie, int> similarityScores;
 
     // Initialize all movies with 0 scores
-    vector<Movie> allMovies = movieDal->getAllMovies();
+    vector<Movie> allMovies = movieDAL->getAllMovies();
     for (const Movie& movie : allMovies) {
         similarityScores[movie] = 0;
     }
 
     // Calculate similarity scores
     for (const Movie& movie : allMovies) {
-        vector<User> viewersOfMovie = usersThatWatchedMovie(movie.getId(), userDal);
+        vector<User> viewersOfMovie = usersThatWatchedMovie(movie.getId());
         for (const User& viewer : viewersOfMovie) {
-            if (movieViewersOfOriginalMovie.find(viewer) != movieViewersOfOriginalMovie.end()) {
-            similarityScores[movie] += ammountOfCommonMovies(user, viewer);
+            if (find(movieViewersOfOriginalMovie.begin(), movieViewersOfOriginalMovie.end(), viewer) != movieViewersOfOriginalMovie.end()) {
+                similarityScores[movie] += ammountOfCommonMovies(user, viewer);
             }
         }
     }
@@ -61,15 +67,16 @@ static map<Movie, int> calculateSimilarityScores(int userId, int movieId) {
 }
 
 vector<int> Recommend::recommend(int userId, int movieId) {
-    User user = User::getUser(userId);
-    Movie movie = Movie::getMovie(movieId);
+    User user = userDAL->getUser(userId);
+    Movie movie = movieDAL->getMovie(movieId);
     map<Movie, int> similarityScore = calculateSimilarityScores(userId, movieId);
-    //sort the map by similarity score
+    
     vector<pair<Movie, int>> sortedSimilarityScore(similarityScore.begin(), similarityScore.end());
-    sort(sortedSimilarityScore.begin(), sortedSimilarityScore.end(), [](const pair<Movie, int>& a, const pair<Movie, int>& b) {
-        return a.second > b.second;
-    });
-    //get the top 10 movies
+    sort(sortedSimilarityScore.begin(), sortedSimilarityScore.end(), 
+         [](const pair<Movie, int>& a, const pair<Movie, int>& b) {
+             return a.second > b.second;
+         });
+    
     vector<int> recommendedMovies;
     for (int i = 0; i < 10 && i < sortedSimilarityScore.size(); i++) {
         if (sortedSimilarityScore[i].first.getId() != movieId && sortedSimilarityScore[i].second > 0) {
