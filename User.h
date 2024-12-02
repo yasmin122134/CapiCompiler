@@ -16,6 +16,7 @@ public:
     void setId(int id);
     vector<Movie> getMovieVec();
     void setMovieVec(const std::vector<Movie>& movieVec);
+    void addMovieVec(const std::vector<Movie>& movieVec);
     void addMovie(Movie movie);
     void removeMovie(Movie movie);
 

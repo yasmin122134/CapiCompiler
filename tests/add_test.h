@@ -2,38 +2,20 @@
 #define ADD_TEST_H
 
 #include <gtest/gtest.h>
-#include <fstream>
+#include "../commands/Add.h"
 #include "../UserDALFile.h"
 #include "../MovieDALFile.h"
-#include "../commands/Add.h"
 #include "../User.h"
-#include <vector>
+#include "../Movie.h"
 
 class AddTest : public ::testing::Test {
 protected:
-    std::string testFile = "users.dat";
-    std::vector<Movie> testMovies;
-    User testUser;
-
     void SetUp() override {
-        // remove content of the file before each test
-        std::ofstream outFile(testFile, std::ios::trunc);
-        outFile.close();
-
-        // Initialize test user and movies
-        testUser = User(1);  // Create user with ID 1
-        
-        // Create some test movies
-        testMovies = {
-            Movie(1),
-            Movie(2),
-            Movie(3)
-        };
+        // Any setup code would go here
     }
 
     void TearDown() override {
-        // remove the file after each test
-        std::remove(testFile.c_str());
+        // Any cleanup code would go here
     }
 };
 

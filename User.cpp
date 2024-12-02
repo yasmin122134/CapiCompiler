@@ -1,12 +1,8 @@
 #include "User.h"
-#include "Movie.h"
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <iostream>
-#include <vector>
 #include <algorithm>
-#include "Movie.h"
 
 using namespace std;
 
@@ -30,17 +26,27 @@ void User::setMovieVec(const vector<Movie>& movieVec) {
     this->movieVec = movieVec;
 }
 
+void User::addMovieVec(const vector<Movie>& movieVec) {
+    // add without duplicated
+    for (const Movie& movie : movieVec) {
+        if (find(this->movieVec.begin(), this->movieVec.end(), movie) == this->movieVec.end()) {
+            this->movieVec.push_back(movie);
+        }
+    }
+}
+
 void User::addMovie(Movie movie) {
     movieVec.push_back(movie);
 }
 
-void User::removeMovie(const Movie movie) {
-    auto it = std::find(movieVec.begin(), movieVec.end(), movie);
-    if (it != movieVec.end()) {
-        movieVec.erase(it);
+void User::removeMovie(Movie movie) {
+    for (auto it = movieVec.begin(); it != movieVec.end(); ++it) {
+        if (*it == movie) {
+            movieVec.erase(it);
+            break;
+        }
     }
 }
-
 
 std::ostream& operator<<(std::ostream& out, const User& user) {
     out << user.id << " " << user.movieVec.size() << " ";
@@ -51,22 +57,13 @@ std::ostream& operator<<(std::ostream& out, const User& user) {
 }
 
 std::istream& operator>>(std::istream& in, User& user) {
-    in >> user.id;
+    size_t movieCount;
+    in >> user.id >> movieCount;
     user.movieVec.clear();
-    int movieCount;
-    in >> movieCount;
-    for (int i = 0; i < movieCount; ++i) {
-        Movie movie(0);
+    for (size_t i = 0; i < movieCount; ++i) {
+        Movie movie;
         in >> movie;
         user.movieVec.push_back(movie);
     }
     return in;
-}
-
-bool User::operator==(const User& other) const {
-    return id == other.id;
-}
-
-bool User::operator<(const User& other) const {
-    return id < other.id;
 }

@@ -30,24 +30,21 @@ void Add::updateUser(User user, Movie movie) {
 void Add::addMovies(int userID, vector<int> movieIDs) {
     std::cout << "[Add::addMovies] Adding " << movieIDs.size() 
               << " movies to user " << userID << std::endl;
-    
+
     try {
-        User user = userDb->getUser(userID);
-        for (int movieID : movieIDs) {
-            try {
-                std::cout << "[Add::addMovies] Processing movieID: " << movieID << std::endl;
-                Movie movie = movieDb->getMovie(movieID);
-                updateUser(user, movie);
-            } catch (...) {
-                std::cerr << "[Add::addMovies] Error processing movieID: " << movieID << std::endl;
-                // Ignore any errors and continue
-            }
+        vector<Movie> movieVec;
+        for (int id : movieIDs) {
+            movieVec.push_back(movieDb->getMovie(id));
         }
+        User user = userDb->getUser(userID);
+        user.addMovieVec(movieVec);
+        userDb->addUser(user);
     } catch (...) {
-        std::cerr << "[Add::addMovies] Error retrieving user: " << userID << std::endl;
-        return;
+        // Silently handle any exceptions
     }
 }
+
+
 
 bool Add::isValidCommand(const std::string& command) {
     std::cout << "[Add::isValidCommand] Validating command: " << command << std::endl;
