@@ -24,7 +24,7 @@ public:
     friend std::istream& operator>>(std::istream& in, User& user);
     
     bool operator==(const User& other) const; // Add this line
-
+    bool operator<(const User& other) const;
 
 
 private:

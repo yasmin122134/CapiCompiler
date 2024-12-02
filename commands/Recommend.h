@@ -13,10 +13,12 @@ class Recommend : public ICommand {
 private:
     IMovieDAL* movieDAL;
     IUserDAL* userDAL;
+    map<int,int> amountOfCommonMoviesList(User user1, vector<User> users);
     std::vector<User> usersThatWatchedMovie(int movieId);
-    int ammountOfCommonMovies(User user1, User user2);
+    int amountOfCommonMovies(User user1, User user2);
     std::map<Movie, int> calculateSimilarityScores(int userId, int movieId);
     std::vector<int> recommend(int userId, int movieId);
+    bool isValidInput(const std::string& userIdStr, const std::string& movieIdStr);
 
 public:
     Recommend(IMovieDAL* movieDAL, IUserDAL* userDAL);

@@ -22,7 +22,7 @@ protected:
             movieDal->addMovie(movie);
         }
         
-        // Add test users and their watched movies
+        // Add users with their watched movies
         User user1(1);
         user1.addMovie(Movie(103));
         user1.addMovie(Movie(102));
@@ -138,7 +138,7 @@ TEST_F(RecommendTest, User1Movie104) {
     recommend->execute("1 104");
     
     // Assert
-    EXPECT_EQ(output.str(), "105 106 111 110 112 113 107 108 109 114\n");
+    EXPECT_EQ(output.str(), "105 106 111 110 112 113 107 108 109 114 \n");
 }
 
 TEST_F(RecommendTest, User2Movie100) {
@@ -146,7 +146,7 @@ TEST_F(RecommendTest, User2Movie100) {
     recommend->execute("2 100");
     
     // Assert
-    EXPECT_EQ(output.str(), "105 107 108 109 110 111 112 113 115 116\n");
+    EXPECT_EQ(output.str(), "105 107 108 109 110 111 112 113 115 116 \n");
 }
 
 TEST_F(RecommendTest, InvalidInput) {

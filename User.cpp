@@ -66,3 +66,7 @@ std::istream& operator>>(std::istream& in, User& user) {
 bool User::operator==(const User& other) const {
     return id == other.id;
 }
+
+bool User::operator<(const User& other) const {
+    return id < other.id;
+}
