@@ -14,7 +14,7 @@ User::User(int id) : id(id) {}
 
 User::User(int id, const vector<Movie>& movieVec) : id(id), movieVec(movieVec) {}
 
-int User::getId() {
+int User::getId() const {
     return id;
 }
 
@@ -64,5 +64,10 @@ std::istream& operator>>(std::istream& in, User& user) {
 }
 
 bool User::operator==(const User& other) const {
-    return id == other.id;
+    return this->getId() == other.getId();
 }
+
+bool User::operator!=(const User& other) const {
+    return this->getId() != other.getId();
+}
+

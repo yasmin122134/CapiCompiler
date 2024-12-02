@@ -20,7 +20,11 @@ void MovieDALFile::addMovie(Movie movie) {
     if (!doesExist(movie)) {
         movies.push_back(movie);
         addMovieToFile(movie);
+    } else if (getMovie(movie.getId()) != movie) {
+        removeMovie(movie);
+        addMovie(movie);
     }
+
 }
 
 // remove from vector and update file

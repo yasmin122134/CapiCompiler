@@ -12,7 +12,7 @@ public:
     User() = default;
     User(int id);
     User(int id, const vector<Movie>& movieVec);
-    int getId();
+    int getId() const;
     void setId(int id);
     vector<Movie> getMovieVec();
     void setMovieVec(const std::vector<Movie>& movieVec);
@@ -25,6 +25,10 @@ public:
     
     bool operator==(const User& other) const; // Add this line
 
+
+
+    bool operator==(const User& other) const;
+    bool operator!=(const User& other) const;
 
 
 private:

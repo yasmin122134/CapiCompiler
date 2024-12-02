@@ -24,5 +24,7 @@ TestResults.xml
 main.cpp
 test_program
 user_data.txt
+
 DataAccessLayer.cpp
 DataAccessLayer.h
+Dockerfile
