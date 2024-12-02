@@ -7,12 +7,12 @@ class IUserDAL
 {
 
 public:
-    IUserDAL();
-    virtual User getUser(int id); // returns user from file and creats new if doesn't exists
-    virtual void addUser(User user);
-    virtual void removeUser(User user); // remove a specific user from the file
-    virtual bool doesExist(User user);
-    virtual void clear();
+    virtual ~IUserDAL() = default;
+    virtual User getUser(int id) = 0; // returns user from file and creats new if doesn't exists
+    virtual void addUser(User user) = 0;
+    virtual void removeUser(User user) = 0; // remove a specific user from the file
+    virtual bool doesExist(User user) = 0;
+    virtual void clear() = 0;
 };
 
 #endif IUserDAL_H
