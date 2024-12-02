@@ -5,13 +5,16 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-class ICommandInterface {
-public:
-    
-    // virtual method to get the next command
-    virtual bool nextCommand();
+class IMenu {
 
-    // Pure virtual method to display an error
-    virtual void displayError(const std::string errorName);
+public:
+
+    // virtual ~IMenu() = default;
+
+    virtual bool nextCommand() = 0;
+
+    virtual void displayError(const std::string errorName) = 0;
+
 };
+
 #endif

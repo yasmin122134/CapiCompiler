@@ -3,10 +3,16 @@
 #include <memory>
 #include <string>
 #include <algorithm>
-#include "ICommand.h"
+#include "commands/ICommand.h"
+#include "commands/Add.h"
+#include "commands/Help.h"
 #include "IUserDAL.h"
 #include "IMovieDAL.h"
 #include "ConsoleMenu.h"
+#include "UserDALFile.h"
+#include "MovieDALFile.h"
+#include "commands/Recommend.h"
+
 
 // App Class
 class App {
@@ -55,16 +61,16 @@ public:
 // Main Function to Demonstrate Usage
 int main() {
     // Create example DALs
-    auto userDAL = std::make_unique<ExampleUserDAL>();
-    auto movieDAL = std::make_unique<ExampleMovieDAL>();
+    auto userDAL = std::make_unique<UserDALFile>();
+    auto movieDAL = std::make_unique<MovieDALFile>();
 
     // Create example commands
     std::vector<std::unique_ptr<ICommand>> commands;
-    commands.push_back(std::make_unique<ExampleCommand>("Command 1"));
-    commands.push_back(std::make_unique<ExampleCommand>("Command 2"));
+    commands.push_back(std::make_unique<Add>("Command 1"));
+    commands.push_back(std::make_unique<Help>("Command 2"));
 
     // Create App instance
-    App app(std::move(commands), std::move(userDAL), std::move(movieDAL));
+    App app(std::move(commands), std::move(userDAL), std::move(movieDAL), std::cin, std::cout);
 
     // Run the App
     app.run();

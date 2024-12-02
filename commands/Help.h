@@ -1,13 +1,13 @@
 #ifndef HELP_H
 #define HELP_H
-#include "Icommand.h"
+#include "ICommand.h"
 #include <vector>
 using namespace std;
-class Help : public Icommand {
+class Help : public ICommand {
 private:
-    vector<Icommand*> commandList;
+    vector<ICommand*> commandList;
 public:
-    Help(const vector<Icommand*>& commandList);
+    Help(const vector<ICommand*>& commandList);
     void execute(string inputLine) override;
     void print(ostream& os) const override;
     std::string getCommandName() const override;

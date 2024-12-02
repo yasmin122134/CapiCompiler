@@ -6,7 +6,7 @@
 #include <memory>
 #include <sstream>
 #include <algorithm>
-#include "ICommand.h"
+#include "commands/ICommand.h"
 #include "IUserDAL.h"
 #include "IMovieDAL.h"
 #include "IMenu.h"
@@ -28,9 +28,18 @@ public:
         std::istream& input,
         std::ostream& output);
 
+    // ~ConsoleMenu() noexcept override = default;
+
     // Method to process the next command
     bool nextCommand() override;
 
     // Method to display errors
     void displayError(const std::string errorName) override;
+
+// private:
+//     std::vector<std::unique_ptr<ICommand>> commands;
+//     std::unique_ptr<IUserDAL> userDAL;
+//     std::unique_ptr<IMovieDAL> movieDAL;
+//     std::istream& inputStream;
+//     std::ostream& outputStream;
 };

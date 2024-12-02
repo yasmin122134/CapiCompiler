@@ -34,6 +34,15 @@ void User::addMovie(Movie movie) {
     movieVec.push_back(movie);
 }
 
+// add to the movie vector from a list of movies without duplicates
+void User::addMovieVec(const vector<Movie>& movieVec) {
+    for (const Movie& movie : movieVec) {
+        if (find(this->movieVec.begin(), this->movieVec.end(), movie) == this->movieVec.end()) {
+            this->movieVec.push_back(movie);
+        }
+    }
+}
+
 void User::removeMovie(const Movie movie) {
     auto it = std::find(movieVec.begin(), movieVec.end(), movie);
     if (it != movieVec.end()) {
@@ -64,10 +73,5 @@ std::istream& operator>>(std::istream& in, User& user) {
 }
 
 bool User::operator==(const User& other) const {
-    return this->getId() == other.getId();
+    return id == other.id;
 }
-
-bool User::operator!=(const User& other) const {
-    return this->getId() != other.getId();
-}
-

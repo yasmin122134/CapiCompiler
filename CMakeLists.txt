@@ -24,6 +24,14 @@ set(SOURCE_FILES
     User.cpp
     MovieDALFile.cpp
     UserDALFile.cpp
+    Main.cpp
+    IMenu.cpp
+    ConsoleMenu.cpp
+    App.cpp
+    commands/ICommand.cpp
+    commands/Add.cpp
+    commands/Recommend.cpp
+    commands/Help.cpp
 )
 
 # Set test files
@@ -31,6 +39,9 @@ set(TEST_FILES
     tests/MovieDALFileTest.cpp
     tests/UserDALFileTest.cpp
 )
+
+# Add main executable
+add_executable(MainApp ${SOURCE_FILES})
 
 # Add test executable
 add_executable(UserTests ${SOURCE_FILES} ${TEST_FILES})

@@ -1,9 +1,10 @@
 #ifndef ADD_H
 #define ADD_H
 
-#include "Icommand.h"
+#include "ICommand.h"
 #include <vector>
-#include "IUserDAL.h"
+#include "../IUserDAL.h"
+#include "../IMovieDAL.h"
 
 using namespace std;
 
@@ -13,11 +14,15 @@ using namespace std;
  * Implements the Icommand interface to provide user addition functionality.
  * Uses IUserDAL for database operations.
  */
-class Add : public Icommand {
+class Add : public ICommand {
 private:
     /** Pointer to the user data access layer interface */
     IUserDAL* userDb;
+    IMovieDAL* movieDb;
     bool isValidCommand(const std::string& command);
+    void addMovies(int userID, vector<int> movieIDs);
+
+
 
 public:
     /**
@@ -25,6 +30,7 @@ public:
      * @param userDb Pointer to the user database interface
      */
     Add(IUserDAL* userDb);
+    std::string getCommandName() const override;
 
     /**
      * @brief Executes the add user command

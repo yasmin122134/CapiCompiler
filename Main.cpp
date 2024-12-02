@@ -4,24 +4,24 @@
 #include "commands/ICommand.h"
 #include "IUserDAL.h"
 #include "IMovieDAL.h"
-#include "Help.h"
-#include "Recommend.h"
-#include "AddMovie.h"
-#include "UserDAL.h"
-#include "MovieDAL.h"
+#include "commands/Help.h"
+#include "commands/Recommend.h"
+#include "commands/Add.h"
+#include "UserDALFile.h"
+#include "MovieDALFile.h"
 #include "App.h"
 
 class Main {
     static int main() {
         // Initialize UserDAL and MovieDAL using polymorphism
-        std::unique_ptr<IUserDAL> userDAL = std::make_unique<UserDAL>();
-        std::unique_ptr<IMovieDAL> movieDAL = std::make_unique<MovieDAL>();
+        std::unique_ptr<IUserDAL> userDAL = std::make_unique<UserDALFile>();
+        std::unique_ptr<IMovieDAL> movieDAL = std::make_unique<MovieDALFile>();
 
         // Initialize commands using polymorphism
         std::vector<std::unique_ptr<ICommand>> commands;
-        commands.push_back(std::make_unique<Help>());
-        commands.push_back(std::make_unique<Recommend>());
-        commands.push_back(std::make_unique<AddMovie>());
+        commands.push_back(std::make_unique<Help>(commands));
+        commands.push_back(std::make_unique<Recommend>(movieDAL, userDAL));
+        commands.push_back(std::make_unique<Add>(userDAL));
 
         // Initialize the App with standard input/output streams
         App app(

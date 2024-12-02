@@ -20,4 +20,4 @@ WORKDIR /usr/src/mytest/build
 RUN cmake .. && make
 
 # Command to run the tests
-CMD ["./UserTests"]
+CMD ["./MainApp"]

@@ -1,7 +1,8 @@
 #include <string>
 #include "ICommand.h"
+#include "IMenu.h"
 
-class IMenu {
+class IManu {
 public:
     
     // virtual method to get the next command

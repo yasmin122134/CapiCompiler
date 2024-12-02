@@ -5,7 +5,7 @@
 #include <memory>
 #include <string>
 #include <algorithm>
-#include "ICommand.h"
+#include "commands/ICommand.h"
 #include "IUserDAL.h"
 #include "IMovieDAL.h"
 #include "ConsoleMenu.h"

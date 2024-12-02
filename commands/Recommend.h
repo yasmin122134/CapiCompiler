@@ -3,7 +3,7 @@
 
 #include "../IMovieDAL.h"
 #include "../IUserDAL.h"
-#include "./Icommand.h"
+#include "./ICommand.h"
 #include <string>
 #include <vector>
 #include <iostream>

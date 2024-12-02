@@ -1,6 +1,6 @@
 #include "Add.h"
-#include "User.h"
-#include "IUserDAL.h"
+#include "../User.h"
+#include "../IUserDAL.h"
 #include <sstream>
 #include <algorithm>
 Add::Add(IUserDAL* userDb) : userDb(userDb) {}
@@ -13,23 +13,16 @@ std::string Add::getCommandName() const {
     return "add";
 }
 
-void Add::updateUser(User user, Movie movie) {
-    user.addMovie(movie);
+void Add::addMovies(int userID, vector<int> movieIDs) {
+    vector<Movie> movieVec;
+    for (int id : movieIDs) {
+        movieVec.push_back(movieDb->getMovie(id));
+    }
+    User user = userDb->getUser(userID);
+    user.addMovieVec(movieVec);
     userDb->addUser(user);
-    movieDb->addMovie(movie);
 }
 
-void Add::addMovies(int userID, vector<int> movieIDs) {
-    for (int movieID : movieIDs) {
-        try {
-            User user = userDb->getUser(userID);
-            Movie movie = movieDb->getMovie(movieID);
-            updateUser(user, movie);
-        } catch (...) {
-            // Ignore any errors and continue
-        }
-    }
-}
 
 bool Add::isValidCommand(const std::string& command) {
     std::istringstream iss(command);

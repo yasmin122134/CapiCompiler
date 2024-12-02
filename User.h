@@ -17,15 +17,12 @@ public:
     vector<Movie> getMovieVec();
     void setMovieVec(const std::vector<Movie>& movieVec);
     void addMovie(Movie movie);
+    void addMovieVec(const vector<Movie>& movieVec);
     void removeMovie(Movie movie);
 
         // Friend declarations for stream operators
     friend std::ostream& operator<<(std::ostream& out, const User& user);
     friend std::istream& operator>>(std::istream& in, User& user);
-    
-    bool operator==(const User& other) const; // Add this line
-
-
 
     bool operator==(const User& other) const;
     bool operator!=(const User& other) const;

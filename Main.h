@@ -9,9 +9,11 @@
 #include "IMovieDAL.h"
 #include "Help.h"
 #include "Recommend.h"
-#include "AddMovie.h"
-#include "UserDAL.h"
-#include "MovieDAL.h"
+#include "commands/Help.h"
+#include "commands/Recommend.h"
+#include "commands/Add.h"
+#include "UserDALFile.h"
+#include "MovieDALFile.h"
 #include "App.h"
 
 // Declaration of the MainApp class

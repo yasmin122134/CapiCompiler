@@ -2,12 +2,12 @@
 #include <iostream>
 using namespace std;
 void Help::execute(string inputLine) {
-    for (Icommand* command : commandList) {
+    for (ICommand* command : commandList) {
         cout << *command << endl;
     }
 }
 
-Help::Help(const vector<Icommand*>& commandList) {
+Help::Help(const vector<ICommand*>& commandList) {
     this->commandList = commandList;
 }
 

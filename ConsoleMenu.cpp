@@ -1,25 +1,34 @@
 #include <iostream>
 #include <string>
-#include "ICommand.h"
+#include <algorithm>
+#include <memory>
+#include <vector>
+#include "commands/ICommand.h"
+#include "IMenu.h"
+#include "IUserDAL.h"
+#include "IMovieDAL.h"
 
 // Assuming Command is a simple alias for std::string. Modify as needed.
-using Command = std::string;
+using namespace std;
+using CommandList = std::vector<std::unique_ptr<ICommand>>;
+using UserDALPtr = std::unique_ptr<IUserDAL>;
+using MovieDALPtr = std::unique_ptr<IMovieDAL>;
 
 class ConsoleMenu : public IMenu {
-public:
-    // Implement the nextCommand method
 private:
-    std::vector<std::unique_ptr<ICommand>> commands;
-    std::unique_ptr<IUserDAL> userDAL;
-    std::unique_ptr<IMovieDAL> movieDAL;
+    CommandList commands;
+    UserDALPtr userDAL;
+    MovieDALPtr movieDAL;
     std::istream& inputStream;
     std::ostream& outputStream;
 
 public:
     // Constructor
-    ConsoleMenu(std::vector<std::unique_ptr<ICommand>> cmdList,
-        std::unique_ptr<IUserDAL> userDal,
-        std::unique_ptr<IMovieDAL> movieDal,
+
+
+    ConsoleMenu(CommandList cmdList,
+                UserDALPtr userDal,
+                MovieDALPtr movieDal,
         std::istream& input,
         std::ostream& output)
         : commands(std::move(cmdList)),
@@ -30,8 +39,6 @@ public:
     
     // Next Command function
      bool nextCommand() override {
-
-        bool nextCommand() override {
         std::string line;
         if (!std::getline(inputStream, line) || line.empty()) {
             return false; // Signal to stop if input is empty or EOF
@@ -61,9 +68,8 @@ public:
 
         // Command not found
         return false; // Continue accepting commands
-    }
+    };
 
-    }
     // Implement the displayError method
     void displayError(const std::string errorName) override {
         std::cerr << "Error: " << errorName << std::endl;
