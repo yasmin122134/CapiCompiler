@@ -5,11 +5,26 @@
 #include <algorithm>
 Add::Add(IUserDAL* userDb) : userDb(userDb) {}
 
+void Add::print(std::ostream& os) const {
+    os << "add [userid] [movieid1] [movieid2] ...";
+}
+
+std::string Add::getCommandName() const {
+    return "add";
+}
+
+void Add::updateUser(User user, Movie movie) {
+    user.addMovie(movie);
+    userDb->addUser(user);
+    movieDb->addMovie(movie);
+}
+
 void Add::addMovies(int userID, vector<int> movieIDs) {
     for (int movieID : movieIDs) {
         try {
             User user = userDb->getUser(userID);
-            userDb->addMovie(user, movieID);
+            Movie movie = movieDb->getMovie(movieID);
+            updateUser(user, movie);
         } catch (...) {
             // Ignore any errors and continue
         }
