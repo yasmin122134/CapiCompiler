@@ -1,16 +1,43 @@
-cmake_minimum_required(VERSION 3.16.1)
+cmake_minimum_required(VERSION 3.10)
 
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14")
+# Project name
+project(CapyNetflix)
 
-project(CapiCompiler)
+# C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SOURCES "source/*.cpp")
-file(GLOB_RECURSE HEADERS "source/*.hpp")
-
-add_executable(capy ${SOURCES} ${HEADERS})
-
-set_target_properties(capy PROPERTIES
-        CXX_STANDARD 17
-        CXX_STANDARD_REQUIRED OFF
-        CXX_EXTENSIONS OFF
+# Include FetchContent for GTest
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.11.0.zip
 )
+
+# Prevent overriding compiler/linker settings for Windows
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+# Set source files
+set(SOURCE_FILES
+    Movie.cpp
+    User.cpp
+    MovieDALFile.cpp
+    UserDALFile.cpp
+)
+
+# Set test files
+set(TEST_FILES
+    tests/MovieDALFileTest.cpp
+    tests/UserDALFileTest.cpp
+)
+
+# Add test executable
+add_executable(UserTests ${SOURCE_FILES} ${TEST_FILES})
+
+# Link GTest to the test executable
+target_link_libraries(UserTests gtest_main)
+
+# Enable testing
+enable_testing()
+add_test(NAME AllTests COMMAND UserTests)
