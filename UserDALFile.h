@@ -8,11 +8,12 @@
 class UserDALFile : public IUserDAL {
 public:
     UserDALFile();
-    ~UserDALFile() override;
+    ~UserDALFile();
 
-    void addUser(User user) override;
+    void addUser(const User user) override;
     void removeUser(User user) override;
-    User getUser(int id) override;
+    User getUser(const int id) override;
+    std::vector<User> getAllUsers() override;
     bool doesExist(User user) override;
     void clear() override;
 

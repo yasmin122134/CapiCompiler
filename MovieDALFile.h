@@ -8,11 +8,12 @@
 class MovieDALFile : public IMovieDAL {
 public:
     MovieDALFile();
-    ~MovieDALFile() override;
+    ~MovieDALFile();
 
     void addMovie(Movie movie) override;
     void removeMovie(Movie movie) override;
     Movie getMovie(int id) override;
+    std::vector<Movie> getAllMovies() override;
     bool doesExist(Movie movie) override;
     void clear() override;
 
@@ -25,4 +26,4 @@ private:
     void addMovieToFile(Movie movie);
 };
 
-#endif // MOVIEDALFILE_H
+#endif MOVIEDALFILE_H
