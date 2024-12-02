@@ -15,12 +15,14 @@ public:
     void removeUser(User user);
     User getUser(int id);
     bool doesExist(User user);
+    std::vector<User> getAllUsers();
     void clear();
 
     void removeMovie(Movie movie);
     Movie getMovie(int id);
     bool doesExist(Movie movie);
-    
+    std::vector<Movie> getAllMovies();
+
 
 private:
     UserDALFile& userDal;
