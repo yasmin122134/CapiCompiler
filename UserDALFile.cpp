@@ -45,6 +45,11 @@ User UserDALFile::getUser(const int id) {
     return u;
 }
 
+
+vector<User> UserDALFile::getAllUsers() {
+    return users;
+}
+
 // look for the user in the vector
 bool UserDALFile::doesExist(User user) {
     return any_of(users.begin(), users.end(), [&](User& u) {
