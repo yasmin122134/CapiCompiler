@@ -24,3 +24,7 @@ std::istream& operator>>(std::istream& in, Movie& movie) {
     in >> movie.id;
     return in;
 }
+
+bool Movie::operator==(const Movie& other) const {
+    return (this->id == other.getId());
+}

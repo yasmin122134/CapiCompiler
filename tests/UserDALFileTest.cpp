@@ -1,36 +1,45 @@
 #include "UserDALFileTest.h"
+#include "../UserDALFile.h"
 #include <fstream>
 
 // helper function to compare two vectors of movies
-bool compareMovieLists(const std::vector<int>& list1, const std::vector<int>& list2) {
-    return list1 == list2;
+bool compareMovieLists(const std::vector<Movie>& list1, const std::vector<Movie>& list2) {
+    if (list1.size() != list2.size()) {
+        return false;
+    }
+    for (size_t i = 0; i < list1.size(); ++i) {
+        if (list1[i].getId() != list2[i].getId()) {
+            return false;
+        }
+    }
+    return true;
 }
 
 TEST_F(UserDALFileTest, AddAndRetrieveUserWithMovies) {
-    UserDALFile dal(testFile);
+    UserDALFile dal;
 
     // add a user and their movies
     User user1(1);
-    user1.addMovie(101);
-    user1.addMovie(102);
-    user1.addMovie(103);
+    user1.addMovie(Movie(101));
+    user1.addMovie(Movie(102));
+    user1.addMovie(Movie(103));
     dal.addUser(user1);
 
     // retrieve the user and verify
     User retrievedUser = dal.getUser(1);
     ASSERT_EQ(retrievedUser.getId(), user1.getId()) << "User ID should match.";
-    ASSERT_TRUE(compareMovieLists(retrievedUser.getMovies(), user1.getMovies())) << "Movie lists should match.";
+    ASSERT_TRUE(compareMovieLists(retrievedUser. getMovieVec(), user1. getMovieVec())) << "Movie lists should match.";
 }
 
 TEST_F(UserDALFileTest, AddMultipleUsersWithMovies) {
-    UserDALFile dal(testFile);
+    UserDALFile dal;
 
     // add multiple users with movies
     User user1(1);
     user1.addMovie(101);
     User user2(2);
-    user2.addMovie(202);
-    user2.addMovie(203);
+    user2.addMovie(Movie(202));
+    user2.addMovie(Movie(203));
     dal.addUser(user1);
     dal.addUser(user2);
 
@@ -39,13 +48,13 @@ TEST_F(UserDALFileTest, AddMultipleUsersWithMovies) {
     User retrievedUser2 = dal.getUser(2);
 
     ASSERT_EQ(retrievedUser1.getId(), user1.getId()) << "User 1 ID should match.";
-    ASSERT_TRUE(compareMovieLists(retrievedUser1.getMovies(), user1.getMovies())) << "User 1's movie list should match.";
+    ASSERT_TRUE(compareMovieLists(retrievedUser1. getMovieVec(), user1. getMovieVec())) << "User 1's movie list should match.";
     ASSERT_EQ(retrievedUser2.getId(), user2.getId()) << "User 2 ID should match.";
-    ASSERT_TRUE(compareMovieLists(retrievedUser2.getMovies(), user2.getMovies())) << "User 2's movie list should match.";
+    ASSERT_TRUE(compareMovieLists(retrievedUser2. getMovieVec(), user2. getMovieVec())) << "User 2's movie list should match.";
 }
 
 TEST_F(UserDALFileTest, RemoveUserAndItsMovies) {
-    UserDALFile dal(testFile);
+    UserDALFile dal;
 
     // add users and remove one
     User user1(1);
@@ -60,7 +69,7 @@ TEST_F(UserDALFileTest, RemoveUserAndItsMovies) {
     // verify only the first user exists
     User retrievedUser1 = dal.getUser(1);
     ASSERT_EQ(retrievedUser1.getId(), user1.getId()) << "User 1 should still exist.";
-    ASSERT_TRUE(compareMovieLists(retrievedUser1.getMovies(), user1.getMovies())) << "User 1's movie list should remain intact.";
+    ASSERT_TRUE(compareMovieLists(retrievedUser1. getMovieVec(), user1. getMovieVec())) << "User 1's movie list should remain intact.";
 
     // ensure user 2 is no longer in the file
     ASSERT_THROW(dal.getUser(2), std::runtime_error) << "User 2 should not exist.";
@@ -69,31 +78,31 @@ TEST_F(UserDALFileTest, RemoveUserAndItsMovies) {
 TEST_F(UserDALFileTest, PersistenceAcrossRunsWithMovies) {
     // run 1: save data
     {
-        UserDALFile dal(testFile);
+        UserDALFile dal;
         User user1(1);
         user1.addMovie(101);
         user1.addMovie(102);
         User user2(2);
-        user2.addMovie(201);
+        user2.addMovie(Movie(201));
         dal.addUser(user1);
         dal.addUser(user2);
     }
 
     // run 2: reload and verify data
     {
-        UserDALFile dal(testFile);
+        UserDALFile dal;
         User retrievedUser1 = dal.getUser(1);
         User retrievedUser2 = dal.getUser(2);
 
         ASSERT_EQ(retrievedUser1.getId(), 1) << "User 1 should persist across runs.";
-        ASSERT_TRUE(compareMovieLists(retrievedUser1.getMovies(), {101, 102})) << "User 1's movies should persist.";
+        ASSERT_TRUE(compareMovieLists(retrievedUser1. getMovieVec(), {101, 102})) << "User 1's movies should persist.";
         ASSERT_EQ(retrievedUser2.getId(), 2) << "User 2 should persist across runs.";
-        ASSERT_TRUE(compareMovieLists(retrievedUser2.getMovies(), {201})) << "User 2's movies should persist.";
+        ASSERT_TRUE(compareMovieLists(retrievedUser2. getMovieVec(), {201})) << "User 2's movies should persist.";
     }
 }
 
 TEST_F(UserDALFileTest, AddMoviesToExistingUser) {
-    UserDALFile dal(testFile);
+    UserDALFile dal;
 
     // add a user and their movies
     User user1(1);
@@ -102,18 +111,18 @@ TEST_F(UserDALFileTest, AddMoviesToExistingUser) {
 
     // retrieve the user and add more movies
     User retrievedUser = dal.getUser(1);
-    retrievedUser.addMovie(102);
-    retrievedUser.addMovie(103);
+    retrievedUser.addMovie(Movie(102));
+    retrievedUser.addMovie(Movie(103));
     dal.addUser(retrievedUser);
 
     // retrieve again and verify
     User finalRetrievedUser = dal.getUser(1);
     ASSERT_EQ(finalRetrievedUser.getId(), 1) << "User ID should match.";
-    ASSERT_TRUE(compareMovieLists(finalRetrievedUser.getMovies(), {101, 102, 103})) << "User's movie list should update correctly.";
+    ASSERT_TRUE(compareMovieLists(finalRetrievedUser. getMovieVec(), {101, 102, 103})) << "User's movie list should update correctly.";
 }
 
 TEST_F(UserDALFileTest, RemoveMovieFromUser) {
-    UserDALFile dal(testFile);
+    UserDALFile dal;
 
     // add a user and their movies
     User user1(1);
@@ -124,16 +133,16 @@ TEST_F(UserDALFileTest, RemoveMovieFromUser) {
 
     // retrieve the user and remove a movie
     User retrievedUser = dal.getUser(1);
-    retrievedUser.removeMovie(102);
+    retrievedUser.removeMovie(Movie(102));
     dal.addUser(retrievedUser);
 
     // retrieve again and verify
     User finalRetrievedUser = dal.getUser(1);
     ASSERT_EQ(finalRetrievedUser.getId(), 1) << "User ID should match.";
-    ASSERT_TRUE(compareMovieLists(finalRetrievedUser.getMovies(), {101, 103})) << "Movie list should update correctly after removal.";
+    ASSERT_TRUE(compareMovieLists(finalRetrievedUser. getMovieVec(), {101, 103})) << "Movie list should update correctly after removal.";
 }
 TEST_F(UserDALFileTest, AddMovieToExistingUserUpdatesFile) {
-    UserDALFile dal(testFile);
+    UserDALFile dal;
 
     // add a user to the file
     User user1(1);
@@ -156,10 +165,10 @@ TEST_F(UserDALFileTest, AddMovieToExistingUserUpdatesFile) {
 
         if (userId == 1) {
             userFound = true;
-            std::vector<int> movies;
+            std::vector<Movie> movies;
             int movieId;
             while (lineStream >> movieId) {
-                movies.push_back(movieId);
+                movies.push_back(Movie(movieId));
             }
 
             // verify the movie list

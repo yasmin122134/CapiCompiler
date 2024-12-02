@@ -1,10 +1,13 @@
 
-#include "MovieDALFileTest.h'
+#include "MovieDALFileTest.h"
+#include "../MovieDALFile.h"
+#include "../Movie.h"
+#include <gtest/gtest.h>
 #include <fstream>
 
 
 TEST_F(MovieDALFileTest, AddAndRetrieveMovie) {
-    MovieDALFile dal(testFile);
+    MovieDALFile dal;
 
     // add a Movie and retrieve it
     Movie Movie1(1);
@@ -16,7 +19,7 @@ TEST_F(MovieDALFileTest, AddAndRetrieveMovie) {
 }
 
 TEST_F(MovieDALFileTest, AddMultipleMovies) {
-    MovieDALFile dal(testFile);
+    MovieDALFile dal;
 
     // add multiple Movies
     Movie Movie1(1);
@@ -33,7 +36,7 @@ TEST_F(MovieDALFileTest, AddMultipleMovies) {
 }
 
 TEST_F(MovieDALFileTest, RemoveMovie) {
-    MovieDALFile dal(testFile);
+    MovieDALFile dal;
 
     // add Movies and remove one
     Movie Movie1(1);
@@ -51,7 +54,7 @@ TEST_F(MovieDALFileTest, RemoveMovie) {
 TEST_F(MovieDALFileTest, PersistenceAcrossRuns) {
     // Run 1: save data
     {
-        MovieDALFile dal(testFile);
+        MovieDALFile dal;
         dal.addMovie(Movie(1));
         dal.addMovie(Movie(2));
         dal.getMovie(3);
@@ -59,7 +62,7 @@ TEST_F(MovieDALFileTest, PersistenceAcrossRuns) {
 
     // Run 2: reload and verify data
     {
-        MovieDALFile dal(testFile);
+        MovieDALFile dal;
         Movie retrievedMovie1 = dal.getMovie(1);
         Movie retrievedMovie2 = dal.getMovie(2);
         Movie retrievedMovie3 = dal.getMovie(3);
@@ -72,7 +75,7 @@ TEST_F(MovieDALFileTest, PersistenceAcrossRuns) {
 
 // Test: ensure no duplicates are created when adding the same Movie multiple times
 TEST_F(MovieDALFileTest, NoDuplicatesOnAdd) {
-    MovieDALFile dal(testFile);
+    MovieDALFile dal;
 
     Movie Movie1(1);
     dal.addMovie(Movie1);
@@ -87,7 +90,7 @@ TEST_F(MovieDALFileTest, NoDuplicatesOnAdd) {
     int MovieCount = 0;
     Movie tempMovie;
     while (inFile) {
-        tempMovie.loadFromStream(inFile);
+        inFile >> tempMovie;
         if (inFile) {
             MovieCount++;
         }
@@ -99,7 +102,7 @@ TEST_F(MovieDALFileTest, NoDuplicatesOnAdd) {
 
 // Test: ensure that getMovie doesn't create an extra Movie record
 TEST_F(MovieDALFileTest, GetMovieDoesNotCreateExtraMovie) {
-    MovieDALFile dal(testFile);
+    MovieDALFile dal;
 
     // try to get a Movie that doesn't exist
     Movie retrievedMovie = dal.getMovie(999); // Non-existing Movie
@@ -109,7 +112,7 @@ TEST_F(MovieDALFileTest, GetMovieDoesNotCreateExtraMovie) {
     int MovieCount = 0;
     Movie tempMovie;
     while (inFile) {
-        tempMovie.loadFromStream(inFile);
+        inFile >> tempMovie;
         if (inFile) {
             MovieCount++;
         }
@@ -121,7 +124,7 @@ TEST_F(MovieDALFileTest, GetMovieDoesNotCreateExtraMovie) {
 
 // Test: check that removeMovie actually removes the Movie from the file
 TEST_F(MovieDALFileTest, RemoveMovieFromFile) {
-    MovieDALFile dal(testFile);
+    MovieDALFile dal;
 
     // add Movies and remove one
     Movie Movie1(1);
@@ -136,7 +139,7 @@ TEST_F(MovieDALFileTest, RemoveMovieFromFile) {
     Movie tempMovie;
     bool Movie2Found = false;
     while (inFile) {
-        tempMovie.loadFromStream(inFile);
+        inFile >> tempMovie;
         if (inFile) {
             MovieCount++;
             if (tempMovie.getId() == 2) {
@@ -152,7 +155,7 @@ TEST_F(MovieDALFileTest, RemoveMovieFromFile) {
 
 // Test: adding and Removing a Large Number of Movies
 TEST_F(MovieDALFileTest, LargeNumberOfMovies) {
-    MovieDALFile dal(testFile);
+    MovieDALFile dal;
 
     // add 10,000 Movies
     for (int i = 0; i < 10000; i++) {

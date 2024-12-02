@@ -8,11 +8,11 @@
 class UserDALFile : public IUserDAL {
 public:
     UserDALFile();
-    ~UserDALFile();
+    ~UserDALFile() override;
 
-    void addUser(const User user) override;
+    void addUser(User user) override;
     void removeUser(User user) override;
-    User getUser(const int id) override;
+    User getUser(int id) override;
     bool doesExist(User user) override;
     void clear() override;
 

@@ -3,8 +3,8 @@
 
 #include <gtest/gtest.h>
 #include <fstream>  // include this for std::ofstream and std::ifstream
-#include "MovieDALFile.h"
-#include "Movie.h"
+#include "../MovieDALFile.h"
+#include "../Movie.h"
 
 class MovieDALFileTest : public ::testing::Test {
 protected:

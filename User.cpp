@@ -1,7 +1,12 @@
 #include "User.h"
+#include "Movie.h"
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include "Movie.h"
 
 using namespace std;
 
@@ -29,6 +34,13 @@ void User::addMovie(Movie movie) {
     movieVec.push_back(movie);
 }
 
+void User::removeMovie(const Movie movie) {
+    auto it = std::find(movieVec.begin(), movieVec.end(), movie);
+    if (it != movieVec.end()) {
+        movieVec.erase(it);
+    }
+}
+
 
 std::ostream& operator<<(std::ostream& out, const User& user) {
     out << user.id << " " << user.movieVec.size() << " ";
@@ -49,3 +61,4 @@ std::istream& operator>>(std::istream& in, User& user) {
     }
     return in;
 }
+

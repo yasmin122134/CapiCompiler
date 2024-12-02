@@ -3,8 +3,8 @@
 
 #include <gtest/gtest.h>
 #include <fstream>  // include this for std::ofstream and std::ifstream
-#include "UserDALFile.h"
-#include "User.h"
+#include "../UserDALFile.h"
+#include "../User.h"
 
 class UserDALFileTest : public ::testing::Test {
 protected:

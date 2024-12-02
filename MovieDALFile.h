@@ -8,7 +8,7 @@
 class MovieDALFile : public IMovieDAL {
 public:
     MovieDALFile();
-    ~MovieDALFile();
+    ~MovieDALFile() override;
 
     void addMovie(Movie movie) override;
     void removeMovie(Movie movie) override;
@@ -25,4 +25,4 @@ private:
     void addMovieToFile(Movie movie);
 };
 
-#endif MOVIEDALFILE_H
+#endif // MOVIEDALFILE_H

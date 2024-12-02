@@ -17,10 +17,13 @@ public:
     vector<Movie> getMovieVec();
     void setMovieVec(const std::vector<Movie>& movieVec);
     void addMovie(Movie movie);
+    void removeMovie(Movie movie);
 
         // Friend declarations for stream operators
     friend std::ostream& operator<<(std::ostream& out, const User& user);
     friend std::istream& operator>>(std::istream& in, User& user);
+    
+
 
 private:
     int id;
@@ -28,4 +31,4 @@ private:
 
 };
 
-#endif USER_H
+#endif // USER_H
