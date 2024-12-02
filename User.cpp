@@ -51,11 +51,12 @@ std::ostream& operator<<(std::ostream& out, const User& user) {
 }
 
 std::istream& operator>>(std::istream& in, User& user) {
-    size_t movieCount;
-    in >> user.id >> movieCount;
+    in >> user.id;
     user.movieVec.clear();
-    for (size_t i = 0; i < movieCount; ++i) {
-        Movie movie;
+    int movieCount;
+    in >> movieCount;
+    for (int i = 0; i < movieCount; ++i) {
+        Movie movie(0);
         in >> movie;
         user.movieVec.push_back(movie);
     }

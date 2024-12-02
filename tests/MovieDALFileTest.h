@@ -8,7 +8,7 @@
 
 class MovieDALFileTest : public ::testing::Test {
 protected:
-    std::string testFile = "test_Movies.dat";
+    std::string testFile = "movies.dat";
 
     void SetUp() override {
         // remove content of the file before each test

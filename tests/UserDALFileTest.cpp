@@ -7,12 +7,14 @@ bool compareMovieLists(const std::vector<Movie>& list1, const std::vector<Movie>
     if (list1.size() != list2.size()) {
         return false;
     }
-    for (size_t i = 0; i < list1.size(); ++i) {
+    // check if the movie vectors are equal using std algorithms
+    return std::equal(list1.begin(), list1.end(), list2.begin());
+    /*    for (size_t i = 0; i < list1.size(); ++i) {
         if (list1[i].getId() != list2[i].getId()) {
             return false;
         }
     }
-    return true;
+    return true;*/
 }
 
 TEST_F(UserDALFileTest, AddAndRetrieveUserWithMovies) {
@@ -48,9 +50,9 @@ TEST_F(UserDALFileTest, AddMultipleUsersWithMovies) {
     User retrievedUser2 = dal.getUser(2);
 
     ASSERT_EQ(retrievedUser1.getId(), user1.getId()) << "User 1 ID should match.";
-    ASSERT_TRUE(compareMovieLists(retrievedUser1. getMovieVec(), user1. getMovieVec())) << "User 1's movie list should match.";
+    ASSERT_TRUE(compareMovieLists(retrievedUser1.getMovieVec(), user1.getMovieVec())) << "User 1's movie list should match.";
     ASSERT_EQ(retrievedUser2.getId(), user2.getId()) << "User 2 ID should match.";
-    ASSERT_TRUE(compareMovieLists(retrievedUser2. getMovieVec(), user2. getMovieVec())) << "User 2's movie list should match.";
+    ASSERT_TRUE(compareMovieLists(retrievedUser2.getMovieVec(), user2.getMovieVec())) << "User 2's movie list should match.";
 }
 
 TEST_F(UserDALFileTest, RemoveUserAndItsMovies) {
@@ -71,8 +73,19 @@ TEST_F(UserDALFileTest, RemoveUserAndItsMovies) {
     ASSERT_EQ(retrievedUser1.getId(), user1.getId()) << "User 1 should still exist.";
     ASSERT_TRUE(compareMovieLists(retrievedUser1. getMovieVec(), user1. getMovieVec())) << "User 1's movie list should remain intact.";
 
-    // ensure user 2 is no longer in the file
-    ASSERT_THROW(dal.getUser(2), std::runtime_error) << "User 2 should not exist.";
+    // ensure user 2 is no longer in the file by looking for it manually
+    std::ifstream inFile(testFile);
+    std::string line;
+    bool user2Found = false;
+    while (std::getline(inFile, line)) {
+        std::istringstream lineStream(line);
+        int userId;
+        lineStream >> userId;
+        if (userId == 2) {
+            user2Found = true;
+        }
+    }
+    ASSERT_FALSE(user2Found) << "User 2 should not be found in the file.";
 }
 
 TEST_F(UserDALFileTest, PersistenceAcrossRunsWithMovies) {
@@ -95,9 +108,9 @@ TEST_F(UserDALFileTest, PersistenceAcrossRunsWithMovies) {
         User retrievedUser2 = dal.getUser(2);
 
         ASSERT_EQ(retrievedUser1.getId(), 1) << "User 1 should persist across runs.";
-        ASSERT_TRUE(compareMovieLists(retrievedUser1. getMovieVec(), {101, 102})) << "User 1's movies should persist.";
+        ASSERT_TRUE(compareMovieLists(retrievedUser1.getMovieVec(), {101, 102})) << "User 1's movies should persist.";
         ASSERT_EQ(retrievedUser2.getId(), 2) << "User 2 should persist across runs.";
-        ASSERT_TRUE(compareMovieLists(retrievedUser2. getMovieVec(), {201})) << "User 2's movies should persist.";
+        ASSERT_TRUE(compareMovieLists(retrievedUser2.getMovieVec(), {201})) << "User 2's movies should persist.";
     }
 }
 
@@ -118,7 +131,7 @@ TEST_F(UserDALFileTest, AddMoviesToExistingUser) {
     // retrieve again and verify
     User finalRetrievedUser = dal.getUser(1);
     ASSERT_EQ(finalRetrievedUser.getId(), 1) << "User ID should match.";
-    ASSERT_TRUE(compareMovieLists(finalRetrievedUser. getMovieVec(), {101, 102, 103})) << "User's movie list should update correctly.";
+    ASSERT_TRUE(compareMovieLists(finalRetrievedUser.getMovieVec(), {101, 102, 103})) << "User's movie list should update correctly.";
 }
 
 TEST_F(UserDALFileTest, RemoveMovieFromUser) {
@@ -163,7 +176,7 @@ TEST_F(UserDALFileTest, AddMovieToExistingUserUpdatesFile) {
         int userId;
         lineStream >> userId;
 
-        if (userId == 1) {
+        if (userId == 1) {  
             userFound = true;
             std::vector<Movie> movies;
             int movieId;

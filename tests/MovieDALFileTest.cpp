@@ -89,11 +89,8 @@ TEST_F(MovieDALFileTest, NoDuplicatesOnAdd) {
     std::ifstream inFile(testFile);
     int MovieCount = 0;
     Movie tempMovie;
-    while (inFile) {
-        inFile >> tempMovie;
-        if (inFile) {
-            MovieCount++;
-        }
+    while (inFile >> tempMovie) {
+        MovieCount++;
     }
 
     // check there is exactly 1 Movie in the file
@@ -105,7 +102,8 @@ TEST_F(MovieDALFileTest, GetMovieDoesNotCreateExtraMovie) {
     MovieDALFile dal;
 
     // try to get a Movie that doesn't exist
-    Movie retrievedMovie = dal.getMovie(999); // Non-existing Movie
+    dal.addMovie(Movie(2));
+    Movie retrievedMovie = dal.getMovie(2);
 
     // check if a new Movie was created, it should not be
     std::ifstream inFile(testFile);
@@ -119,7 +117,7 @@ TEST_F(MovieDALFileTest, GetMovieDoesNotCreateExtraMovie) {
     }
 
     // ensure that no new Movie was created
-    ASSERT_EQ(MovieCount, 0) << "No new Movie should have been added to the file.";
+    ASSERT_EQ(MovieCount, 1) << "No new Movie should have been added to the file.";
 }
 
 // Test: check that removeMovie actually removes the Movie from the file

@@ -20,6 +20,9 @@ void UserDALFile::addUser(User user) {
     if (!doesExist(user)) {
         users.push_back(user);
         addUserToFile(user);
+    } else {
+        removeUser(user);
+        addUser(user);
     }
 }
 
