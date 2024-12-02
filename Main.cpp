@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <vector>
-#include "ICommand.h"
+#include "commands/ICommand.h"
 #include "IUserDAL.h"
 #include "IMovieDAL.h"
 #include "Help.h"
