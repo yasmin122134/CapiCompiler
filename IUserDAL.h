@@ -11,6 +11,7 @@ public:
     virtual User getUser(int id) = 0; // returns user from file and creats new if doesn't exists
     virtual void addUser(User user) = 0;
     virtual void removeUser(User user) = 0; // remove a specific user from the file
+    virtual vector<User> getAllUsers() = 0;
     virtual bool doesExist(User user) = 0;
     virtual void clear() = 0;
 };

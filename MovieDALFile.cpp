@@ -45,6 +45,10 @@ Movie MovieDALFile::getMovie(int id) {
     return m;
 }
 
+vector<Movie> MovieDALFile::getAllMovies() {
+    return movies;
+}
+
 // look for the movie in the vector
 bool MovieDALFile::doesExist(Movie movie) {
     return any_of(movies.begin(), movies.end(), [&](Movie& m) {
