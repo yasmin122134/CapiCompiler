@@ -1,7 +1,10 @@
 #include "Recommend.h"
 
+Recommend::Recommend(IMovieDAL* movieDal, IUserDAL* userDal) 
+    : movieDal(movieDal), userDal(userDal) {}
+
 void Recommend::execute(std::string inputLine) {
-    istringstream iss(inputLine);
+    std::istringstream iss(inputLine);
     int userId, movieId;
     iss >> userId >> movieId;
     vector<int> recommendations = recommend(userId, movieId);
@@ -11,15 +14,16 @@ void Recommend::execute(std::string inputLine) {
     cout << endl;
 }
 
-static vector<User> usersThatWatchedMovie (int movieId) {
+static vector<User> usersThatWatchedMovie(int movieId, IUserDAL* userDal) {
     vector<User> users = userDal->getAllUsers();
-    vector<User> usersThatWatchedMovie;
-    for (User user : users) {
-        if (user.getMovieVec().find(movieId) != user.getMovieVec().end()) {
-            usersThatWatchedMovie.push_back(user);
+    vector<User> watchers;
+    for (const User& user : users) {
+        auto movies = user.getMovieVec();
+        if (std::find(movies.begin(), movies.end(), movieId) != movies.end()) {
+            watchers.push_back(user);
         }
     }
-    return usersThatWatchedMovie;
+    return watchers;
 }
 
 static int ammountOfCommonMovies(User user1, User user2) {
@@ -34,7 +38,7 @@ static int ammountOfCommonMovies(User user1, User user2) {
 
 static map<Movie, int> calculateSimilarityScores(int userId, int movieId) {
     User user = User::getUser(userId);
-    vector<User> movieViewersOfOriginalMovie = usersThatWatchedMovie(movieId);
+    vector<User> movieViewersOfOriginalMovie = usersThatWatchedMovie(movieId, userDal);
     map<Movie, int> similarityScores;
 
     // Initialize all movies with 0 scores
@@ -45,7 +49,7 @@ static map<Movie, int> calculateSimilarityScores(int userId, int movieId) {
 
     // Calculate similarity scores
     for (const Movie& movie : allMovies) {
-        vector<User> viewersOfMovie = usersThatWatchedMovie(movie.getId());
+        vector<User> viewersOfMovie = usersThatWatchedMovie(movie.getId(), userDal);
         for (const User& viewer : viewersOfMovie) {
             if (movieViewersOfOriginalMovie.find(viewer) != movieViewersOfOriginalMovie.end()) {
             similarityScores[movie] += ammountOfCommonMovies(user, viewer);

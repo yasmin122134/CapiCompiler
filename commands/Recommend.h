@@ -2,16 +2,17 @@
 #define RECOMMEND_H
 
 #include "Icommand.h"
-#include "IMovieDal.h"
-#include "IUserDal.h"
+#include "../IMovieDAL.h"
+#include "../IUserDAL.h"
 
 class Recommend : public Icommand {
 public:
+    Recommend(IMovieDAL* movieDal, IUserDAL* userDal);
     void execute(std::string inputLine) override;
     void print(std::ostream& os) const override;
 private:
-    IMovieDal* movieDal;
-    IUserDal* userDal;
+    IMovieDAL* movieDal;
+    IUserDAL* userDal;
 };
 
 #endif
