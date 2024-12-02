@@ -30,16 +30,22 @@ void Add::updateUser(User user, Movie movie) {
 void Add::addMovies(int userID, vector<int> movieIDs) {
     std::cout << "[Add::addMovies] Adding " << movieIDs.size() 
               << " movies to user " << userID << std::endl;
-    for (int movieID : movieIDs) {
-        try {
-            std::cout << "[Add::addMovies] Processing movieID: " << movieID << std::endl;
-            User user = userDb->getUser(userID);
-            Movie movie = movieDb->getMovie(movieID);
-            updateUser(user, movie);
-        } catch (...) {
-            std::cerr << "[Add::addMovies] Error processing movieID: " << movieID << std::endl;
-            // Ignore any errors and continue
+    
+    try {
+        User user = userDb->getUser(userID);
+        for (int movieID : movieIDs) {
+            try {
+                std::cout << "[Add::addMovies] Processing movieID: " << movieID << std::endl;
+                Movie movie = movieDb->getMovie(movieID);
+                updateUser(user, movie);
+            } catch (...) {
+                std::cerr << "[Add::addMovies] Error processing movieID: " << movieID << std::endl;
+                // Ignore any errors and continue
+            }
         }
+    } catch (...) {
+        std::cerr << "[Add::addMovies] Error retrieving user: " << userID << std::endl;
+        return;
     }
 }
 

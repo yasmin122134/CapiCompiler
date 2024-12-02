@@ -2,61 +2,39 @@
 #define ADD_TEST_H
 
 #include <gtest/gtest.h>
-#include "../commands/Add.h"
-#include "../User.h"
-#include "../Movie.h"
+#include <fstream>
 #include "../UserDALFile.h"
 #include "../MovieDALFile.h"
-#include <fstream>
-#include <iostream>  // for debug prints
+#include "../commands/Add.h"
+#include "../User.h"
+#include <vector>
 
 class AddTest : public ::testing::Test {
 protected:
-    std::string testFile = "test_users.dat";
-    IUserDAL* userDAL;
-    IMovieDAL* movieDAL;
+    std::string testFile = "users.dat";
+    std::vector<Movie> testMovies;
+    User testUser;
 
     void SetUp() override {
-        std::cout << "\n[TEST SETUP] Starting test setup..." << std::endl;
-        
         // remove content of the file before each test
         std::ofstream outFile(testFile, std::ios::trunc);
-        if (!outFile.is_open()) {
-            std::cerr << "[TEST SETUP ERROR] Failed to open file for truncation: " << testFile << std::endl;
-        }
         outFile.close();
-        std::cout << "[TEST SETUP] Test file truncated: " << testFile << std::endl;
+
+        // Initialize test user and movies
+        testUser = User(1);  // Create user with ID 1
         
-        userDAL = new UserDALFile();
-        if (!userDAL) {
-            std::cerr << "[TEST SETUP ERROR] Failed to create UserDALFile instance" << std::endl;
-        }
-        userDAL->clear();
-        std::cout << "[TEST SETUP] UserDALFile initialized and cleared" << std::endl;
-        
-        movieDAL = new MovieDALFile();
-        if (!movieDAL) {
-            std::cerr << "[TEST SETUP ERROR] Failed to create MovieDALFile instance" << std::endl;
-        }
-        movieDAL->clear();
-        std::cout << "[TEST SETUP] MovieDALFile initialized and cleared" << std::endl;
+        // Create some test movies
+        testMovies = {
+            Movie(1),
+            Movie(2),
+            Movie(3)
+        };
     }
 
     void TearDown() override {
-        std::cout << "\n[TEST TEARDOWN] Starting test cleanup..." << std::endl;
-        
-        delete userDAL;
-        std::cout << "[TEST TEARDOWN] UserDAL deleted" << std::endl;
-        
-        delete movieDAL;
-        std::cout << "[TEST TEARDOWN] MovieDAL deleted" << std::endl;
-        
-        if (std::remove(testFile.c_str()) != 0) {
-            std::cerr << "[TEST TEARDOWN ERROR] Failed to remove test file: " << testFile << std::endl;
-        } else {
-            std::cout << "[TEST TEARDOWN] Test file removed: " << testFile << std::endl;
-        }
+        // remove the file after each test
+        std::remove(testFile.c_str());
     }
 };
 
-#endif
+#endif // ADD_TEST_H

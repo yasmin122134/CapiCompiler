@@ -2,29 +2,35 @@
 #include <sstream>
 
 TEST_F(AddTest, AddUserWithMultipleMovies) {
-    Add cmd(userDAL, movieDAL);
+    UserDALFile dal = UserDALFile();
+    MovieDALFile movieDal = MovieDALFile();
+    Add cmd(&dal, &movieDal);
     cmd.execute("add 123 1001 1002 1003");
 
     User user(123);
-    ASSERT_TRUE(userDAL->doesExist(user));
+    ASSERT_TRUE(dal.doesExist(user));
     
-    user = userDAL->getUser(123);
+    user = dal.getUser(123);
     EXPECT_EQ(user.getMovieVec().size(), 3);
 }
 
 TEST_F(AddTest, AddDuplicateUser) {
-    Add cmd(userDAL, movieDAL);
+    UserDALFile dal = UserDALFile();
+    MovieDALFile movieDal = MovieDALFile();
+    Add cmd(&dal, &movieDal);
     cmd.execute("add 123 1001");
     cmd.execute("add 123 1002");
     
     User user(123);
-    ASSERT_TRUE(userDAL->doesExist(user));
-    user = userDAL->getUser(123);
+    ASSERT_TRUE(dal.doesExist(user));
+    user = dal.getUser(123);
     EXPECT_EQ(user.getMovieVec().size(), 2);
 }
 
 TEST_F(AddTest, AddUserWithNoMovies) {
-    Add cmd(userDAL, movieDAL);
+    UserDALFile dal = UserDALFile();
+    MovieDALFile movieDal = MovieDALFile();
+    Add cmd(&dal, &movieDal);
     cmd.execute("add 123");
     
     std::stringstream output;
@@ -33,7 +39,9 @@ TEST_F(AddTest, AddUserWithNoMovies) {
 }
 
 TEST_F(AddTest, AddUserWithNonNumericIds) {
-    Add cmd(userDAL, movieDAL);
+    UserDALFile dal = UserDALFile();
+    MovieDALFile movieDal = MovieDALFile();
+    Add cmd(&dal, &movieDal);
     cmd.execute("add abc 1001");
     std::stringstream output1;
     cmd.print(output1);
@@ -46,13 +54,15 @@ TEST_F(AddTest, AddUserWithNonNumericIds) {
 }
 
 TEST_F(AddTest, IllegalCommandsDoNotModifyState) {
-    Add cmd(userDAL, movieDAL);
+    UserDALFile dal = UserDALFile();
+    MovieDALFile movieDal = MovieDALFile();
+    Add cmd(&dal, &movieDal);
     cmd.execute("add abc 1001");  // Invalid user ID
-    EXPECT_EQ(userDAL->getAllUsers().size(), 0);  // No user should be added
+    EXPECT_EQ(dal.getAllUsers().size(), 0);  // No user should be added
     
     cmd.execute("add 123");  // No movies
-    EXPECT_EQ(userDAL->getAllUsers().size(), 0);  // No user should be added
+    EXPECT_EQ(dal.getAllUsers().size(), 0);  // No user should be added
     
     cmd.execute("add 123 abc");  // Invalid movie ID
-    EXPECT_EQ(userDAL->getAllUsers().size(), 0);  // No user should be added
+    EXPECT_EQ(dal.getAllUsers().size(), 0);  // No user should be added
 }
