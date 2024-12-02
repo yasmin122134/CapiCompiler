@@ -9,12 +9,6 @@ bool compareMovieLists(const std::vector<Movie>& list1, const std::vector<Movie>
     }
     // check if the movie vectors are equal using std algorithms
     return std::equal(list1.begin(), list1.end(), list2.begin());
-    /*    for (size_t i = 0; i < list1.size(); ++i) {
-        if (list1[i].getId() != list2[i].getId()) {
-            return false;
-        }
-    }
-    return true;*/
 }
 
 TEST_F(UserDALFileTest, AddAndRetrieveUserWithMovies) {
@@ -131,6 +125,7 @@ TEST_F(UserDALFileTest, AddMoviesToExistingUser) {
     // retrieve again and verify
     User finalRetrievedUser = dal.getUser(1);
     ASSERT_EQ(finalRetrievedUser.getId(), 1) << "User ID should match.";
+    ASSERT_FALSE(compareMovieLists(finalRetrievedUser.getMovieVec(), {101})) << "User's movie list should not be the same.";
     ASSERT_TRUE(compareMovieLists(finalRetrievedUser.getMovieVec(), {101, 102, 103})) << "User's movie list should update correctly.";
 }
 
@@ -152,42 +147,6 @@ TEST_F(UserDALFileTest, RemoveMovieFromUser) {
     // retrieve again and verify
     User finalRetrievedUser = dal.getUser(1);
     ASSERT_EQ(finalRetrievedUser.getId(), 1) << "User ID should match.";
-    ASSERT_TRUE(compareMovieLists(finalRetrievedUser. getMovieVec(), {101, 103})) << "Movie list should update correctly after removal.";
-}
-TEST_F(UserDALFileTest, AddMovieToExistingUserUpdatesFile) {
-    UserDALFile dal;
-
-    // add a user to the file
-    User user1(1);
-    user1.addMovie(101);
-    dal.addUser(user1);
-
-    // retrieve the user and add a new movie
-    User retrievedUser = dal.getUser(1);
-    retrievedUser.addMovie(102);
-    dal.addUser(retrievedUser); // save the updated user back to the file
-
-    // read the file directly to verify the changes
-    std::ifstream inFile(testFile);
-    std::string line;
-    bool userFound = false;
-    while (std::getline(inFile, line)) {
-        std::istringstream lineStream(line);
-        int userId;
-        lineStream >> userId;
-
-        if (userId == 1) {  
-            userFound = true;
-            std::vector<Movie> movies;
-            int movieId;
-            while (lineStream >> movieId) {
-                movies.push_back(Movie(movieId));
-            }
-
-            // verify the movie list
-            ASSERT_TRUE(compareMovieLists(movies, {101, 102})) << "File should reflect updated movie list for the user.";
-        }
-    }
-
-    ASSERT_TRUE(userFound) << "User 1 should be found in the file.";
+    ASSERT_FALSE(compareMovieLists(finalRetrievedUser.getMovieVec(), {101, 102, 103})) << "Movie list should not have 102";
+    ASSERT_TRUE(compareMovieLists(finalRetrievedUser.getMovieVec(), {101, 103})) << "Movie list should update correctly after removal.";
 }

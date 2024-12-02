@@ -25,10 +25,11 @@ void MovieDALFile::addMovie(Movie movie) {
 
 // remove from vector and update file
 void MovieDALFile::removeMovie(Movie movie) {
-    movies.erase(remove_if(movies.begin(), movies.end(), [&](Movie& m) {
-        return m.getId() == movie.getId();
-    }), movies.end());
-    saveMovies();
+    auto it = std::find(movies.begin(), movies.end(), movie);
+    if (it != movies.end()) {
+        movies.erase(it);
+        saveMovies(); // Save the updated list to the file
+    }
 }
 
 // find and return the desired movie by id
@@ -45,11 +46,13 @@ Movie MovieDALFile::getMovie(int id) {
     return m;
 }
 
+vector<Movie> MovieDALFile::getAllMovies() {
+    return movies;
+}
+
 // look for the movie in the vector
 bool MovieDALFile::doesExist(Movie movie) {
-    return any_of(movies.begin(), movies.end(), [&](Movie& m) {
-        return m.getId() == movie.getId();
-    });
+    return std::find(movies.begin(), movies.end(), movie) != movies.end();
 }
 
 // empty vector and file
@@ -75,10 +78,10 @@ void MovieDALFile::loadMovies() {
 
 // write as bits the movies into the file
 void MovieDALFile::saveMovies() {
-    ofstream file(filename, ios::binary | ios::trunc); // opening to binary writing (and truncating)
+    ofstream file(filename, ios::trunc); // Open in text mode
     if (file.is_open()) {
         for (const auto& movie : movies) {
-            file << movie << "\n"; // write binary of the movie object
+            file << movie << "\n"; // Write the movie object as a string
         }
         file.close();
     }
@@ -86,7 +89,7 @@ void MovieDALFile::saveMovies() {
 
 // adding a single file without rewriting everything
 void MovieDALFile::addMovieToFile(Movie movie) {
-    ofstream file(filename, ios::binary | ios::app); // opening to binary writing (append mode)
+    ofstream file(filename, ios::app); // opening in text mode (append mode)
     if (file.is_open()) {
         file << movie << "\n";
         file.close();

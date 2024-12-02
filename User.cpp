@@ -63,3 +63,6 @@ std::istream& operator>>(std::istream& in, User& user) {
     return in;
 }
 
+bool User::operator==(const User& other) const {
+    return id == other.id;
+}

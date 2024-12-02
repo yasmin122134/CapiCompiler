@@ -16,7 +16,7 @@ UserDALFile::~UserDALFile() {
 }
 
 // add to vector and update file
-void UserDALFile::addUser(User user) {
+void UserDALFile::addUser(const User user) {
     if (!doesExist(user)) {
         users.push_back(user);
         addUserToFile(user);
@@ -35,7 +35,7 @@ void UserDALFile::removeUser(User user) {
 }
 
 // find and return the desired user by id
-User UserDALFile::getUser(int id) {
+User UserDALFile::getUser(const int id) {
     auto it = find_if(users.begin(), users.end(), [&](User& u) {
         return u.getId() == id;
     });
@@ -46,6 +46,11 @@ User UserDALFile::getUser(int id) {
     User u(id);
     addUser(u);
     return u;
+}
+
+
+vector<User> UserDALFile::getAllUsers() {
+    return users;
 }
 
 // look for the user in the vector
