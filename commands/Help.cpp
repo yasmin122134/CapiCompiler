@@ -14,3 +14,7 @@ Help::Help(const vector<Icommand*>& commandList) {
 void Help::print(ostream& os) const {
     os << "help";
 }
+
+std::string Help::getCommandName() const {
+    return "help";
+}

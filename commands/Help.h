@@ -10,6 +10,7 @@ public:
     Help(const vector<Icommand*>& commandList);
     void execute(string inputLine) override;
     void print(ostream& os) const override;
+    std::string getCommandName() const override;
 };
 
 #endif
