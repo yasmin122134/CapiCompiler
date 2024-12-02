@@ -17,6 +17,7 @@ class Add : public Icommand {
 private:
     /** Pointer to the user data access layer interface */
     IUserDAL* userDb;
+    bool isValidCommand(const std::string& command);
 
 public:
     /**
@@ -29,8 +30,9 @@ public:
      * @brief Executes the add user command
      * 
      * Prompts for user information and adds the new user to the database
+     * @param inputLine The input line containing user information
      */
-    void execute() override;
+    void execute(std::string inputLine) override;
 };
 
 #endif
