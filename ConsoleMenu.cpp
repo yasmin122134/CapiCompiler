@@ -6,7 +6,6 @@ ConsoleMenu::ConsoleMenu(std::vector<ICommand*> cmdList, IUserDAL* userDal, IMov
       inputStream(input), outputStream(output) {}
 
 bool ConsoleMenu::nextCommand() {
-    outputStream << "> "; // Display prompt
     std::string line;
     if (!std::getline(inputStream, line) || line.empty()) {
         return false;
@@ -27,8 +26,6 @@ bool ConsoleMenu::nextCommand() {
 
     if (it != commands.end()) {
         (*it)->execute(args);
-    } else {
-        displayError("Command not found: " + commandName);
     }
 
     return true;
