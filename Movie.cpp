@@ -31,3 +31,6 @@ bool Movie::operator==(const Movie& other) const {
 bool Movie::operator!=(const Movie& other) const {
     return this->getId() != other.getId();
 }
+bool Movie::operator<(const Movie& other) const {
+    return id < other.id;
+}

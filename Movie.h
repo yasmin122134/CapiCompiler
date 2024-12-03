@@ -19,6 +19,9 @@ public:
 
     bool operator==(const Movie& other) const;
     bool operator!=(const Movie& other) const;
+    
+    bool operator<(const Movie& other) const; // Add this line
+
 private:
     int id;
 };
