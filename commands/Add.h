@@ -17,19 +17,17 @@ using namespace std;
 class Add : public ICommand {
 private:
     /** Pointer to the user data access layer interface */
-    IUserDAL* userDb;
-    IMovieDAL* movieDb;
+    std::unique_ptr<IUserDAL> userDb;
+    std::unique_ptr<IMovieDAL> movieDb;
     bool isValidCommand(const std::string& command);
     void addMovies(int userID, vector<int> movieIDs);
-
-
 
 public:
     /**
      * @brief Constructs an Add command
      * @param userDb Pointer to the user database interface
      */
-    Add(IUserDAL* userDb);
+    Add(std::unique_ptr<IUserDAL> userDb, std::unique_ptr<IMovieDAL> movieDb);
     std::string getCommandName() const override;
 
     /**
@@ -39,6 +37,8 @@ public:
      * @param inputLine The input line containing user information
      */
     void execute(std::string inputLine) override;
+
+    void print(std::ostream& os) const override;
 };
 
 #endif

@@ -1,15 +1,17 @@
 #include "Help.h"
 #include <iostream>
+#include <memory>
+
+
 using namespace std;
 void Help::execute(string inputLine) {
-    for (ICommand* command : commandList) {
+    for (const auto& command : commandList) {
         cout << *command << endl;
     }
 }
 
-Help::Help(const vector<ICommand*>& commandList) {
-    this->commandList = commandList;
-}
+Help::Help(const std::vector<std::unique_ptr<ICommand>>& commandList) :
+    commandList(commandList) {}
 
 void Help::print(ostream& os) const {
     os << "help";

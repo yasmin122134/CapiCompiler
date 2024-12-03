@@ -5,9 +5,9 @@
 using namespace std;
 class Help : public ICommand {
 private:
-    vector<ICommand*> commandList;
+    vector<unique_ptr<ICommand>> commandList;
 public:
-    Help(const vector<ICommand*>& commandList);
+    Help(const std::vector<std::unique_ptr<ICommand>>& commandList);
     void execute(string inputLine) override;
     void print(ostream& os) const override;
     std::string getCommandName() const override;

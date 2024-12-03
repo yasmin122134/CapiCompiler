@@ -1,5 +1,6 @@
 #include "Recommend.h"
 #include <sstream>
+#include <memory>
 #include <iostream>
 #include <map>
 #include <vector>
@@ -8,8 +9,8 @@
 
 using namespace std;
 
-Recommend::Recommend(IMovieDAL* movieDAL, IUserDAL* userDAL) 
-    : movieDAL(movieDAL), userDAL(userDAL) {}
+Recommend::Recommend(std::unique_ptr<IMovieDAL> movieDAL, std::unique_ptr<IUserDAL> userDAL) 
+    : movieDAL(std::move(movieDAL)), userDAL(std::move(userDAL)) {}
 
 bool Recommend::isValidInput(const std::string& userIdStr, const std::string& movieIdStr) {
     // Check if userIdStr and movieIdStr are numbers

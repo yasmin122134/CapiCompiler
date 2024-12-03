@@ -3,7 +3,10 @@
 #include "../IUserDAL.h"
 #include <sstream>
 #include <algorithm>
-Add::Add(IUserDAL* userDb) : userDb(userDb) {}
+#include <memory>
+
+Add::Add(std::unique_ptr<IUserDAL> userDb, std::unique_ptr<IMovieDAL> movieDb) :
+userDb(std::move(userDb)), movieDb(std::move(movieDb)) {}
 
 void Add::print(std::ostream& os) const {
     os << "add [userid] [movieid1] [movieid2] ...";
@@ -12,8 +15,8 @@ void Add::print(std::ostream& os) const {
 std::string Add::getCommandName() const {
     return "add";
 }
-
-void Add::addMovies(int userID, vector<int> movieIDs) {
+void Add::addMovies(int userID, std::vector<int> movieIDs) {
+    std::vector<Movie> movieVec;
     vector<Movie> movieVec;
     for (int id : movieIDs) {
         movieVec.push_back(movieDb->getMovie(id));
@@ -54,7 +57,7 @@ bool Add::isValidCommand(const std::string& command) {
     return true;
 }
 
-void Add::execute(const std::string& command) {
+void Add::execute(std::string command) {
     if (!isValidCommand(command)) {
         return;
     }
