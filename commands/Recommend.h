@@ -24,6 +24,8 @@ public:
     Recommend(IMovieDAL* movieDAL, IUserDAL* userDAL);
     void execute(std::string inputLine) override;
     void print(std::ostream& os) const override;
+    //Ayala
+    std::string getCommandName() const override;
 };
 
 #endif // RECOMMEND_H

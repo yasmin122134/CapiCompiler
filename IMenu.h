@@ -13,7 +13,7 @@ public:
 
     virtual bool nextCommand() = 0;
 
-    virtual void displayError(const std::string errorName) = 0;
+    virtual void displayError(const std::string& errorName) = 0;
 
 };
 

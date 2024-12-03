@@ -20,7 +20,7 @@ void UserDALFile::addUser(const User user) {
     if (!doesExist(user)) {
         users.push_back(user);
         addUserToFile(user);
-    } else if (getUser(user.getId()) != user) {
+    } else if (!(getUser(user.getId()) == user)) {
             removeUser(user);
             addUser(user);
     }

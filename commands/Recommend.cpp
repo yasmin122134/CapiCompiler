@@ -134,6 +134,12 @@ vector<int> Recommend::recommend(int userId, int movieId) {
     return recommendedMovies;
 }
 
+
 void Recommend::print(std::ostream& os) const {
     os << "recommend [userId] [movieId]";
+}
+
+// Ayala
+std::string Recommend::getCommandName() const {
+    return "help";
 }

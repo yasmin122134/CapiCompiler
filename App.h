@@ -1,10 +1,8 @@
-#pragma once
+#ifndef APP_H
+#define APP_H
 
 #include <iostream>
 #include <vector>
-#include <memory>
-#include <string>
-#include <algorithm>
 #include "commands/ICommand.h"
 #include "IUserDAL.h"
 #include "IMovieDAL.h"
@@ -12,20 +10,16 @@
 
 class App {
 private:
-    std::vector<std::unique_ptr<ICommand>> commands; // Command list
-    std::unique_ptr<IUserDAL> userDAL;               // User data access layer
-    std::unique_ptr<IMovieDAL> movieDAL;             // Movie data access layer
-    std::istream& inputStream;                       // Input stream (e.g., std::cin)
-    std::ostream& outputStream;                      // Output stream (e.g., std::cout)
+    std::vector<ICommand*> commands;
+    IUserDAL* userDAL;
+    IMovieDAL* movieDAL;
+    std::istream& inputStream;
+    std::ostream& outputStream;
 
 public:
-    // Constructor
-    App(std::vector<std::unique_ptr<ICommand>> cmdList,
-        std::unique_ptr<IUserDAL> userDal,
-        std::unique_ptr<IMovieDAL> movieDal,
-        std::istream& input,
-        std::ostream& output);
-
-    // Run function
+    App(std::vector<ICommand*> cmdList, IUserDAL* userDal, IMovieDAL* movieDal, 
+        std::istream& input, std::ostream& output);
     void run();
 };
+
+#endif

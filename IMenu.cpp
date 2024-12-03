@@ -1,5 +1,5 @@
 #include <string>
-#include "ICommand.h"
+#include "commands/ICommand.h"
 #include "IMenu.h"
 
 class IManu {
