@@ -50,13 +50,16 @@ void Add::execute(string commandLine) {
 
 void Add::addMovies(int userId, vector<int> movieIds) {
     User user = userDb->getUser(userId);
+    cout << "user: " << user << endl;
     vector<Movie> movies;
     for (int movieId : movieIds) {
         Movie movie = movieDb->getMovie(movieId);
         movies.push_back(movie);
     }
     user.addMovieVec(movies);
+    cout << user << endl;
     userDb->addUser(user);
+    
 }
 
 string Add::getCommandName() const {
