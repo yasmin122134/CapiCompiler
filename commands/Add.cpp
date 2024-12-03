@@ -40,24 +40,24 @@ void Add::execute(string commandLine) {
     if (movieIds.empty()) {
         return;
     }
-    cout << "movieIds: ";
-    for (int movieId : movieIds) {
-        cout << movieId << " ";
-    }
-    cout << endl;
+    // cout << "movieIds: ";
+    // for (int movieId : movieIds) {
+    //     cout << movieId << " ";
+    // }
+    // cout << endl;
     addMovies(userIdInt, movieIds);
 }
 
 void Add::addMovies(int userId, vector<int> movieIds) {
     User user = userDb->getUser(userId);
-    cout << "user: " << user << endl;
+    cout << "user i got: " << user << endl;
     vector<Movie> movies;
     for (int movieId : movieIds) {
         Movie movie = movieDb->getMovie(movieId);
         movies.push_back(movie);
     }
     user.addMovieVec(movies);
-    cout << user << endl;
+    cout << "user i returned: " << user << endl;
     userDb->addUser(user);
     
 }

@@ -2,6 +2,8 @@
 #include <fstream>
 #include <algorithm>
 #include <sstream>
+#include <iostream>
+
 using namespace std;
 
 // open file
@@ -35,11 +37,14 @@ void UserDALFile::removeUser(User user) {
 // find and return the desired user by id
 User UserDALFile::getUser(const int id) {
     User tempUser(id);
-    auto it = find(users.begin(), users.end(), tempUser);
+    auto it = find_if(users.begin(), users.end(), [&](const User& u) {
+        return u.getId() == id;
+    });
     if (it != users.end()) {
         return *it;
     }
     // create if doesn't exist
+    std::cout << "user " << id << " does not exist" << endl;
     addUser(tempUser);
     return tempUser;
 }
@@ -92,9 +97,9 @@ void UserDALFile::saveUsers() {
 
 // adding a single user without rewriting everything
 void UserDALFile::addUserToFile(User user) {
-     ofstream file(filename,  ios::binary);
-     if (file.is_open()) {
+    ofstream file(filename, ios::app);
+    if (file.is_open()) {
         file << user << "\n";
-     }
-     file.close();
+        file.close();
+    }
 }

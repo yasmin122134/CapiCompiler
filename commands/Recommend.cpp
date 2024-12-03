@@ -141,5 +141,5 @@ void Recommend::print(std::ostream& os) const {
 
 // Ayala
 std::string Recommend::getCommandName() const {
-    return "help";
+    return "recommend";
 }
