@@ -2,9 +2,11 @@
 #include "../Movie.h"
 #include "../User.h"
 #include "../IUserDAL.h"
+#include "../IMovieDAL.h"
 #include <sstream>
 #include <algorithm>
 #include <iostream>
+
 Add::Add(IUserDAL* userDb, IMovieDAL* movieDb) : userDb(userDb), movieDb(movieDb) {
     std::cout << "[Add] Constructor called with userDb: " << userDb << std::endl;
 }
