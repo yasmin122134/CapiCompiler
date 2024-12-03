@@ -7,10 +7,13 @@
 #include <vector>
 #include <algorithm>
 #include "Movie.h"
+#include <set>
 
 using namespace std;
 
-User::User(int id) : id(id) {}
+User::User(int id) : id(id) {
+    movieVec = vector<Movie>();
+}
 
 User::User(int id, const vector<Movie>& movieVec) : id(id), movieVec(movieVec) {}
 
@@ -36,8 +39,12 @@ void User::addMovie(Movie movie) {
 
 // add to the movie vector from a list of movies without duplicates
 void User::addMovieVec(const vector<Movie>& movieVec) {
+    // Convert current movieVec to set for O(log n) lookup
+    set<Movie> movieSet(this->movieVec.begin(), this->movieVec.end());
+    
+    // Add new movies if they don't exist
     for (const Movie& movie : movieVec) {
-        if (find(this->movieVec.begin(), this->movieVec.end(), movie) == this->movieVec.end()) {
+        if (movieSet.insert(movie).second) {  // Returns pair<iterator,bool>; bool is true if inserted
             this->movieVec.push_back(movie);
         }
     }

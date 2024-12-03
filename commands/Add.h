@@ -5,6 +5,7 @@
 #include <vector>
 #include "../IUserDAL.h"
 #include "../IMovieDAL.h"
+#include <sstream>
 
 using namespace std;
 
@@ -19,8 +20,7 @@ private:
     /** Pointer to the user data access layer interface */
     IUserDAL* userDb;
     IMovieDAL* movieDb;
-    bool isValidCommand(const std::string& command);
-    void updateUser(User user, Movie movie);
+    vector<int> getMovieIds(istringstream& iss);
     void addMovies(int userID, vector<int> movieIDs);
 
 public:
@@ -39,8 +39,7 @@ public:
     void execute(std::string inputLine) override;
 
     void print(std::ostream& os) const override;
-
-    std::string getCommandName() const override;
+    string getCommandName() const override;
 };
 
 #endif

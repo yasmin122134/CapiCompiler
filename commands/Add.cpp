@@ -1,121 +1,72 @@
 #include "Add.h"
-#include "../Movie.h"
-#include "../User.h"
-#include "../IUserDAL.h"
-#include "../IMovieDAL.h"
-#include <sstream>
-#include <algorithm>
 #include <iostream>
+#include <sstream>
+#include <vector>
 
-Add::Add(IUserDAL* userDb, IMovieDAL* movieDb) : userDb(userDb), movieDb(movieDb) {
-    std::cout << "[Add] Constructor called with userDb: " << userDb << std::endl;
+using namespace std;
+
+void Add::print(ostream& os) const {
+    os << "add [userid] [movieid]" << endl;
 }
 
-void Add::print(std::ostream& os) const {
-    std::cout << "[Add::print] Outputting command usage" << std::endl;
-    os << "add [userid] [movieid1] [movieid2] ...";
+Add::Add(IUserDAL* userDb, IMovieDAL* movieDb) : userDb(userDb), movieDb(movieDb) {}
+
+vector<int> Add::getMovieIds(istringstream& iss) {
+    vector<int> movieIds;
+    string movieId;
+    while (iss >> movieId) {
+        try {   
+            int movieIdInt = stoi(movieId);
+            movieIds.push_back(movieIdInt);
+        } catch (const invalid_argument& e) {
+            return vector<int>();
+        }
+    }
+    return movieIds;
 }
 
-std::string Add::getCommandName() const {
-    std::cout << "[Add::getCommandName] Returning command name" << std::endl;
-    return "add";
+void Add::execute(string commandLine) {
+    string userIdStr;
+    int userIdInt;
+    vector<int> movieIds;
+    istringstream iss(commandLine);
+    iss >> userIdStr;
+    try {
+        userIdInt = stoi(userIdStr);
+    } catch (const invalid_argument& e) {
+        return;
+    }
+    movieIds = getMovieIds(iss);
+    if (movieIds.empty()) {
+        return;
+    }
+    cout << "movieIds: ";
+    for (int movieId : movieIds) {
+        cout << movieId << " ";
+    }
+    cout << endl;
+    addMovies(userIdInt, movieIds);
 }
 
-void Add::updateUser(User user, Movie movie) {
-    std::cout << "[Add::updateUser] Updating user " << user.getId() 
-              << " with movie " << movie.getId() << std::endl;
-    user.addMovie(movie);
+void Add::addMovies(int userId, vector<int> movieIds) {
+    User user = userDb->getUser(userId);
+    vector<Movie> movies;
+    for (int movieId : movieIds) {
+        Movie movie = movieDb->getMovie(movieId);
+        movies.push_back(movie);
+        movieDb->addMovie(movie);
+    }
+    user.setMovieVec(movies);
+    cout << "user movies: " << endl;
+    for (Movie movie : user.getMovieVec()) {
+        cout << movie.getId() << " ";
+    }
+    cout << endl;
+    cout << user << endl;
+    cout << endl;
     userDb->addUser(user);
-    movieDb->addMovie(movie);
 }
 
-void Add::addMovies(int userID, vector<int> movieIDs) {
-    std::cout << "[Add::addMovies] Adding " << movieIDs.size() 
-              << " movies to user " << userID << std::endl;
-
-    try {
-        vector<Movie> movieVec;
-        for (int id : movieIDs) {
-            movieVec.push_back(movieDb->getMovie(id));
-        }
-        User user = userDb->getUser(userID);
-        user.addMovieVec(movieVec);
-        userDb->addUser(user);
-    } catch (...) {
-        // Silently handle any exceptions
-    }
-}
-
-
-
-bool Add::isValidCommand(const std::string& command) {
-    std::cout << "[Add::isValidCommand] Validating command: " << command << std::endl;
-    std::istringstream iss(command);
-    std::string cmd, userId;
-    
-    // Check basic command format
-    if (!(iss >> cmd >> userId) || cmd != "add") {
-        std::cout << "[Add::isValidCommand] Basic format check failed" << std::endl;
-        return false;
-    }
-    
-    // Check if userId is numeric
-    if (!std::all_of(userId.begin(), userId.end(), ::isdigit)) {
-        std::cout << "[Add::isValidCommand] UserID not numeric: " << userId << std::endl;
-        return false;
-    }
-    
-    // Must have at least one movie ID
-    std::string movieId;
-    if (!(iss >> movieId)) {
-        std::cout << "[Add::isValidCommand] No movie IDs provided" << std::endl;
-        return false;
-    }
-    
-    // All movie IDs must be numeric
-    do {
-        if (!std::all_of(movieId.begin(), movieId.end(), ::isdigit)) {
-            std::cout << "[Add::isValidCommand] Invalid movie ID: " << movieId << std::endl;
-            return false;
-        }
-    } while (iss >> movieId);
-    
-    std::cout << "[Add::isValidCommand] Command is valid" << std::endl;
-    return true;
-}
-
-void Add::execute(std::string inputLine) {
-    std::cout << "[Add::execute] Starting execution with input: " << inputLine << std::endl;
-    
-    if (!isValidCommand(inputLine)) {
-        std::cout << "[Add::execute] Invalid command format" << std::endl;
-        return;
-    }
-    
-    istringstream iss(inputLine);
-    string cmd, userIDStr;
-    iss >> cmd >> userIDStr;
-    
-    int userID;
-    try {
-        userID = stoi(userIDStr);
-        std::cout << "[Add::execute] Parsed userID: " << userID << std::endl;
-    } catch (...) {
-        std::cerr << "[Add::execute] Failed to parse userID: " << userIDStr << std::endl;
-        return;
-    }
-    
-    vector<int> movieIDs;
-    string input;
-    while (iss >> input) {
-        try {
-            int movieID = stoi(input);
-            movieIDs.push_back(movieID);
-            std::cout << "[Add::execute] Added movieID to list: " << movieID << std::endl;
-        } catch (...) {
-            // Ignore invalid movie IDs and continue
-        }
-    }
-    
-    addMovies(userID, movieIDs);
+string Add::getCommandName() const {
+    return "add";
 }
