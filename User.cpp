@@ -80,5 +80,13 @@ std::istream& operator>>(std::istream& in, User& user) {
 }
 
 bool User::operator==(const User& other) const {
-    return id == other.id;
+    if (id != other.id || movieVec.size() != other.movieVec.size()) {
+        return false;
+    }
+    
+    // Convert both vectors to sets for order-independent comparison
+    std::set<Movie> thisSet(movieVec.begin(), movieVec.end());
+    std::set<Movie> otherSet(other.movieVec.begin(), other.movieVec.end());
+    
+    return thisSet == otherSet;
 }

@@ -54,16 +54,8 @@ void Add::addMovies(int userId, vector<int> movieIds) {
     for (int movieId : movieIds) {
         Movie movie = movieDb->getMovie(movieId);
         movies.push_back(movie);
-        movieDb->addMovie(movie);
     }
-    user.setMovieVec(movies);
-    cout << "user movies: " << endl;
-    for (Movie movie : user.getMovieVec()) {
-        cout << movie.getId() << " ";
-    }
-    cout << endl;
-    cout << user << endl;
-    cout << endl;
+    user.addMovieVec(movies);
     userDb->addUser(user);
 }
 
