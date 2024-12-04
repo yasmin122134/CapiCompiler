@@ -67,18 +67,21 @@ std::ostream& operator<<(std::ostream& out, const User& user) {
 
 // inputs a user from a stream
 std::istream& operator>>(std::istream& in, User& user) {
-    int id;
-    in >> id;
+    int id, numMovies;
+    if (!(in >> id)) {
+        return in;
+    }
     user.id = id;
-    int numMovies;
-    in >> numMovies;
-    for (int i = 0; i < numMovies; i++) {
-        Movie movie;
-        in >> movie;
+    if (!(in >> numMovies)) {
+        return in;
+    }
+    Movie movie;
+    while (in >> movie) {
         user.movieSet.insert(movie);
     }
     return in;
 }
+
 
 // comparison operators
 // two users are equal if they have the same id and the same set of movies

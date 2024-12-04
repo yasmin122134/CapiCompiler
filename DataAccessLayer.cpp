@@ -6,9 +6,9 @@
 // constructors
 DataAccessLayer::DataAccessLayer() {
     // set the data directory and file names
-    usersFile = "../users.txt";
-    moviesFile = "../movies.txt";
-
+    dataDir = "../data/";
+    usersFile = dataDir + "users.txt";
+    moviesFile = dataDir + "movies.txt";
     // load the users and movies
     loadUsers();
     loadMovies();
@@ -143,7 +143,13 @@ void DataAccessLayer::loadUsers() {
         while (file >> user) {
             users.insert(user);
         }
+        if (file.eof()) {
+        } else if (file.fail()) {
+        } else if (file.bad()) {
+        }
         file.close();
+    } else {
+        cout << "Failed to open users file\n";
     }
 }
 
@@ -151,10 +157,12 @@ void DataAccessLayer::loadMovies() {
     ifstream file(moviesFile);
     if (file.is_open()) {
         Movie movie;
-        while (file >> movie) {
+        while (!file.eof() && file >> movie) {
             movies.insert(movie);
         }
         file.close();
+    } else {
+        cout << "Failed to open movies file\n";
     }
 }
 
