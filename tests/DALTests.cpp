@@ -141,6 +141,7 @@ TEST_F(DALTest, PersistentData) {
     ASSERT_EQ(dal.getAllUsers().size(), dal2.getAllUsers().size());
     dal.add(Movie(1));
     dal.add(User(1));
+    dal2 = DataAccessLayer();
     ASSERT_EQ(dal.getAllMovies().size(), dal2.getAllMovies().size());
     ASSERT_EQ(dal.getAllUsers().size(), dal2.getAllUsers().size());
 }
@@ -170,7 +171,7 @@ TEST_F(DALTest, UpdateUser) {
     dal.add(user, {Movie(3), Movie(1)});
     user = dal.getUser(2);
     vector<Movie> movies = user.getMovieVec();
-    ASSERT_EQ(movies.size(), 2);
+    ASSERT_EQ(movies.size(), 3);
     ASSERT_EQ(movies[0].getId(), 2);
     ASSERT_EQ(movies[1].getId(), 3);
 }

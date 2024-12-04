@@ -35,6 +35,9 @@ set(SOURCE_FILES
 # Set test files
 set(TEST_FILES
         tests/DALTests.cpp
+        DataAccessLayer.cpp
+        User.cpp
+        Movie.cpp
         )
 
 
@@ -42,7 +45,7 @@ set(TEST_FILES
 add_executable(mitkademTarg1 ${SOURCE_FILES})
 
 # Add test executable
-add_executable(UserTests ${SOURCE_FILES} ${TEST_FILES})
+add_executable(UserTests ${TEST_FILES})
 
 # Link GTest to the test executable
 target_link_libraries(UserTests gtest_main)
