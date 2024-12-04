@@ -23,8 +23,8 @@ public:
     Movie getMovie(int id);
 
     // remove a user or movie from the dal
-    void remove(User user);
-    void remove(Movie movie);
+    void removeEqual(User user);
+    void removeEqual(Movie movie);
 
     // check if a user or movie exists in the dal
     bool doesExistWithSameId(User user);

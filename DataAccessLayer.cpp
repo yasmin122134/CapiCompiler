@@ -1,13 +1,14 @@
 #include "DataAccessLayer.h"
 #include <fstream>
 #include <algorithm>
+#include <iostream>
 
 // constructors
 DataAccessLayer::DataAccessLayer() {
     // set the data directory and file names
-    dataDir = "data/";
-    usersFile = dataDir + "users.txt";
-    moviesFile = dataDir + "movies.txt";
+    usersFile = "../users.txt";
+    moviesFile = "../movies.txt";
+
     // load the users and movies
     loadUsers();
     loadMovies();
@@ -25,7 +26,7 @@ void DataAccessLayer::add(User& user) {
         users.insert(user);
         addUserToFile(user);
     } else if (!(getUser(user.getId()) == user)) { // if the user exists but is different, remove and re-add
-        remove(user);
+        removeEqual(getUser(user.getId()));
         add(user);
     }
     // if the user exists and is the same, do nothing
@@ -46,7 +47,7 @@ void DataAccessLayer::add(Movie movie) {
         movies.insert(movie);
         addMovieToFile(movie);
     } else if (!(getMovie(movie.getId()) == movie)) { // if the movie exists but is different, remove and re-add
-        remove(movie);
+        removeEqual(getMovie(movie.getId()));
         add(movie);
     }
     // if the movie exists and is the same, do nothing
@@ -80,25 +81,16 @@ Movie DataAccessLayer::getMovie(int id) {
     return movie;
 }
 
-void DataAccessLayer::remove(User user) {
-    // find the user in the set based on id
-    auto it = std::find_if(users.begin(), users.end(), [&user](const User& u) {
-        return u.getId() == user.getId();
-    });
-    // if the user was found, remove it
-    if (it != users.end()) {
-        users.erase(it);
+void DataAccessLayer::removeEqual(User user) {
+    bool removed = users.erase(user); // remove the user from the set
+    if (removed) {
         saveUsers();
     }
 }
 
-void DataAccessLayer::remove(Movie movie) {
-    // remove movie from set based on id
-    auto it = std::find_if(movies.begin(), movies.end(), [&movie](const Movie& m) {
-        return m.getId() == movie.getId();
-    });
-    if (it != movies.end()) {
-        movies.erase(it);
+void DataAccessLayer::removeEqual(Movie movie) {
+    bool removed = movies.erase(movie); // remove the movie from the set
+    if (removed) {
         saveMovies();
     }
 }
@@ -145,7 +137,7 @@ void DataAccessLayer::clear() {
 
 // load users and movies from the files: read the files and insert the users and movies to the sets
 void DataAccessLayer::loadUsers() {
-    std::ifstream file(usersFile);
+    ifstream file(usersFile);
     if (file.is_open()) {
         User user;
         while (file >> user) {
@@ -156,7 +148,7 @@ void DataAccessLayer::loadUsers() {
 }
 
 void DataAccessLayer::loadMovies() {
-    std::ifstream file(moviesFile);
+    ifstream file(moviesFile);
     if (file.is_open()) {
         Movie movie;
         while (file >> movie) {

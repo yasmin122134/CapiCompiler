@@ -31,7 +31,7 @@ TEST_F(DALTest, RemoveMovie) {
     cout << "in RemoveMovie" << endl;
     Movie movie = Movie(1);
     dal.add(movie);
-    dal.remove(movie);
+    dal.removeEqual(movie);
     ASSERT_FALSE(dal.doesExistEqual(movie));
     ASSERT_FALSE(dal.doesExistWithSameId(movie));
 }
@@ -40,7 +40,7 @@ TEST_F(DALTest, RemoveUser) {
     cout << "in RemoveUser" << endl;
     User user = User(1);
     dal.add(user);
-    dal.remove(user);
+    dal.removeEqual(user);
     ASSERT_FALSE(dal.doesExistEqual(user));
     ASSERT_FALSE(dal.doesExistWithSameId(user));
 }
@@ -83,7 +83,7 @@ TEST_F(DALTest, RemoveData) {
     dal.add(movie);
     movie = dal.getMovie(2);
     dal.add(Movie(3));
-    dal.remove(movie);
+    dal.removeEqual(movie);
     // check file contents using ifstream
 
     std::ifstream inMovieFile(movieFile);
@@ -103,7 +103,7 @@ TEST_F(DALTest, RemoveData) {
     dal.add(user);
     user = dal.getUser(2);
     dal.add(User(3));
-    dal.remove(user);
+    dal.removeEqual(user);
     // check file contents using ifstream
 
     std::ifstream inUserFile(userFile);
@@ -124,12 +124,12 @@ TEST_F(DALTest, RemoveNonExistentData) {
     cout << "in RemoveNonExistentData" << endl;
     Movie movie = Movie(1);
     dal.add(movie);
-    dal.remove(Movie(2));
+    dal.removeEqual(Movie(2));
     ASSERT_EQ(dal.getAllMovies().size(), 1);
 
     User user = User(1);
     dal.add(user);
-    dal.remove(User(2));
+    dal.removeEqual(User(2));
     ASSERT_EQ(dal.getAllUsers().size(), 1);
 }
 
@@ -184,8 +184,8 @@ TEST_F(DALTest, StressTest) {
     }
     for (int i = 0; i < 1000; i++) {
         if (i % 2 == 0) {
-            dal.remove(Movie(i));
-            dal.remove(User(i));
+            dal.removeEqual(Movie(i));
+            dal.removeEqual(User(i));
         }
     }
     ASSERT_EQ(dal.getAllMovies().size(), 500);
