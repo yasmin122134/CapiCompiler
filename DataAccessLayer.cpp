@@ -26,7 +26,7 @@ void DataAccessLayer::add(User& user) {
         users.insert(user);
         addUserToFile(user);
     } else if (!(getUser(user.getId()) == user)) { // if the user exists but is different, remove and re-add
-        removeEqual(getUser(user.getId()));
+        removeById(user);
         add(user);
     }
     // if the user exists and is the same, do nothing
@@ -47,7 +47,7 @@ void DataAccessLayer::add(Movie movie) {
         movies.insert(movie);
         addMovieToFile(movie);
     } else if (!(getMovie(movie.getId()) == movie)) { // if the movie exists but is different, remove and re-add
-        removeEqual(getMovie(movie.getId()));
+        removeById(movie);
         add(movie);
     }
     // if the movie exists and is the same, do nothing
@@ -55,12 +55,14 @@ void DataAccessLayer::add(Movie movie) {
 
 User DataAccessLayer::getUser(int id) {
     // find the user in the set
-    auto it = std::find_if(users.begin(), users.end(), [id](const User& user) {
-        return user.getId() == id;
-    });
-    if (it != users.end()) {
-        return *it;
-    }
+    try {
+        auto it = find_if(users.begin(), users.end(), [id](const User &user) {
+            return user.getId() == id;
+        });
+        if (it != users.end()) {
+            return *it;
+        }
+    }catch (...) {}
     // if the user doesn't exist, create a new one
     User user(id);
     add(user);
@@ -201,5 +203,25 @@ void DataAccessLayer::addMovieToFile(Movie movie) {
     if (file.is_open()) {
         file << movie << std::endl;
         file.close();
+    }
+}
+
+void DataAccessLayer::removeById(User user) {
+    for (auto it = users.begin(); it != users.end(); ++it) {
+        if (it->getId() == user.getId()) {
+            users.erase(it);
+            saveUsers();
+            return;
+        }
+    }
+}
+
+void DataAccessLayer::removeById(Movie movie) {
+    for (auto it = movies.begin(); it != movies.end(); ++it) {
+        if (it->getId() == movie.getId()) {
+            movies.erase(it);
+            saveMovies();
+            return;
+        }
     }
 }

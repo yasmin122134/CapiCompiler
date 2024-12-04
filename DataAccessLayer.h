@@ -23,6 +23,8 @@ public:
     Movie getMovie(int id);
 
     // remove a user or movie from the dal
+    void removeById(User user);
+    void removeById(Movie movie);
     void removeEqual(User user);
     void removeEqual(Movie movie);
 
