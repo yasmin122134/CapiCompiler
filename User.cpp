@@ -68,20 +68,32 @@ std::ostream& operator<<(std::ostream& out, const User& user) {
 // inputs a user from a stream
 std::istream& operator>>(std::istream& in, User& user) {
     int id, numMovies;
+
+    // Read user ID
     if (!(in >> id)) {
-        return in;
+        return in; // Return early if reading ID fails
     }
     user.id = id;
+
+    // Read number of movies
     if (!(in >> numMovies)) {
-        return in;
+        return in; // Return early if reading number of movies fails
     }
-    Movie movie;
-    while (in >> movie) {
+
+    // Clear the existing movie set to prevent duplicates on reuse
+    user.movieSet.clear();
+
+    // Read specified number of movies
+    for (int i = 0; i < numMovies; ++i) {
+        Movie movie;
+        if (!(in >> movie)) {
+            break; // Stop if reading a movie fails
+        }
         user.movieSet.insert(movie);
     }
+
     return in;
 }
-
 
 // comparison operators
 // two users are equal if they have the same id and the same set of movies

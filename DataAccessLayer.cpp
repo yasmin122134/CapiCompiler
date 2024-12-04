@@ -12,6 +12,7 @@ DataAccessLayer::DataAccessLayer() {
     // load the users and movies
     loadUsers();
     loadMovies();
+    cout << "DataAccessLayer created" << endl;
 }
 
 DataAccessLayer::~DataAccessLayer() {
@@ -58,8 +59,10 @@ User DataAccessLayer::getUser(int id) {
     try {
         for (const auto& user : users) {
             if (user.getId() == id) {
+                cout << "found user with id " << id << endl;
                 return user;
             }
+            cout << "user not found with id " << id << endl;
         }
     }catch (...) {}
     // if the user doesn't exist, create a new one
@@ -138,6 +141,7 @@ void DataAccessLayer::clear() {
 // load users and movies from the files: read the files and insert the users and movies to the sets
 void DataAccessLayer::loadUsers() {
     ifstream file(usersFile, ios::in);
+    cout << "loading users" << endl;
     if (file.is_open()) {
         User user;
         while (file >> user) {
