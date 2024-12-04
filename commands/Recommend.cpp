@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Recommend::Recommend(DataAccessLayer& dal)
+Recommend::Recommend(DataAccessLayer* dal)
     : dal(dal) {}
 
 void Recommend::execute(std::string inputLine) {
@@ -18,6 +18,8 @@ void Recommend::execute(std::string inputLine) {
     int userId, movieId;
     try {
         userId = stoi(userIdStr);
+        User user = dal->getUser(userId);
+        cout << "User: " << user << endl;
         movieId = stoi(movieIdStr);
     }
     catch (...) {
@@ -31,7 +33,7 @@ void Recommend::execute(std::string inputLine) {
 }
 
 vector<User> Recommend::usersThatWatchedMovie(int movieId) {
-    vector<User> users = dal.getAllUsers();
+    vector<User> users = dal->getAllUsers();
     vector<User> usersThatWatchedMovie;
     for (User user : users) {
         for (Movie movie : user.getMovieVec()) {
@@ -65,7 +67,7 @@ map<int,int> Recommend::amountOfCommonMoviesList(User user1, vector<User> users)
 }
 
 map<Movie, int> Recommend::calculateSimilarityScores(int userId, int movieId) {
-    User user = dal.getUser(userId);
+    User user = dal->getUser(userId);
     vector<User> relevantUsers = usersThatWatchedMovie(movieId);
     map<int, int> listOfCommonMovies = amountOfCommonMoviesList(user, relevantUsers);
     map<Movie, int> relevanceScore;
@@ -87,8 +89,8 @@ map<Movie, int> Recommend::calculateSimilarityScores(int userId, int movieId) {
 }
 
 vector<int> Recommend::recommend(int userId, int movieId) {
-    User user = dal.getUser(userId);
-    Movie movie = dal.getMovie(movieId);
+    User user = dal->getUser(userId);
+    Movie movie = dal->getMovie(movieId);
     map<Movie, int> similarityScoreTable = calculateSimilarityScores(userId,movieId);
     //print similarityScoreTable
     for (const auto& pair : similarityScoreTable) {

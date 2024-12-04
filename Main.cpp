@@ -13,9 +13,9 @@ int main() {
 
     // Create a vector of raw pointers to commands
     std::vector<ICommand*> commands;
-    commands.push_back(new Add(dal));
+    commands.push_back(new Add(&dal));
     commands.push_back(new Help(commands));
-    commands.push_back(new Recommend(dal));
+    commands.push_back(new Recommend(&dal));
 
     // Pass raw pointers to the App class
 //    cout << "Commands available: add, recommend, help" << endl;

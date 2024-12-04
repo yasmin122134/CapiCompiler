@@ -19,7 +19,7 @@ private:
 /** Pointer to the user data access layer interface */
     vector<int> getMovieIds(istringstream& iss);
     void addMovies(int userID, vector<int> movieIDs);
-    DataAccessLayer dal;
+    DataAccessLayer *dal;
 
 public:
     /**
@@ -27,7 +27,7 @@ public:
      *
      * @param dal The data access layer object
      */
-    Add(DataAccessLayer &dal);
+    Add(DataAccessLayer *dal);
 
     /**
      * @brief Executes the add user command

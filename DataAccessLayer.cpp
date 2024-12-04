@@ -56,12 +56,13 @@ void DataAccessLayer::add(Movie movie) {
 User DataAccessLayer::getUser(int id) {
     // find the user in the set
     try {
-        auto it = find_if(users.begin(), users.end(), [id](const User &user) {
-            return user.getId() == id;
-        });
-        if (it != users.end()) {
-            return *it;
+        for (const auto& user : users) {
+            if (user.getId() == id) {
+                cout << "user found\n";
+                return user;
+            }
         }
+        cout <<"user not found\n";
     }catch (...) {}
     // if the user doesn't exist, create a new one
     User user(id);
@@ -71,11 +72,10 @@ User DataAccessLayer::getUser(int id) {
 
 Movie DataAccessLayer::getMovie(int id) {
     // find the movie in the set
-    auto it = std::find_if(movies.begin(), movies.end(), [id](const Movie& movie) {
-        return movie.getId() == id;
-    });
-    if (it != movies.end()) {
-        return *it;
+    for (const auto& movie : movies) {
+        if (movie.getId() == id) {
+            return movie;
+        }
     }
     // if the movie doesn't exist, create a new one
     Movie movie(id);
@@ -139,7 +139,7 @@ void DataAccessLayer::clear() {
 
 // load users and movies from the files: read the files and insert the users and movies to the sets
 void DataAccessLayer::loadUsers() {
-    ifstream file(usersFile);
+    ifstream file(usersFile, ios::in);
     if (file.is_open()) {
         User user;
         while (file >> user) {
@@ -152,7 +152,7 @@ void DataAccessLayer::loadUsers() {
 }
 
 void DataAccessLayer::loadMovies() {
-    ifstream file(moviesFile);
+    ifstream file(moviesFile, ios::in);
     if (file.is_open()) {
         Movie movie;
         while (!file.eof() && file >> movie) {

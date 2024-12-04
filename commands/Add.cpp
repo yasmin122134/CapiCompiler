@@ -10,7 +10,7 @@ void Add::print(ostream& os) const {
     os << "add [userid] [movieid]" << endl;
 }
 
-Add::Add(DataAccessLayer& dal) : dal(dal) {}
+Add::Add(DataAccessLayer* dal) : dal(dal) {}
 
 
 vector<int> Add::getMovieIds(istringstream& iss) {
@@ -46,13 +46,13 @@ void Add::execute(string commandLine) {
 }
 
 void Add::addMovies(int userId, vector<int> movieIds) {
-    User user = dal.getUser(userId);
+    User user = dal->getUser(userId);
     vector<Movie> movies;
     for (int movieId : movieIds) {
-        Movie movie = dal.getMovie(movieId);
+        Movie movie = dal->getMovie(movieId);
         movies.push_back(movie);
     }
-    dal.add(user, movies);
+    dal->add(user, movies);
 }
 
 string Add::getCommandName() const {
