@@ -23,3 +23,10 @@ void Help::print(ostream& os) const {
 std::string Help::getCommandName() const {
     return "help";
 }
+
+Help::Help() {}
+
+void Help::setCommandList(std::vector<ICommand*>& commandList) {
+    this->commandList = commandList;
+}
+
