@@ -143,10 +143,6 @@ void DataAccessLayer::loadUsers() {
         while (file >> user) {
             users.insert(user);
         }
-        if (file.eof()) {
-        } else if (file.fail()) {
-        } else if (file.bad()) {
-        }
         file.close();
     } else {
         cout << "Failed to open users file\n";
