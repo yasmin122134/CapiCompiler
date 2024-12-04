@@ -11,7 +11,6 @@ public:
     Movie() = default;
     Movie(int id);
     int getId() const;
-    void setId(int id);
 
     // Friend declarations for stream operators
     friend std::ostream& operator<<(std::ostream& out, const Movie& movie);

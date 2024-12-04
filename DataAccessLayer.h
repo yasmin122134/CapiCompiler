@@ -27,6 +27,8 @@ public:
     std::vector<User> getAllUsers();
     std::vector<Movie> getAllMovies();
 
+    void clear();
+
 
 private:
     std::string userFile;

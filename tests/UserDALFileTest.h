@@ -8,7 +8,7 @@
 
 class UserDALFileTest : public ::testing::Test {
 protected:
-    std::string testFile = "test_users.dat";
+    std::string testFile = "users.dat";
 
     void SetUp() override {
         // remove content of the file before each test

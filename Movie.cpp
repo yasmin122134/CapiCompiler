@@ -10,9 +10,7 @@ int Movie::getId() const {
     return id;
 }
 
-void Movie::setId(int id) {
-    this->id = id;
-}
+
 
 std::ostream& operator<<(std::ostream& out, const Movie& movie) {
     out << movie.id;

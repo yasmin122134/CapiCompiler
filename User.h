@@ -13,7 +13,6 @@ public:
     User(int id);
     User(int id, const vector<Movie>& movieVec);
     int getId() const;
-    void setId(int id);
     vector<Movie> getMovieVec();
     void setMovieVec(const std::vector<Movie>& movieVec);
     void addMovie(Movie movie);

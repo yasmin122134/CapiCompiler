@@ -21,10 +21,6 @@ int User::getId() const {
     return id;
 }
 
-void User::setId(int id) {
-    this->id = id;
-}
-
 vector<Movie> User::getMovieVec() {
     return movieVec; // This returns a copy
 }

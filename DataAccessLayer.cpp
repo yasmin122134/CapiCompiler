@@ -114,6 +114,13 @@ std::vector<Movie> DataAccessLayer::getAllMovies() {
     return movies;
 }
 
+void DataAccessLayer::clear() {
+    users.clear();
+    movies.clear();
+    saveUsers();
+    saveMovies();
+}
+
 void DataAccessLayer::loadUsers() {
     std::ifstream file(userFile);
     if (file.is_open()) {
