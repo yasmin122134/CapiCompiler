@@ -58,11 +58,9 @@ User DataAccessLayer::getUser(int id) {
     try {
         for (const auto& user : users) {
             if (user.getId() == id) {
-                cout << "user found\n";
                 return user;
             }
         }
-        cout <<"user not found\n";
     }catch (...) {}
     // if the user doesn't exist, create a new one
     User user(id);
