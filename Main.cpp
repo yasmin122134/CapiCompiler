@@ -3,8 +3,6 @@
 #include "commands/Add.h"
 #include "commands/Help.h"
 #include "commands/Recommend.h"
-#include "UserDALFile.h"
-#include "MovieDALFile.h"
 #include "App.h"
 #include "DataAccessLayer.h"
 int main() {

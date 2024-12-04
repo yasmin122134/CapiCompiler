@@ -1,8 +1,8 @@
 #ifndef DATA_ACCESS_LAYER_H
 #define DATA_ACCESS_LAYER_H
 
-#include "UserDALFile.h"
-#include "MovieDALFile.h"
+#include "User.h"
+#include "Movie.h"
 
 class DataAccessLayer {
 public:
