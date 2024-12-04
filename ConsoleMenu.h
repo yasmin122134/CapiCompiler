@@ -7,8 +7,6 @@
 #include <algorithm>
 #include "commands/ICommand.h"
 #include "IMenu.h"
-#include "IUserDAL.h"
-#include "IMovieDAL.h"
 #include "DataAccessLayer.h"
 
 class ConsoleMenu : public IMenu {

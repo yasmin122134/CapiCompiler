@@ -8,18 +8,21 @@ using namespace std;
 
 class Movie {
 public:
+    // constructors
     Movie() = default;
     Movie(int id);
+
+    // getters
     int getId() const;
 
-    // Friend declarations for stream operators
+    // stream operators
     friend std::ostream& operator<<(std::ostream& out, const Movie& movie);
     friend std::istream& operator>>(std::istream& in, Movie& movie);
 
+    // comparison operators
     bool operator==(const Movie& other) const;
     bool operator!=(const Movie& other) const;
-    
-    bool operator<(const Movie& other) const; // Add this line
+    bool operator<(const Movie& other) const;
 
 private:
     int id;

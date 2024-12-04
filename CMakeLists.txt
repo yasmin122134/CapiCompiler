@@ -35,14 +35,14 @@ set(SOURCE_FILES
 # Set test files
 set(TEST_FILES
         tests/DALTests.cpp
-        DataAccessLayer.cpp
-        User.cpp
-        Movie.cpp
+#        DataAccessLayer.cpp
+#        User.cpp
+#        Movie.cpp
         )
 
 
 # Add main executable
-add_executable(mitkademTarg1 ${SOURCE_FILES})
+add_executable(MainApp ${SOURCE_FILES})
 
 # Add test executable
 add_executable(UserTests ${TEST_FILES})

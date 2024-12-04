@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 #include "commands/ICommand.h"
-#include "IUserDAL.h"
-#include "IMovieDAL.h"
 #include "ConsoleMenu.h"
 #include "DataAccessLayer.h"
 

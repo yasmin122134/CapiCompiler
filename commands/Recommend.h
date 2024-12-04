@@ -1,8 +1,7 @@
 #ifndef RECOMMEND_H
 #define RECOMMEND_H
 
-#include "../IMovieDAL.h"
-#include "../IUserDAL.h"
+
 #include "./ICommand.h"
 #include <string>
 #include <vector>

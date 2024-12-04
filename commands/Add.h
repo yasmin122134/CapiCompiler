@@ -3,8 +3,6 @@
 
 #include "ICommand.h"
 #include <vector>
-#include "../IUserDAL.h"
-#include "../IMovieDAL.h"
 #include <sstream>
 #include "../DataAccessLayer.h"
 
@@ -19,8 +17,6 @@ using namespace std;
 class Add : public ICommand {
 private:
 /** Pointer to the user data access layer interface */
-    IUserDAL* userDb;
-    IMovieDAL* movieDb;
     vector<int> getMovieIds(istringstream& iss);
     void addMovies(int userID, vector<int> movieIDs);
     DataAccessLayer dal;

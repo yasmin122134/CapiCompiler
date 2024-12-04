@@ -1,88 +1,112 @@
 #include "User.h"
 #include "Movie.h"
 #include <string>
-#include <fstream>
-#include <sstream>
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "Movie.h"
 #include <set>
 
 using namespace std;
 
+// constructors
 User::User(int id) : id(id) {
-    movieVec = vector<Movie>();
+    movieSet = set<Movie>();
 }
 
-User::User(int id, const vector<Movie>& movieVec) : id(id), movieVec(movieVec) {}
+User::User(int id, const vector<Movie>& movieVec) : id(id) {
+    for (const Movie& movie : movieVec) {
+        this->movieSet.insert(movie);
+    }
+}
 
+User::User(int id, const set<Movie> &movieSet) : id(id), movieSet(movieSet) {}
+
+
+// getters and setters
 int User::getId() const {
     return id;
 }
 
 vector<Movie> User::getMovieVec() {
-    return movieVec; // This returns a copy
+    return vector<Movie>(movieSet.begin(), movieSet.end());
+}
+
+set<Movie> User::getMovieSet() {
+    return set<Movie>();
 }
 
 void User::setMovieVec(const vector<Movie>& movieVec) {
-    this->movieVec = movieVec;
+    movieSet = set<Movie>(movieVec.begin(), movieVec.end());
 }
 
+// add a single movie
 void User::addMovie(Movie movie) {
-    movieVec.push_back(movie);
+    movieSet.insert(movie);
 }
 
-// add to the movie vector from a list of movies without duplicates
+// add to the movies based on a vector of movies
 void User::addMovieVec(const vector<Movie>& movieVec) {
-    // Convert current movieVec to set for O(log n) lookup
-    set<Movie> movieSet(this->movieVec.begin(), this->movieVec.end());
-    
-    // Add new movies if they don't exist
     for (const Movie& movie : movieVec) {
-        if (movieSet.insert(movie).second) {  // Returns pair<iterator,bool>; bool is true if inserted
-            this->movieVec.push_back(movie);
-        }
+        this->movieSet.insert(movie);
     }
 }
 
 void User::removeMovie(const Movie movie) {
-    auto it = std::find(movieVec.begin(), movieVec.end(), movie);
-    if (it != movieVec.end()) {
-        movieVec.erase(it);
-    }
+    movieSet.erase(movie);
 }
 
-
+// stream operators
+// output format: id numMovies movie1 movie2 ...
 std::ostream& operator<<(std::ostream& out, const User& user) {
-    out << user.id << " " << user.movieVec.size() << " ";
-    for (const Movie& movie : user.movieVec) {
+    out << user.id << " " << user.movieSet.size() << " ";
+    for (const Movie& movie : user.movieSet) {
         out << movie << " ";
     }
     return out;
 }
 
+// inputs a user from a stream
 std::istream& operator>>(std::istream& in, User& user) {
-    in >> user.id;
-    user.movieVec.clear();
-    int movieCount;
-    in >> movieCount;
-    for (int i = 0; i < movieCount; ++i) {
-        Movie movie(0);
+    int id;
+    in >> id;
+    user.id = id;
+    int numMovies;
+    in >> numMovies;
+    for (int i = 0; i < numMovies; i++) {
+        Movie movie;
         in >> movie;
-        user.movieVec.push_back(movie);
+        user.movieSet.insert(movie);
     }
     return in;
 }
 
+// comparison operators
+// two users are equal if they have the same id and the same set of movies
 bool User::operator==(const User& other) const {
-    if (id != other.id || movieVec.size() != other.movieVec.size()) {
+    if (id != other.id || movieSet.size() != other.movieSet.size()) {
         return false;
     }
-    
-    // Convert both vectors to sets for order-independent comparison
-    std::set<Movie> thisSet(movieVec.begin(), movieVec.end());
-    std::set<Movie> otherSet(other.movieVec.begin(), other.movieVec.end());
-    
-    return thisSet == otherSet;
+    for (const Movie& movie : movieSet) {
+        if (other.movieSet.find(movie) == other.movieSet.end()) {
+            return false;
+        }
+    }
+    return true;
 }
+
+// two users are not equal if they have different ids or different sets of movies
+bool User::operator!=(const User &other) const {
+    if (id != other.id || movieSet.size() != other.movieSet.size()) {
+        return true;
+    }
+    for (const Movie& movie : movieSet) {
+        if (other.movieSet.find(movie) == other.movieSet.end()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
+

@@ -7,6 +7,7 @@
 #include "DataAccessLayer.h"
 int main() {
 
+//    cout << "Welcome to the Movie Recommender!" << endl;
     // Create instances of the DALs
     DataAccessLayer dal = DataAccessLayer();
 
@@ -17,6 +18,8 @@ int main() {
     commands.push_back(new Recommend(dal));
 
     // Pass raw pointers to the App class
+//    cout << "Commands available: add, recommend, help" << endl;
+cout.flush();
     App app(commands, std::cin, std::cout);
     app.run();
 
