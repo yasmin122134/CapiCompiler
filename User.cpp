@@ -107,6 +107,11 @@ bool User::operator!=(const User &other) const {
     return false;
 }
 
+// users are ordered by their ids
+bool User::operator<(const User& other) const {
+    return id < other.id;
+}
+
 
 
 

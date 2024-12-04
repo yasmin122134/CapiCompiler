@@ -35,6 +35,7 @@ public:
 
     bool operator==(const User& other) const;
     bool operator!=(const User& other) const;
+    bool operator<(const User& other) const;
 
 
 private:

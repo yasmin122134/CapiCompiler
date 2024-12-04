@@ -2,28 +2,36 @@
 #include <fstream>
 #include <algorithm>
 
+// constructors
 DataAccessLayer::DataAccessLayer() {
-    userFile = "users.dat";
-    movieFile = "movies.dat";
+    // set the data directory and file names
+    dataDir = "data/";
+    usersFile = dataDir + "users.txt";
+    moviesFile = dataDir + "movies.txt";
+    // load the users and movies
     loadUsers();
     loadMovies();
 }
 
 DataAccessLayer::~DataAccessLayer() {
+    // save the users and movies
     saveUsers();
     saveMovies();
 }
 
-void DataAccessLayer::add(const User& user) {
-    if (!doesExistWithSameId(user)) {
-        users.push_back(user);
+// add a user to the dal
+void DataAccessLayer::add(User& user) {
+    if (!doesExistWithSameId(user)) { // if the user doesn't exist at all, add it
+        users.insert(user);
         addUserToFile(user);
-    } else if (!(getUser(user.getId()) == user)) {
+    } else if (!(getUser(user.getId()) == user)) { // if the user exists but is different, remove and re-add
         remove(user);
         add(user);
     }
+    // if the user exists and is the same, do nothing
 }
 
+// add at once
 void DataAccessLayer::add(User user, const std::vector<Movie>& movieVec) {
     user.addMovieVec(movieVec);
     add(user);
@@ -34,7 +42,7 @@ void DataAccessLayer::add(User user, const std::vector<Movie>& movieVec) {
 
 void DataAccessLayer::add(Movie movie) {
     if (!doesExistWithSameId(movie)) {
-        movies.push_back(movie);
+        movies.insert(movie);
         addMovieToFile(movie);
     } else if (!(getMovie(movie.getId()) == movie)) {
         remove(movie);

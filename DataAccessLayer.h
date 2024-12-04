@@ -3,39 +3,53 @@
 
 #include "User.h"
 #include "Movie.h"
+#include <vector>
+#include <map>
+
+using namespace std;
 
 class DataAccessLayer {
 public:
+    // constructor and destructor
     DataAccessLayer();
     ~DataAccessLayer();
 
-    // User functions
-    void add(const User& user);
+    // add users and movies to the dal
+    void add(User& user);
     void add(User user, const std::vector<Movie>& movieVec);
     void add(Movie movie);
+    // get a user or movie from the dal (if it doesn't exist, add it)
     User getUser(int id);
     Movie getMovie(int id);
 
+    // remove a user or movie from the dal
     void remove(User user);
     void remove(Movie movie);
 
+    // check if a user or movie exists in the dal
     bool doesExistWithSameId(User user);
     bool doesExistWithSameId(Movie movie);
     bool doesExistEqual(User user);
     bool doesExistEqual(Movie movie);
 
-    std::vector<User> getAllUsers();
-    std::vector<Movie> getAllMovies();
+    // get all users or movies from the dal
+    vector<User> getAllUsers();
+    vector<Movie> getAllMovies();
 
+    // clear the dal files
     void clear();
 
 
 private:
-    std::string userFile;
-    std::string movieFile;
-    std::vector<User> users;
-    std::vector<Movie> movies;
+    // file paths
+    string usersFile;
+    string moviesFile;
+    string dataDir;
+    // users and movies sets
+    set<User> users;
+    set<Movie> movies;
 
+    // load and save users and movies from/to the dal files
     void loadUsers();
     void loadMovies();
 
