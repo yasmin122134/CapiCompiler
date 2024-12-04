@@ -11,41 +11,18 @@ using namespace std;
 Recommend::Recommend(DataAccessLayer& dal)
     : dal(dal) {}
 
-bool Recommend::isValidInput(const std::string& userIdStr, const std::string& movieIdStr) {
-    // Check if userIdStr and movieIdStr are numbers
-    if (!all_of(userIdStr.begin(), userIdStr.end(), ::isdigit) || 
-        !all_of(movieIdStr.begin(), movieIdStr.end(), ::isdigit)) {
-        return false;
-    }
-
-    // Convert strings to integers
-    int userId = stoi(userIdStr);
-    int movieId = stoi(movieIdStr);
-
-    // Check if userId exists
-    if (!dal.doesExistWithSameId(User(userId))) {
-        return false;
-    }
-
-    // Check if movieId exists
-    if (!dal.doesExistWithSameId(Movie(movieId))) {
-        return false;
-    }
-
-    return true;
-}
-
 void Recommend::execute(std::string inputLine) {
     istringstream iss(inputLine);
     std::string userIdStr, movieIdStr;
     iss >> userIdStr >> movieIdStr;
-
-    if (!isValidInput(userIdStr, movieIdStr)) {
-        return; // Output nothing if input is invalid
+    int userId, movieId;
+    try {
+        userId = stoi(userIdStr);
+        movieId = stoi(movieIdStr);
     }
+    catch (...) {
 
-    int userId = stoi(userIdStr);
-    int movieId = stoi(movieIdStr);
+    }
     vector<int> recommendations = recommend(userId, movieId);
     for (int id : recommendations) {
         cout << id << " ";
@@ -112,9 +89,14 @@ map<Movie, int> Recommend::calculateSimilarityScores(int userId, int movieId) {
 vector<int> Recommend::recommend(int userId, int movieId) {
     User user = dal.getUser(userId);
     Movie movie = dal.getMovie(movieId);
-    map<Movie, int> similarityScore = calculateSimilarityScores(userId, movieId);
+    map<Movie, int> similarityScoreTable = calculateSimilarityScores(userId,movieId);
+    //print similarityScoreTable
+    for (const auto& pair : similarityScoreTable) {
+        cout << pair.first.getId() << " " << pair.second << endl;
+    }
     
-    vector<pair<Movie, int>> sortedSimilarityScore(similarityScore.begin(), similarityScore.end());
+    vector<pair<Movie, int>> sortedSimilarityScore(similarityScoreTable.begin(),
+                                                   similarityScoreTable.end());
     sort(sortedSimilarityScore.begin(), sortedSimilarityScore.end(), 
          [](const pair<Movie, int>& a, const pair<Movie, int>& b) {
              return a.second > b.second;

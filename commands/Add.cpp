@@ -47,7 +47,6 @@ void Add::execute(string commandLine) {
 
 void Add::addMovies(int userId, vector<int> movieIds) {
     User user = dal.getUser(userId);
-    cout << "user i got: " << user << endl;
     vector<Movie> movies;
     for (int movieId : movieIds) {
         Movie movie = dal.getMovie(movieId);

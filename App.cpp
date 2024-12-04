@@ -12,7 +12,7 @@ void App::run() {
         try {
             bool continueExecution = menu.nextCommand();
             if (!continueExecution) {
-                break; // Exit loop if nextCommand signals termination
+                continue; // Exit loop if nextCommand signals termination
             }
         } catch (const std::exception& e) {
             outputStream << "Error: " << e.what() << std::endl;

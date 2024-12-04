@@ -13,6 +13,8 @@ public:
     void execute(string inputLine) override;
     void print(ostream& os) const override;
     std::string getCommandName() const override;
+    Help();
+    void setCommandList(std::vector<ICommand*>& commandList);
 };
 
 #endif
