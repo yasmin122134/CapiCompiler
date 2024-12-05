@@ -513,29 +513,77 @@ commands/Recommend.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Recommend.cpp.s
 .PHONY : commands/Recommend.cpp.s
 
-tests/DALTests.o: tests/DALTests.cpp.o
-.PHONY : tests/DALTests.o
+tests/add_test.o: tests/add_test.cpp.o
+.PHONY : tests/add_test.o
 
 # target to build an object file
-tests/DALTests.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/DALTests.cpp.o
-.PHONY : tests/DALTests.cpp.o
+tests/add_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/add_test.cpp.o
+.PHONY : tests/add_test.cpp.o
 
-tests/DALTests.i: tests/DALTests.cpp.i
-.PHONY : tests/DALTests.i
+tests/add_test.i: tests/add_test.cpp.i
+.PHONY : tests/add_test.i
 
 # target to preprocess a source file
-tests/DALTests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/DALTests.cpp.i
-.PHONY : tests/DALTests.cpp.i
+tests/add_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/add_test.cpp.i
+.PHONY : tests/add_test.cpp.i
 
-tests/DALTests.s: tests/DALTests.cpp.s
-.PHONY : tests/DALTests.s
+tests/add_test.s: tests/add_test.cpp.s
+.PHONY : tests/add_test.s
 
 # target to generate assembly for a file
-tests/DALTests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/DALTests.cpp.s
-.PHONY : tests/DALTests.cpp.s
+tests/add_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/add_test.cpp.s
+.PHONY : tests/add_test.cpp.s
+
+tests/help_test.o: tests/help_test.cpp.o
+.PHONY : tests/help_test.o
+
+# target to build an object file
+tests/help_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/help_test.cpp.o
+.PHONY : tests/help_test.cpp.o
+
+tests/help_test.i: tests/help_test.cpp.i
+.PHONY : tests/help_test.i
+
+# target to preprocess a source file
+tests/help_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/help_test.cpp.i
+.PHONY : tests/help_test.cpp.i
+
+tests/help_test.s: tests/help_test.cpp.s
+.PHONY : tests/help_test.s
+
+# target to generate assembly for a file
+tests/help_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/help_test.cpp.s
+.PHONY : tests/help_test.cpp.s
+
+tests/recommend_test.o: tests/recommend_test.cpp.o
+.PHONY : tests/recommend_test.o
+
+# target to build an object file
+tests/recommend_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/recommend_test.cpp.o
+.PHONY : tests/recommend_test.cpp.o
+
+tests/recommend_test.i: tests/recommend_test.cpp.i
+.PHONY : tests/recommend_test.i
+
+# target to preprocess a source file
+tests/recommend_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/recommend_test.cpp.i
+.PHONY : tests/recommend_test.cpp.i
+
+tests/recommend_test.s: tests/recommend_test.cpp.s
+.PHONY : tests/recommend_test.s
+
+# target to generate assembly for a file
+tests/recommend_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/recommend_test.cpp.s
+.PHONY : tests/recommend_test.cpp.s
 
 # Help Target
 help:
@@ -589,9 +637,15 @@ help:
 	@echo "... commands/Recommend.o"
 	@echo "... commands/Recommend.i"
 	@echo "... commands/Recommend.s"
-	@echo "... tests/DALTests.o"
-	@echo "... tests/DALTests.i"
-	@echo "... tests/DALTests.s"
+	@echo "... tests/add_test.o"
+	@echo "... tests/add_test.i"
+	@echo "... tests/add_test.s"
+	@echo "... tests/help_test.o"
+	@echo "... tests/help_test.i"
+	@echo "... tests/help_test.s"
+	@echo "... tests/recommend_test.o"
+	@echo "... tests/recommend_test.i"
+	@echo "... tests/recommend_test.s"
 .PHONY : help
 
 

@@ -1,85 +1,81 @@
 #include "add_test.h"
+#include "../DataAccessLayer.h"
 #include <sstream>
+#include <iostream>
 
 TEST_F(AddTest, AddUserWithMultipleMovies) {
-    UserDALFile* dal = new UserDALFile();
-    MovieDALFile* movieDal = new MovieDALFile();
-    Add cmd(dal, movieDal);
-    cmd.execute("add 123 1001 1002 1003");
+    DataAccessLayer dal = DataAccessLayer();
+    Add cmd(&dal);
+    cmd.execute("123 1001 1002 1003");
 
     User user(123);
-    ASSERT_TRUE(dal->doesExist(user));
+    ASSERT_TRUE(dal.doesExistEqual(user));
     
-    user = dal->getUser(123);
+    user = dal.getUser(123);
     EXPECT_EQ(user.getMovieVec().size(), 3);
-    
-    delete dal;
-    delete movieDal;
 }
 
 TEST_F(AddTest, AddDuplicateUser) {
-    UserDALFile* dal = new UserDALFile();
-    MovieDALFile* movieDal = new MovieDALFile();
-    Add cmd(dal, movieDal);
-    cmd.execute("add 123 1001");
-    cmd.execute("add 123 1002");
+    DataAccessLayer dal = DataAccessLayer();
+    dal.clear();
+    Add cmd(&dal);
+    cmd.execute("123 1001");
+    cmd.execute("123 1002");
     
-    User user(123);
-    ASSERT_TRUE(dal->doesExist(user));
-    user = dal->getUser(123);
+    User user = dal.getUser(123);
+    ASSERT_TRUE(dal.doesExistEqual(user));
     EXPECT_EQ(user.getMovieVec().size(), 2);
-    
-    delete dal;
-    delete movieDal;
+
 }
 
 TEST_F(AddTest, AddUserWithNoMovies) {
-    UserDALFile* dal = new UserDALFile();
-    MovieDALFile* movieDal = new MovieDALFile();
-    Add cmd(dal, movieDal);
-    cmd.execute("add 123");
+    DataAccessLayer dal = DataAccessLayer();
+    dal.clear();
+    Add cmd(&dal);
     
-    std::stringstream output;
-    cmd.print(output);
-    EXPECT_EQ(output.str(), "Error: No movies specified for user\n");
+    std::stringstream buffer;
+    std::streambuf* oldCoutBuffer = std::cout.rdbuf(buffer.rdbuf());  // Redirect cout to buffer
     
-    delete dal;
-    delete movieDal;
+    cmd.execute("123");  // Execute the command
+    
+    std::cout.rdbuf(oldCoutBuffer);  // Restore original cout buffer
+    
+    EXPECT_EQ(buffer.str(), "");
+    
 }
 
 TEST_F(AddTest, AddUserWithNonNumericIds) {
-    UserDALFile* dal = new UserDALFile();
-    MovieDALFile* movieDal = new MovieDALFile();
-    Add cmd(dal, movieDal);
+    DataAccessLayer dal = DataAccessLayer();
+    dal.clear();
+    Add cmd(&dal);
     
-    cmd.execute("add abc 1001");
-    std::stringstream output1;
-    cmd.print(output1);
-    EXPECT_EQ(output1.str(), "Error: Invalid user ID format\n");
+    std::stringstream buffer;
+    std::streambuf* oldCoutBuffer = std::cout.rdbuf(buffer.rdbuf());  // Redirect cout to buffer
     
-    cmd.execute("add 123 abc");
+    cmd.execute("1001");
+    
+    std::cout.rdbuf(oldCoutBuffer);  // Restore original cout buffer
+    
+    EXPECT_EQ(buffer.str(), "");
+    
+    cmd.execute("123 abc");
     std::stringstream output2;
-    cmd.print(output2);
-    EXPECT_EQ(output2.str(), "Error: Invalid movie ID format\n");
+    EXPECT_EQ(buffer.str(), "");
     
-    delete dal;
-    delete movieDal;
 }
 
 TEST_F(AddTest, IllegalCommandsDoNotModifyState) {
-    UserDALFile* dal = new UserDALFile();
-    MovieDALFile* movieDal = new MovieDALFile();
-    Add cmd(dal, movieDal);
+    DataAccessLayer dal = DataAccessLayer();
+    dal.clear();
+    Add cmd(&dal);
     
-    cmd.execute("add abc 1001");  // Invalid user ID
-    EXPECT_EQ(dal->getAllUsers().size(), 0);  // No user should be added
+    cmd.execute("abc 1001");  // Invalid user ID
+    EXPECT_EQ(dal.getAllUsers().size(), 0);  // No user should be added
     
-    cmd.execute("add 123");  // No movies
-    EXPECT_EQ(dal->getAllUsers().size(), 0);  // No user should be added
+    cmd.execute("123");  // No movies
+    EXPECT_EQ(dal.getAllUsers().size(), 0);  // No user should be added
     
-    cmd.execute("add 123 abc");  // Invalid movie ID
-    EXPECT_EQ(dal->getAllUsers().size(), 0);  // No user should be added
-    
-    delete dal;
-    delete movieDal;
+    cmd.execute("123 abc");  // Invalid movie ID
+    EXPECT_EQ(dal.getAllUsers().size(), 0);  // No user should be added
+
 }

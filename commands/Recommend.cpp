@@ -18,10 +18,15 @@ void Recommend::execute(std::string inputLine) {
     int userId, movieId;
     try {
         userId = stoi(userIdStr);
-        User user = dal->getUser(userId);
         movieId = stoi(movieIdStr);
     }
     catch (...) {
+        return;
+    }
+    User tempUser = User(userId);
+    Movie tempMovie = Movie(movieId);
+    if (!dal->doesExistWithSameId(tempUser) || !dal->doesExistWithSameId
+            (tempMovie)) {
         return;
     }
     vector<int> recommendations = recommend(userId, movieId);
@@ -91,7 +96,6 @@ vector<int> Recommend::recommend(int userId, int movieId) {
     User user = dal->getUser(userId);
     Movie movie = dal->getMovie(movieId);
     map<Movie, int> similarityScoreTable = calculateSimilarityScores(userId,movieId);
-    
     vector<pair<Movie, int>> sortedSimilarityScore(similarityScoreTable.begin(),
                                                    similarityScoreTable.end());
     sort(sortedSimilarityScore.begin(), sortedSimilarityScore.end(), 
@@ -115,10 +119,9 @@ vector<int> Recommend::recommend(int userId, int movieId) {
 
 
 void Recommend::print(std::ostream& os) const {
-    os << "recommend [userId] [movieId]";
+    os << "recommend [userid] [movieid]";
 }
 
-// Ayala
 std::string Recommend::getCommandName() const {
     return "recommend";
 }
