@@ -8,7 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/omer/CapiCompiler/tests/DALTests.cpp" "CMakeFiles/UserTests.dir/tests/DALTests.cpp.o" "gcc" "CMakeFiles/UserTests.dir/tests/DALTests.cpp.o.d"
+  "/Users/omer/CapiCompiler/tests/add_test.cpp" "CMakeFiles/UserTests.dir/tests/add_test.cpp.o" "gcc" "CMakeFiles/UserTests.dir/tests/add_test.cpp.o.d"
+  "/Users/omer/CapiCompiler/tests/help_test.cpp" "CMakeFiles/UserTests.dir/tests/help_test.cpp.o" "gcc" "CMakeFiles/UserTests.dir/tests/help_test.cpp.o.d"
+  "/Users/omer/CapiCompiler/tests/recommend_test.cpp" "CMakeFiles/UserTests.dir/tests/recommend_test.cpp.o" "gcc" "CMakeFiles/UserTests.dir/tests/recommend_test.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

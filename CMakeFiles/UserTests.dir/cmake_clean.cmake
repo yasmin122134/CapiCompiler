@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/UserTests.dir/tests/DALTests.cpp.o"
-  "CMakeFiles/UserTests.dir/tests/DALTests.cpp.o.d"
+  "CMakeFiles/UserTests.dir/tests/add_test.cpp.o"
+  "CMakeFiles/UserTests.dir/tests/add_test.cpp.o.d"
+  "CMakeFiles/UserTests.dir/tests/help_test.cpp.o"
+  "CMakeFiles/UserTests.dir/tests/help_test.cpp.o.d"
+  "CMakeFiles/UserTests.dir/tests/recommend_test.cpp.o"
+  "CMakeFiles/UserTests.dir/tests/recommend_test.cpp.o.d"
   "UserTests"
   "UserTests.pdb"
 )

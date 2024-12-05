@@ -3,8 +3,7 @@
 
 #include <gtest/gtest.h>
 #include "../commands/Add.h"
-#include "../UserDALFile.h"
-#include "../MovieDALFile.h"
+#include "../DataAccessLayer.h"
 #include "../User.h"
 #include "../Movie.h"
 
