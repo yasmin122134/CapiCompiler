@@ -7,7 +7,7 @@
 using namespace std;
 
 void Add::print(ostream& os) const {
-    os << "add [userid] [movieid]" << endl;
+    os << "add [userid] [movieid1] [movieid2] ...";
 }
 
 Add::Add(DataAccessLayer* dal) : dal(dal) {}
