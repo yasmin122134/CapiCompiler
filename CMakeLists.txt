@@ -29,13 +29,13 @@ set(SOURCE_FILES
         commands/Add.cpp
         commands/Recommend.cpp
         commands/Help.cpp
-        DataAccessLayer.cpp
+        DataAccessLayerFile.cpp
         )
 
 ## Set test files
 set(TEST_FILES
 #        tests/DALTests.cpp
-        DataAccessLayer.cpp
+        DataAccessLayerFile.cpp
         User.cpp
         Movie.cpp
         tests/add_test.cpp
