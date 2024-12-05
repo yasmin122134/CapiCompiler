@@ -3,14 +3,14 @@
 #include <sstream>
 #include <vector>
 #include <string>
-#include "../DataAccessLayer.h"
+#include "../DataAccessLayerFile.h"
 using namespace std;
 
 void Add::print(ostream& os) const {
     os << "add [userid] [movieid1] [movieid2] ...";
 }
 
-Add::Add(DataAccessLayer* dal) : dal(dal) {}
+Add::Add(DataAccessLayerFile* dal) : dal(dal) {}
 
 
 vector<int> Add::getMovieIds(istringstream& iss) {

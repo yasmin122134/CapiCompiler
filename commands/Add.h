@@ -4,7 +4,7 @@
 #include "ICommand.h"
 #include <vector>
 #include <sstream>
-#include "../DataAccessLayer.h"
+#include "../DataAccessLayerFile.h"
 
 using namespace std;
 
@@ -19,7 +19,7 @@ private:
 /** Pointer to the user data access layer interface */
     vector<int> getMovieIds(istringstream& iss);
     void addMovies(int userID, vector<int> movieIDs);
-    DataAccessLayer *dal;
+    DataAccessLayerFile *dal;
 
 public:
     /**
@@ -27,7 +27,7 @@ public:
      *
      * @param dal The data access layer object
      */
-    Add(DataAccessLayer *dal);
+    Add(DataAccessLayerFile *dal);
 
     /**
      * @brief Executes the add user command

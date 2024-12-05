@@ -3,42 +3,43 @@
 
 #include "User.h"
 #include "Movie.h"
+#include "IDAL.h"
 #include <vector>
 #include <map>
 
 using namespace std;
 
-class DataAccessLayer {
+class DataAccessLayerFile : public IDAL {
 public:
     // constructor and destructor
-    DataAccessLayer();
-    ~DataAccessLayer();
+    DataAccessLayerFile();
+    ~DataAccessLayerFile() override;
     // add users and movies to the dal
-    void add(User& user);
+    void add(User user) override;
     void add(User user, const std::vector<Movie>& movieVec);
-    void add(Movie movie);
+    void add(Movie movie) override;
     // get a user or movie from the dal (if it doesn't exist, add it)
-    User getUser(int id);
-    Movie getMovie(int id);
+    User getUser(int id) override;
+    Movie getMovie(int id) override;
 
     // remove a user or movie from the dal
-    void removeById(User user);
-    void removeById(Movie movie);
-    void removeEqual(User user);
-    void removeEqual(Movie movie);
+    void removeById(User user) override;
+    void removeById(Movie movie) override;
+    void removeEqual(User user) override;
+    void removeEqual(Movie movie) override;
 
     // check if a user or movie exists in the dal
-    bool doesExistWithSameId(User user);
-    bool doesExistWithSameId(Movie movie);
-    bool doesExistEqual(User user);
-    bool doesExistEqual(Movie movie);
+    bool doesExistWithSameId(User user) override;
+    bool doesExistWithSameId(Movie movie) override;
+    bool doesExistEqual(User user) override;
+    bool doesExistEqual(Movie movie) override;
 
     // get all users or movies from the dal
-    vector<User> getAllUsers();
-    vector<Movie> getAllMovies();
+    vector<User> getAllUsers() override;
+    vector<Movie> getAllMovies() override;
 
     // clear the dal files
-    void clear();
+    void clear() override;
 
 
 private:

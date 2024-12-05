@@ -4,12 +4,12 @@
 #include "commands/Help.h"
 #include "commands/Recommend.h"
 #include "App.h"
-#include "DataAccessLayer.h"
+#include "DataAccessLayerFile.h"
 int main() {
 
 //    cout << "Welcome to the Movie Recommender!" << endl;
     // Create instances of the DALs
-    DataAccessLayer dal = DataAccessLayer();
+    DataAccessLayerFile dal = DataAccessLayerFile();
 
     // Create a vector of raw pointers to commands
     std::vector<ICommand*> commands;

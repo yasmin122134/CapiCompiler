@@ -7,12 +7,12 @@
 #include <vector>
 #include <iostream>
 #include <map>
-#include "../DataAccessLayer.h"
+#include "../DataAccessLayerFile.h"
 
 class Recommend : public ICommand {
 private:
 
-    DataAccessLayer* dal;
+    DataAccessLayerFile* dal;
     map<int,int> amountOfCommonMoviesList(User user1, vector<User> users);
     std::vector<User> usersThatWatchedMovie(int movieId);
     int amountOfCommonMovies(User user1, User user2);
@@ -21,7 +21,7 @@ private:
     bool isValidInput(const std::string& userIdStr, const std::string& movieIdStr);
 
 public:
-    Recommend(DataAccessLayer* dal);
+    Recommend(DataAccessLayerFile* dal);
     void execute(std::string inputLine) override;
     void print(std::ostream& os) const override;
     //Ayala

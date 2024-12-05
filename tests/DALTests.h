@@ -2,21 +2,20 @@
 #define DALTESTS_H
 
 #include <gtest/gtest.h>
-#include "../DataAccessLayer.h"
+#include "../DataAccessLayerFile.h"
 #include "../Movie.h"
+#include "../User.h"
+#include <iostream>
+using namespace std;
 
 class DALTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        cout << "Setting up" << endl;
         dal = DataAccessLayer();
         dal.clear();
-        cout << "Done setting up" << endl;
     }
     void TearDown() override {
-        cout << "Tearing down" << endl;
         dal.clear();
-        cout << "Done tearing down" << endl;
     }
 
     DataAccessLayer dal;

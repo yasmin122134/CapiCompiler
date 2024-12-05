@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Recommend::Recommend(DataAccessLayer* dal)
+Recommend::Recommend(DataAccessLayerFile* dal)
     : dal(dal) {}
 
 void Recommend::execute(std::string inputLine) {

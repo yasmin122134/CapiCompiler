@@ -32,7 +32,7 @@ vector<Movie> User::getMovieVec() {
 }
 
 set<Movie> User::getMovieSet() {
-    return set<Movie>();
+    return movieSet;
 }
 
 void User::setMovieVec(const vector<Movie>& movieVec) {

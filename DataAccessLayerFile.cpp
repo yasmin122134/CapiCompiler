@@ -1,4 +1,4 @@
-#include "DataAccessLayer.h"
+#include "DataAccessLayerFile.h"
 #include <fstream>
 #include <algorithm>
 #include <iostream>
@@ -6,7 +6,7 @@
 namespace fs = std::filesystem;
 
 // constructors
-DataAccessLayer::DataAccessLayer() {
+DataAccessLayerFile::DataAccessLayerFile() {
     // set the data directory and file names
     dataDir = "../data/";
     usersFile = dataDir + "users.txt";
@@ -26,14 +26,14 @@ DataAccessLayer::DataAccessLayer() {
     loadMovies();
 }
 
-DataAccessLayer::~DataAccessLayer() {
+DataAccessLayerFile::~DataAccessLayerFile() {
     // save the users and movies
     saveUsers();
     saveMovies();
 }
 
 // add a user to the dal
-void DataAccessLayer::add(User& user) {
+void DataAccessLayerFile::add(User user) {
     if (!doesExistWithSameId(user)) { // if the user doesn't exist at all, add it
         users.insert(user);
         addUserToFile(user);
@@ -45,7 +45,7 @@ void DataAccessLayer::add(User& user) {
 }
 
 // add at once a user and a vector of movies (wrapper function)
-void DataAccessLayer::add(User user, const std::vector<Movie>& movieVec) {
+void DataAccessLayerFile::add(User user, const std::vector<Movie>& movieVec) {
     user.addMovieVec(movieVec); // add the movies to the user
     add(user); // add the user to the dal
     // add the movies to the dal
@@ -54,7 +54,7 @@ void DataAccessLayer::add(User user, const std::vector<Movie>& movieVec) {
     }
 }
 
-void DataAccessLayer::add(Movie movie) {
+void DataAccessLayerFile::add(Movie movie) {
     if (!doesExistWithSameId(movie)) { // if the movie doesn't exist at all, add it
         movies.insert(movie);
         addMovieToFile(movie);
@@ -65,16 +65,14 @@ void DataAccessLayer::add(Movie movie) {
     // if the movie exists and is the same, do nothing
 }
 
-User DataAccessLayer::getUser(int id) {
+User DataAccessLayerFile::getUser(int id) {
     // find the user in the set
     try {
         for (const auto& user : users) {
             if (user.getId() == id) {
-                cout << "found user: " << user << endl;
                 return user;
             }
         }
-        cout << "user not found with id " << id << endl;
     }catch (...) {}
     // if the user doesn't exist, create a new one
     User user(id);
@@ -82,7 +80,7 @@ User DataAccessLayer::getUser(int id) {
     return user;
 }
 
-Movie DataAccessLayer::getMovie(int id) {
+Movie DataAccessLayerFile::getMovie(int id) {
     // find the movie in the set
     for (const auto& movie : movies) {
         if (movie.getId() == id) {
@@ -95,53 +93,53 @@ Movie DataAccessLayer::getMovie(int id) {
     return movie;
 }
 
-void DataAccessLayer::removeEqual(User user) {
+void DataAccessLayerFile::removeEqual(User user) {
     bool removed = users.erase(user); // remove the user from the set
     if (removed) {
         saveUsers();
     }
 }
 
-void DataAccessLayer::removeEqual(Movie movie) {
+void DataAccessLayerFile::removeEqual(Movie movie) {
     bool removed = movies.erase(movie); // remove the movie from the set
     if (removed) {
         saveMovies();
     }
 }
 
-bool DataAccessLayer::doesExistWithSameId(User user) {
+bool DataAccessLayerFile::doesExistWithSameId(User user) {
     return std::any_of(users.begin(), users.end(), [&user](const User& u) {
         return u.getId() == user.getId();
     });
 }
 
-bool DataAccessLayer::doesExistWithSameId(Movie movie) {
+bool DataAccessLayerFile::doesExistWithSameId(Movie movie) {
     return std::any_of(movies.begin(), movies.end(), [&movie](const Movie& m) {
         return m.getId() == movie.getId();
     });
 }
 
-bool DataAccessLayer::doesExistEqual(User user) {
+bool DataAccessLayerFile::doesExistEqual(User user) {
     return users.find(user) != users.end();
 }
 
-bool DataAccessLayer::doesExistEqual(Movie movie) {
+bool DataAccessLayerFile::doesExistEqual(Movie movie) {
     return std::any_of(movies.begin(), movies.end(), [&movie](const Movie& m) {
         return m == movie;
     });
 }
 
-vector<User> DataAccessLayer::getAllUsers() {
+vector<User> DataAccessLayerFile::getAllUsers() {
     // convert the set to a vector
     return vector<User>(users.begin(), users.end());
 }
 
-std::vector<Movie> DataAccessLayer::getAllMovies() {
+std::vector<Movie> DataAccessLayerFile::getAllMovies() {
     // convert the set to a vector
     return vector<Movie>(movies.begin(), movies.end());
 }
 
-void DataAccessLayer::clear() {
+void DataAccessLayerFile::clear() {
     // clear the sets and re-save the files (which will be empty)
     users.clear();
     movies.clear();
@@ -150,23 +148,20 @@ void DataAccessLayer::clear() {
 }
 
 // load users and movies from the files: read the files and insert the users and movies to the sets
-void DataAccessLayer::loadUsers() {
+void DataAccessLayerFile::loadUsers() {
     // open the users file, create if it doesn't exist
     ifstream file(usersFile, ios::in);
 
-    cout << "loading users" << endl;
     if (file.is_open()) {
         User user;
         while (file >> user) {
             users.insert(user);
         }
         file.close();
-    } else {
-        cout << "Failed to open users file\n";
     }
 }
 
-void DataAccessLayer::loadMovies() {
+void DataAccessLayerFile::loadMovies() {
     ifstream file(moviesFile, ios::in);
     if (file.is_open()) {
         Movie movie;
@@ -174,13 +169,11 @@ void DataAccessLayer::loadMovies() {
             movies.insert(movie);
         }
         file.close();
-    } else {
-        cout << "Failed to open movies file\n";
     }
 }
 
 // save users and movies to the files: truncate the files and write the sets to them
-void DataAccessLayer::saveUsers() {
+void DataAccessLayerFile::saveUsers() {
     ofstream file(usersFile, ios::trunc); // truncate the file
     if (file.is_open()) {
         // write each user to the file
@@ -191,7 +184,7 @@ void DataAccessLayer::saveUsers() {
     }
 }
 
-void DataAccessLayer::saveMovies() {
+void DataAccessLayerFile::saveMovies() {
     ofstream file(moviesFile, ios::trunc); // truncate the file
     if (file.is_open()) {
         // write each movie to the file
@@ -204,7 +197,7 @@ void DataAccessLayer::saveMovies() {
 
 // add to dal functions. this is to reduce the number of file writes and should be used only when adding a new user or movie
 // add a user to the users file (append)
-void DataAccessLayer::addUserToFile(User user) {
+void DataAccessLayerFile::addUserToFile(User user) {
     ofstream file(usersFile, ios::app);
     if (file.is_open()) {
         file << user << std::endl;
@@ -213,7 +206,7 @@ void DataAccessLayer::addUserToFile(User user) {
 }
 
 // add a movie to the movies file (append)
-void DataAccessLayer::addMovieToFile(Movie movie) {
+void DataAccessLayerFile::addMovieToFile(Movie movie) {
     ofstream file(moviesFile, ios::app);
     if (file.is_open()) {
         file << movie << std::endl;
@@ -221,7 +214,7 @@ void DataAccessLayer::addMovieToFile(Movie movie) {
     }
 }
 
-void DataAccessLayer::removeById(User user) {
+void DataAccessLayerFile::removeById(User user) {
     for (auto it = users.begin(); it != users.end(); ++it) {
         if (it->getId() == user.getId()) {
             users.erase(it);
@@ -231,7 +224,7 @@ void DataAccessLayer::removeById(User user) {
     }
 }
 
-void DataAccessLayer::removeById(Movie movie) {
+void DataAccessLayerFile::removeById(Movie movie) {
     for (auto it = movies.begin(); it != movies.end(); ++it) {
         if (it->getId() == movie.getId()) {
             movies.erase(it);
