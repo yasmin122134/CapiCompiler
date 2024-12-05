@@ -2,11 +2,11 @@
 #include "../commands/Help.h"
 #include "../commands/Add.h"
 #include "../commands/Recommend.h"
-#include "../DataAccessLayer.h"
+#include "../DataAccessLayerFile.h"
 #include <sstream>
 
 TEST(HelpTest, GetCommandList) {
-    DataAccessLayer dal = DataAccessLayer();
+    DataAccessLayerFile dal = DataAccessLayerFile();
     std::vector<ICommand*> commands;
     Help* help = new Help();
     commands.push_back(new Add(&dal));

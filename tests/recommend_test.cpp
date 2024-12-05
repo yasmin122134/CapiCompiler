@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
 #include <sstream>
 #include "../commands/Recommend.h"
-#include "../DataAccessLayer.h"
+#include "../DataAccessLayerFile.h"
 
 class RecommendTest : public ::testing::Test {
 protected:
     std::stringstream output;
-    DataAccessLayer dal;
+    DataAccessLayerFile dal;
     Recommend recommend;
     
     // Add constructor with initialization list

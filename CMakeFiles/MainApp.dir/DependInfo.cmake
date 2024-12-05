@@ -10,7 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/omer/CapiCompiler/App.cpp" "CMakeFiles/MainApp.dir/App.cpp.o" "gcc" "CMakeFiles/MainApp.dir/App.cpp.o.d"
   "/Users/omer/CapiCompiler/ConsoleMenu.cpp" "CMakeFiles/MainApp.dir/ConsoleMenu.cpp.o" "gcc" "CMakeFiles/MainApp.dir/ConsoleMenu.cpp.o.d"
-  "/Users/omer/CapiCompiler/DataAccessLayer.cpp" "CMakeFiles/MainApp.dir/DataAccessLayer.cpp.o" "gcc" "CMakeFiles/MainApp.dir/DataAccessLayer.cpp.o.d"
+  "/Users/omer/CapiCompiler/DataAccessLayerFile.cpp" "CMakeFiles/MainApp.dir/DataAccessLayerFile.cpp.o" "gcc" "CMakeFiles/MainApp.dir/DataAccessLayerFile.cpp.o.d"
   "/Users/omer/CapiCompiler/IMenu.cpp" "CMakeFiles/MainApp.dir/IMenu.cpp.o" "gcc" "CMakeFiles/MainApp.dir/IMenu.cpp.o.d"
   "/Users/omer/CapiCompiler/Main.cpp" "CMakeFiles/MainApp.dir/Main.cpp.o" "gcc" "CMakeFiles/MainApp.dir/Main.cpp.o.d"
   "/Users/omer/CapiCompiler/Movie.cpp" "CMakeFiles/MainApp.dir/Movie.cpp.o" "gcc" "CMakeFiles/MainApp.dir/Movie.cpp.o.d"
@@ -23,10 +23,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 
 # Targets to which this target links which contain Fortran sources.
 set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
-  )
-
-# Targets to which this target links which contain Fortran sources.
-set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

@@ -1,10 +1,10 @@
 #include "add_test.h"
-#include "../DataAccessLayer.h"
+#include "../DataAccessLayerFile.h"
 #include <sstream>
 #include <iostream>
 
 TEST_F(AddTest, AddUserWithMultipleMovies) {
-    DataAccessLayer dal = DataAccessLayer();
+    DataAccessLayerFile dal = DataAccessLayerFile();
     Add cmd(&dal);
     cmd.execute("123 1001 1002 1003");
 
@@ -16,7 +16,7 @@ TEST_F(AddTest, AddUserWithMultipleMovies) {
 }
 
 TEST_F(AddTest, AddDuplicateUser) {
-    DataAccessLayer dal = DataAccessLayer();
+    DataAccessLayerFile dal = DataAccessLayerFile();
     dal.clear();
     Add cmd(&dal);
     cmd.execute("123 1001");
@@ -29,7 +29,7 @@ TEST_F(AddTest, AddDuplicateUser) {
 }
 
 TEST_F(AddTest, AddUserWithNoMovies) {
-    DataAccessLayer dal = DataAccessLayer();
+    DataAccessLayerFile dal = DataAccessLayerFile();
     dal.clear();
     Add cmd(&dal);
     
@@ -45,7 +45,7 @@ TEST_F(AddTest, AddUserWithNoMovies) {
 }
 
 TEST_F(AddTest, AddUserWithNonNumericIds) {
-    DataAccessLayer dal = DataAccessLayer();
+    DataAccessLayerFile dal = DataAccessLayerFile();
     dal.clear();
     Add cmd(&dal);
     
@@ -65,7 +65,7 @@ TEST_F(AddTest, AddUserWithNonNumericIds) {
 }
 
 TEST_F(AddTest, IllegalCommandsDoNotModifyState) {
-    DataAccessLayer dal = DataAccessLayer();
+    DataAccessLayerFile dal = DataAccessLayerFile();
     dal.clear();
     Add cmd(&dal);
     
