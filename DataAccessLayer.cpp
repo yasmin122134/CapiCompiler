@@ -2,6 +2,8 @@
 #include <fstream>
 #include <algorithm>
 #include <iostream>
+#include <filesystem>
+namespace fs = std::filesystem;
 
 // constructors
 DataAccessLayer::DataAccessLayer() {
@@ -9,10 +11,19 @@ DataAccessLayer::DataAccessLayer() {
     dataDir = "../data/";
     usersFile = dataDir + "users.txt";
     moviesFile = dataDir + "movies.txt";
+
+    // create the data directory if it doesn't exist
+    fs::create_directories(dataDir);
+
+    // create the users and movies files if they don't exist
+    ofstream createFile(usersFile, ios::out | ios::app);
+    createFile.close();
+    ofstream createFile2(moviesFile, ios::out | ios::app);
+    createFile2.close();
+
     // load the users and movies
     loadUsers();
     loadMovies();
-    cout << "DataAccessLayer created" << endl;
 }
 
 DataAccessLayer::~DataAccessLayer() {
@@ -59,11 +70,11 @@ User DataAccessLayer::getUser(int id) {
     try {
         for (const auto& user : users) {
             if (user.getId() == id) {
-                cout << "found user with id " << id << endl;
+                cout << "found user: " << user << endl;
                 return user;
             }
-            cout << "user not found with id " << id << endl;
         }
+        cout << "user not found with id " << id << endl;
     }catch (...) {}
     // if the user doesn't exist, create a new one
     User user(id);
@@ -140,7 +151,9 @@ void DataAccessLayer::clear() {
 
 // load users and movies from the files: read the files and insert the users and movies to the sets
 void DataAccessLayer::loadUsers() {
+    // open the users file, create if it doesn't exist
     ifstream file(usersFile, ios::in);
+
     cout << "loading users" << endl;
     if (file.is_open()) {
         User user;
@@ -168,7 +181,7 @@ void DataAccessLayer::loadMovies() {
 
 // save users and movies to the files: truncate the files and write the sets to them
 void DataAccessLayer::saveUsers() {
-    std::ofstream file(usersFile, std::ios::trunc); // truncate the file
+    ofstream file(usersFile, ios::trunc); // truncate the file
     if (file.is_open()) {
         // write each user to the file
         for (const auto& user : users) {
@@ -179,7 +192,7 @@ void DataAccessLayer::saveUsers() {
 }
 
 void DataAccessLayer::saveMovies() {
-    std::ofstream file(moviesFile, std::ios::trunc); // truncate the file
+    ofstream file(moviesFile, ios::trunc); // truncate the file
     if (file.is_open()) {
         // write each movie to the file
         for (const auto& movie : movies) {
@@ -192,7 +205,7 @@ void DataAccessLayer::saveMovies() {
 // add to dal functions. this is to reduce the number of file writes and should be used only when adding a new user or movie
 // add a user to the users file (append)
 void DataAccessLayer::addUserToFile(User user) {
-    std::ofstream file(usersFile, std::ios::app);
+    ofstream file(usersFile, ios::app);
     if (file.is_open()) {
         file << user << std::endl;
         file.close();
@@ -201,7 +214,7 @@ void DataAccessLayer::addUserToFile(User user) {
 
 // add a movie to the movies file (append)
 void DataAccessLayer::addMovieToFile(Movie movie) {
-    std::ofstream file(moviesFile, std::ios::app);
+    ofstream file(moviesFile, ios::app);
     if (file.is_open()) {
         file << movie << std::endl;
         file.close();
