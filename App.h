@@ -17,7 +17,7 @@ private:
 
 public:
     App(vector<ICommand*> cmdList, istream& input, ostream& output);
-    void run();
+    void run(bool sec);
 };
 
 #endif

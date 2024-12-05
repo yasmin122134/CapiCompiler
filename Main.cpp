@@ -37,7 +37,7 @@ int main() {
 //    cout << "Commands available: add, recommend, help" << endl;
     cout.flush();
     App app(commands, std::cin, std::cout);
-    app.run();
+    app.run(false);
 
     // Clean up allocated memory
     for (auto cmd : commands) {

@@ -59,7 +59,7 @@ TEST(App_End_to_end_test, All_tests) {
     App app(commands, input, output_buffer);
 
     // Run the app
-    app.run();
+    app.run(true);
 
     // Define the expected output
     std::string expected_output =
