@@ -8,7 +8,7 @@
 #include "DataAccessLayer.h"
 
 // Global flag to stop the application
-volatile sig_atomic_t stopFlag = 0;
+volatile sig_atomic_t stopFlag = 1;
 
 void signalHandler(int signal) {
     if (signal == SIGINT) {
