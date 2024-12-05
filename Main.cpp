@@ -4,8 +4,22 @@
 #include "commands/Help.h"
 #include "commands/Recommend.h"
 #include "App.h"
+#include <csignal>
 #include "DataAccessLayer.h"
+
+// Global flag to stop the application
+volatile sig_atomic_t stopFlag = 0;
+
+void signalHandler(int signal) {
+    if (signal == SIGINT) {
+        std::cout << "\nSignal received: SIGINT (Ctrl+C). Stopping the program..." << std::endl;
+        stopFlag = 1;
+    }
+}
+
+
 int main() {
+    std::signal(SIGINT, signalHandler);
 
 //    cout << "Welcome to the Movie Recommender!" << endl;
     // Create instances of the DALs
@@ -21,7 +35,7 @@ int main() {
 
     // Pass raw pointers to the App class
 //    cout << "Commands available: add, recommend, help" << endl;
-cout.flush();
+    cout.flush();
     App app(commands, std::cin, std::cout);
     app.run();
 
