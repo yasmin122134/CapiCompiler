@@ -72,33 +72,193 @@ include CMakeFiles/UserTests.dir/flags.make
 CMakeFiles/UserTests.dir/codegen:
 .PHONY : CMakeFiles/UserTests.dir/codegen
 
-CMakeFiles/UserTests.dir/tests/DALTests.cpp.o: CMakeFiles/UserTests.dir/flags.make
-CMakeFiles/UserTests.dir/tests/DALTests.cpp.o: tests/DALTests.cpp
-CMakeFiles/UserTests.dir/tests/DALTests.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/UserTests.dir/tests/DALTests.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/tests/DALTests.cpp.o -MF CMakeFiles/UserTests.dir/tests/DALTests.cpp.o.d -o CMakeFiles/UserTests.dir/tests/DALTests.cpp.o -c /Users/omer/CapiCompiler/tests/DALTests.cpp
+CMakeFiles/UserTests.dir/Movie.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/Movie.cpp.o: Movie.cpp
+CMakeFiles/UserTests.dir/Movie.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/UserTests.dir/Movie.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/Movie.cpp.o -MF CMakeFiles/UserTests.dir/Movie.cpp.o.d -o CMakeFiles/UserTests.dir/Movie.cpp.o -c /Users/omer/CapiCompiler/Movie.cpp
 
-CMakeFiles/UserTests.dir/tests/DALTests.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/tests/DALTests.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/tests/DALTests.cpp > CMakeFiles/UserTests.dir/tests/DALTests.cpp.i
+CMakeFiles/UserTests.dir/Movie.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/Movie.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/Movie.cpp > CMakeFiles/UserTests.dir/Movie.cpp.i
 
-CMakeFiles/UserTests.dir/tests/DALTests.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/tests/DALTests.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/tests/DALTests.cpp -o CMakeFiles/UserTests.dir/tests/DALTests.cpp.s
+CMakeFiles/UserTests.dir/Movie.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/Movie.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/Movie.cpp -o CMakeFiles/UserTests.dir/Movie.cpp.s
+
+CMakeFiles/UserTests.dir/User.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/User.cpp.o: User.cpp
+CMakeFiles/UserTests.dir/User.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/UserTests.dir/User.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/User.cpp.o -MF CMakeFiles/UserTests.dir/User.cpp.o.d -o CMakeFiles/UserTests.dir/User.cpp.o -c /Users/omer/CapiCompiler/User.cpp
+
+CMakeFiles/UserTests.dir/User.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/User.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/User.cpp > CMakeFiles/UserTests.dir/User.cpp.i
+
+CMakeFiles/UserTests.dir/User.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/User.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/User.cpp -o CMakeFiles/UserTests.dir/User.cpp.s
+
+CMakeFiles/UserTests.dir/IMenu.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/IMenu.cpp.o: IMenu.cpp
+CMakeFiles/UserTests.dir/IMenu.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/UserTests.dir/IMenu.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/IMenu.cpp.o -MF CMakeFiles/UserTests.dir/IMenu.cpp.o.d -o CMakeFiles/UserTests.dir/IMenu.cpp.o -c /Users/omer/CapiCompiler/IMenu.cpp
+
+CMakeFiles/UserTests.dir/IMenu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/IMenu.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/IMenu.cpp > CMakeFiles/UserTests.dir/IMenu.cpp.i
+
+CMakeFiles/UserTests.dir/IMenu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/IMenu.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/IMenu.cpp -o CMakeFiles/UserTests.dir/IMenu.cpp.s
+
+CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o: ConsoleMenu.cpp
+CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o -MF CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o.d -o CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o -c /Users/omer/CapiCompiler/ConsoleMenu.cpp
+
+CMakeFiles/UserTests.dir/ConsoleMenu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/ConsoleMenu.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/ConsoleMenu.cpp > CMakeFiles/UserTests.dir/ConsoleMenu.cpp.i
+
+CMakeFiles/UserTests.dir/ConsoleMenu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/ConsoleMenu.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/ConsoleMenu.cpp -o CMakeFiles/UserTests.dir/ConsoleMenu.cpp.s
+
+CMakeFiles/UserTests.dir/App.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/App.cpp.o: App.cpp
+CMakeFiles/UserTests.dir/App.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/UserTests.dir/App.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/App.cpp.o -MF CMakeFiles/UserTests.dir/App.cpp.o.d -o CMakeFiles/UserTests.dir/App.cpp.o -c /Users/omer/CapiCompiler/App.cpp
+
+CMakeFiles/UserTests.dir/App.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/App.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/App.cpp > CMakeFiles/UserTests.dir/App.cpp.i
+
+CMakeFiles/UserTests.dir/App.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/App.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/App.cpp -o CMakeFiles/UserTests.dir/App.cpp.s
+
+CMakeFiles/UserTests.dir/commands/ICommand.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/commands/ICommand.cpp.o: commands/ICommand.cpp
+CMakeFiles/UserTests.dir/commands/ICommand.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/UserTests.dir/commands/ICommand.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/commands/ICommand.cpp.o -MF CMakeFiles/UserTests.dir/commands/ICommand.cpp.o.d -o CMakeFiles/UserTests.dir/commands/ICommand.cpp.o -c /Users/omer/CapiCompiler/commands/ICommand.cpp
+
+CMakeFiles/UserTests.dir/commands/ICommand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/commands/ICommand.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/commands/ICommand.cpp > CMakeFiles/UserTests.dir/commands/ICommand.cpp.i
+
+CMakeFiles/UserTests.dir/commands/ICommand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/commands/ICommand.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/commands/ICommand.cpp -o CMakeFiles/UserTests.dir/commands/ICommand.cpp.s
+
+CMakeFiles/UserTests.dir/commands/Add.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/commands/Add.cpp.o: commands/Add.cpp
+CMakeFiles/UserTests.dir/commands/Add.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/UserTests.dir/commands/Add.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/commands/Add.cpp.o -MF CMakeFiles/UserTests.dir/commands/Add.cpp.o.d -o CMakeFiles/UserTests.dir/commands/Add.cpp.o -c /Users/omer/CapiCompiler/commands/Add.cpp
+
+CMakeFiles/UserTests.dir/commands/Add.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/commands/Add.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/commands/Add.cpp > CMakeFiles/UserTests.dir/commands/Add.cpp.i
+
+CMakeFiles/UserTests.dir/commands/Add.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/commands/Add.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/commands/Add.cpp -o CMakeFiles/UserTests.dir/commands/Add.cpp.s
+
+CMakeFiles/UserTests.dir/commands/Recommend.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/commands/Recommend.cpp.o: commands/Recommend.cpp
+CMakeFiles/UserTests.dir/commands/Recommend.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/UserTests.dir/commands/Recommend.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/commands/Recommend.cpp.o -MF CMakeFiles/UserTests.dir/commands/Recommend.cpp.o.d -o CMakeFiles/UserTests.dir/commands/Recommend.cpp.o -c /Users/omer/CapiCompiler/commands/Recommend.cpp
+
+CMakeFiles/UserTests.dir/commands/Recommend.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/commands/Recommend.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/commands/Recommend.cpp > CMakeFiles/UserTests.dir/commands/Recommend.cpp.i
+
+CMakeFiles/UserTests.dir/commands/Recommend.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/commands/Recommend.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/commands/Recommend.cpp -o CMakeFiles/UserTests.dir/commands/Recommend.cpp.s
+
+CMakeFiles/UserTests.dir/commands/Help.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/commands/Help.cpp.o: commands/Help.cpp
+CMakeFiles/UserTests.dir/commands/Help.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/UserTests.dir/commands/Help.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/commands/Help.cpp.o -MF CMakeFiles/UserTests.dir/commands/Help.cpp.o.d -o CMakeFiles/UserTests.dir/commands/Help.cpp.o -c /Users/omer/CapiCompiler/commands/Help.cpp
+
+CMakeFiles/UserTests.dir/commands/Help.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/commands/Help.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/commands/Help.cpp > CMakeFiles/UserTests.dir/commands/Help.cpp.i
+
+CMakeFiles/UserTests.dir/commands/Help.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/commands/Help.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/commands/Help.cpp -o CMakeFiles/UserTests.dir/commands/Help.cpp.s
+
+CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o: DataAccessLayer.cpp
+CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o -MF CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o.d -o CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o -c /Users/omer/CapiCompiler/DataAccessLayer.cpp
+
+CMakeFiles/UserTests.dir/DataAccessLayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/DataAccessLayer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/DataAccessLayer.cpp > CMakeFiles/UserTests.dir/DataAccessLayer.cpp.i
+
+CMakeFiles/UserTests.dir/DataAccessLayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/DataAccessLayer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/DataAccessLayer.cpp -o CMakeFiles/UserTests.dir/DataAccessLayer.cpp.s
+
+CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o: CMakeFiles/UserTests.dir/flags.make
+CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o: tests/End_to_End.cpp
+CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o: CMakeFiles/UserTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o -MF CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o.d -o CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o -c /Users/omer/CapiCompiler/tests/End_to_End.cpp
+
+CMakeFiles/UserTests.dir/tests/End_to_End.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/UserTests.dir/tests/End_to_End.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/omer/CapiCompiler/tests/End_to_End.cpp > CMakeFiles/UserTests.dir/tests/End_to_End.cpp.i
+
+CMakeFiles/UserTests.dir/tests/End_to_End.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/UserTests.dir/tests/End_to_End.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/omer/CapiCompiler/tests/End_to_End.cpp -o CMakeFiles/UserTests.dir/tests/End_to_End.cpp.s
 
 # Object files for target UserTests
 UserTests_OBJECTS = \
-"CMakeFiles/UserTests.dir/tests/DALTests.cpp.o"
+"CMakeFiles/UserTests.dir/Movie.cpp.o" \
+"CMakeFiles/UserTests.dir/User.cpp.o" \
+"CMakeFiles/UserTests.dir/IMenu.cpp.o" \
+"CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o" \
+"CMakeFiles/UserTests.dir/App.cpp.o" \
+"CMakeFiles/UserTests.dir/commands/ICommand.cpp.o" \
+"CMakeFiles/UserTests.dir/commands/Add.cpp.o" \
+"CMakeFiles/UserTests.dir/commands/Recommend.cpp.o" \
+"CMakeFiles/UserTests.dir/commands/Help.cpp.o" \
+"CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o" \
+"CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o"
 
 # External object files for target UserTests
 UserTests_EXTERNAL_OBJECTS =
 
-UserTests: CMakeFiles/UserTests.dir/tests/DALTests.cpp.o
+UserTests: CMakeFiles/UserTests.dir/Movie.cpp.o
+UserTests: CMakeFiles/UserTests.dir/User.cpp.o
+UserTests: CMakeFiles/UserTests.dir/IMenu.cpp.o
+UserTests: CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o
+UserTests: CMakeFiles/UserTests.dir/App.cpp.o
+UserTests: CMakeFiles/UserTests.dir/commands/ICommand.cpp.o
+UserTests: CMakeFiles/UserTests.dir/commands/Add.cpp.o
+UserTests: CMakeFiles/UserTests.dir/commands/Recommend.cpp.o
+UserTests: CMakeFiles/UserTests.dir/commands/Help.cpp.o
+UserTests: CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o
+UserTests: CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o
 UserTests: CMakeFiles/UserTests.dir/build.make
 UserTests: lib/libgtest_main.a
 UserTests: lib/libgtest.a
 UserTests: CMakeFiles/UserTests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable UserTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/omer/CapiCompiler/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable UserTests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/UserTests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

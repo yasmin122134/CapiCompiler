@@ -37,9 +37,6 @@ TEST(App_End_to_end_test, All_tests) {
     help->setCommandList(commands);
 
     // Use ostringstream to capture output instead of std::cout
-    std::ostringstream output_buffer;
-
-    // Pass the buffer and the input to the App class
     std::istringstream input(
         "add 1 100 101 102 103\n"
         "add 2 101 102 104 105 106\n"
@@ -56,10 +53,18 @@ TEST(App_End_to_end_test, All_tests) {
         "help\n"
     );
     
-    App app(commands, input, output_buffer);
+    App app(commands, input, std::cout);
+
+    // Redirect cout to a buffer temporarily
+    std::streambuf* old_cout = std::cout.rdbuf();
+    std::ostringstream output_buffer;
+    std::cout.rdbuf(output_buffer.rdbuf());
 
     // Run the app
     app.run(true);
+
+    // Restore cout
+    std::cout.rdbuf(old_cout);
 
     // Define the expected output
     std::string expected_output =

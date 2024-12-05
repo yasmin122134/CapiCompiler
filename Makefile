@@ -255,6 +255,7 @@ App.o: App.cpp.o
 # target to build an object file
 App.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/App.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/App.cpp.o
 .PHONY : App.cpp.o
 
 App.i: App.cpp.i
@@ -263,6 +264,7 @@ App.i: App.cpp.i
 # target to preprocess a source file
 App.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/App.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/App.cpp.i
 .PHONY : App.cpp.i
 
 App.s: App.cpp.s
@@ -271,6 +273,7 @@ App.s: App.cpp.s
 # target to generate assembly for a file
 App.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/App.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/App.cpp.s
 .PHONY : App.cpp.s
 
 ConsoleMenu.o: ConsoleMenu.cpp.o
@@ -279,6 +282,7 @@ ConsoleMenu.o: ConsoleMenu.cpp.o
 # target to build an object file
 ConsoleMenu.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/ConsoleMenu.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/ConsoleMenu.cpp.o
 .PHONY : ConsoleMenu.cpp.o
 
 ConsoleMenu.i: ConsoleMenu.cpp.i
@@ -287,6 +291,7 @@ ConsoleMenu.i: ConsoleMenu.cpp.i
 # target to preprocess a source file
 ConsoleMenu.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/ConsoleMenu.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/ConsoleMenu.cpp.i
 .PHONY : ConsoleMenu.cpp.i
 
 ConsoleMenu.s: ConsoleMenu.cpp.s
@@ -295,6 +300,7 @@ ConsoleMenu.s: ConsoleMenu.cpp.s
 # target to generate assembly for a file
 ConsoleMenu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/ConsoleMenu.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/ConsoleMenu.cpp.s
 .PHONY : ConsoleMenu.cpp.s
 
 DataAccessLayer.o: DataAccessLayer.cpp.o
@@ -303,6 +309,7 @@ DataAccessLayer.o: DataAccessLayer.cpp.o
 # target to build an object file
 DataAccessLayer.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/DataAccessLayer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/DataAccessLayer.cpp.o
 .PHONY : DataAccessLayer.cpp.o
 
 DataAccessLayer.i: DataAccessLayer.cpp.i
@@ -311,6 +318,7 @@ DataAccessLayer.i: DataAccessLayer.cpp.i
 # target to preprocess a source file
 DataAccessLayer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/DataAccessLayer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/DataAccessLayer.cpp.i
 .PHONY : DataAccessLayer.cpp.i
 
 DataAccessLayer.s: DataAccessLayer.cpp.s
@@ -319,6 +327,7 @@ DataAccessLayer.s: DataAccessLayer.cpp.s
 # target to generate assembly for a file
 DataAccessLayer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/DataAccessLayer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/DataAccessLayer.cpp.s
 .PHONY : DataAccessLayer.cpp.s
 
 IMenu.o: IMenu.cpp.o
@@ -327,6 +336,7 @@ IMenu.o: IMenu.cpp.o
 # target to build an object file
 IMenu.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/IMenu.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/IMenu.cpp.o
 .PHONY : IMenu.cpp.o
 
 IMenu.i: IMenu.cpp.i
@@ -335,6 +345,7 @@ IMenu.i: IMenu.cpp.i
 # target to preprocess a source file
 IMenu.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/IMenu.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/IMenu.cpp.i
 .PHONY : IMenu.cpp.i
 
 IMenu.s: IMenu.cpp.s
@@ -343,6 +354,7 @@ IMenu.s: IMenu.cpp.s
 # target to generate assembly for a file
 IMenu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/IMenu.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/IMenu.cpp.s
 .PHONY : IMenu.cpp.s
 
 Main.o: Main.cpp.o
@@ -375,6 +387,7 @@ Movie.o: Movie.cpp.o
 # target to build an object file
 Movie.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/Movie.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/Movie.cpp.o
 .PHONY : Movie.cpp.o
 
 Movie.i: Movie.cpp.i
@@ -383,6 +396,7 @@ Movie.i: Movie.cpp.i
 # target to preprocess a source file
 Movie.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/Movie.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/Movie.cpp.i
 .PHONY : Movie.cpp.i
 
 Movie.s: Movie.cpp.s
@@ -391,6 +405,7 @@ Movie.s: Movie.cpp.s
 # target to generate assembly for a file
 Movie.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/Movie.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/Movie.cpp.s
 .PHONY : Movie.cpp.s
 
 User.o: User.cpp.o
@@ -399,6 +414,7 @@ User.o: User.cpp.o
 # target to build an object file
 User.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/User.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/User.cpp.o
 .PHONY : User.cpp.o
 
 User.i: User.cpp.i
@@ -407,6 +423,7 @@ User.i: User.cpp.i
 # target to preprocess a source file
 User.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/User.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/User.cpp.i
 .PHONY : User.cpp.i
 
 User.s: User.cpp.s
@@ -415,6 +432,7 @@ User.s: User.cpp.s
 # target to generate assembly for a file
 User.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/User.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/User.cpp.s
 .PHONY : User.cpp.s
 
 commands/Add.o: commands/Add.cpp.o
@@ -423,6 +441,7 @@ commands/Add.o: commands/Add.cpp.o
 # target to build an object file
 commands/Add.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Add.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Add.cpp.o
 .PHONY : commands/Add.cpp.o
 
 commands/Add.i: commands/Add.cpp.i
@@ -431,6 +450,7 @@ commands/Add.i: commands/Add.cpp.i
 # target to preprocess a source file
 commands/Add.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Add.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Add.cpp.i
 .PHONY : commands/Add.cpp.i
 
 commands/Add.s: commands/Add.cpp.s
@@ -439,6 +459,7 @@ commands/Add.s: commands/Add.cpp.s
 # target to generate assembly for a file
 commands/Add.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Add.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Add.cpp.s
 .PHONY : commands/Add.cpp.s
 
 commands/Help.o: commands/Help.cpp.o
@@ -447,6 +468,7 @@ commands/Help.o: commands/Help.cpp.o
 # target to build an object file
 commands/Help.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Help.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Help.cpp.o
 .PHONY : commands/Help.cpp.o
 
 commands/Help.i: commands/Help.cpp.i
@@ -455,6 +477,7 @@ commands/Help.i: commands/Help.cpp.i
 # target to preprocess a source file
 commands/Help.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Help.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Help.cpp.i
 .PHONY : commands/Help.cpp.i
 
 commands/Help.s: commands/Help.cpp.s
@@ -463,6 +486,7 @@ commands/Help.s: commands/Help.cpp.s
 # target to generate assembly for a file
 commands/Help.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Help.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Help.cpp.s
 .PHONY : commands/Help.cpp.s
 
 commands/ICommand.o: commands/ICommand.cpp.o
@@ -471,6 +495,7 @@ commands/ICommand.o: commands/ICommand.cpp.o
 # target to build an object file
 commands/ICommand.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/ICommand.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/ICommand.cpp.o
 .PHONY : commands/ICommand.cpp.o
 
 commands/ICommand.i: commands/ICommand.cpp.i
@@ -479,6 +504,7 @@ commands/ICommand.i: commands/ICommand.cpp.i
 # target to preprocess a source file
 commands/ICommand.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/ICommand.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/ICommand.cpp.i
 .PHONY : commands/ICommand.cpp.i
 
 commands/ICommand.s: commands/ICommand.cpp.s
@@ -487,6 +513,7 @@ commands/ICommand.s: commands/ICommand.cpp.s
 # target to generate assembly for a file
 commands/ICommand.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/ICommand.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/ICommand.cpp.s
 .PHONY : commands/ICommand.cpp.s
 
 commands/Recommend.o: commands/Recommend.cpp.o
@@ -495,6 +522,7 @@ commands/Recommend.o: commands/Recommend.cpp.o
 # target to build an object file
 commands/Recommend.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Recommend.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Recommend.cpp.o
 .PHONY : commands/Recommend.cpp.o
 
 commands/Recommend.i: commands/Recommend.cpp.i
@@ -503,6 +531,7 @@ commands/Recommend.i: commands/Recommend.cpp.i
 # target to preprocess a source file
 commands/Recommend.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Recommend.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Recommend.cpp.i
 .PHONY : commands/Recommend.cpp.i
 
 commands/Recommend.s: commands/Recommend.cpp.s
@@ -511,31 +540,32 @@ commands/Recommend.s: commands/Recommend.cpp.s
 # target to generate assembly for a file
 commands/Recommend.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MainApp.dir/build.make CMakeFiles/MainApp.dir/commands/Recommend.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/commands/Recommend.cpp.s
 .PHONY : commands/Recommend.cpp.s
 
-tests/DALTests.o: tests/DALTests.cpp.o
-.PHONY : tests/DALTests.o
+tests/End_to_End.o: tests/End_to_End.cpp.o
+.PHONY : tests/End_to_End.o
 
 # target to build an object file
-tests/DALTests.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/DALTests.cpp.o
-.PHONY : tests/DALTests.cpp.o
+tests/End_to_End.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/End_to_End.cpp.o
+.PHONY : tests/End_to_End.cpp.o
 
-tests/DALTests.i: tests/DALTests.cpp.i
-.PHONY : tests/DALTests.i
+tests/End_to_End.i: tests/End_to_End.cpp.i
+.PHONY : tests/End_to_End.i
 
 # target to preprocess a source file
-tests/DALTests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/DALTests.cpp.i
-.PHONY : tests/DALTests.cpp.i
+tests/End_to_End.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/End_to_End.cpp.i
+.PHONY : tests/End_to_End.cpp.i
 
-tests/DALTests.s: tests/DALTests.cpp.s
-.PHONY : tests/DALTests.s
+tests/End_to_End.s: tests/End_to_End.cpp.s
+.PHONY : tests/End_to_End.s
 
 # target to generate assembly for a file
-tests/DALTests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/DALTests.cpp.s
-.PHONY : tests/DALTests.cpp.s
+tests/End_to_End.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/UserTests.dir/build.make CMakeFiles/UserTests.dir/tests/End_to_End.cpp.s
+.PHONY : tests/End_to_End.cpp.s
 
 # Help Target
 help:
@@ -589,9 +619,9 @@ help:
 	@echo "... commands/Recommend.o"
 	@echo "... commands/Recommend.i"
 	@echo "... commands/Recommend.s"
-	@echo "... tests/DALTests.o"
-	@echo "... tests/DALTests.i"
-	@echo "... tests/DALTests.s"
+	@echo "... tests/End_to_End.o"
+	@echo "... tests/End_to_End.i"
+	@echo "... tests/End_to_End.s"
 .PHONY : help
 
 

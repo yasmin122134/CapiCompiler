@@ -30,25 +30,25 @@ set(SOURCE_FILES
         DataAccessLayer.cpp
 )
 
-# Add main executable
-add_executable(MainApp ${SOURCE_FILES})
+## Set test files
+ #set(TEST_FILES
+##        tests/DALTests.cpp
+##        DataAccessLayer.cpp
+##        User.cpp
+##        Movie.cpp
+#          test/End_to_End.cpp
+ #       )
 
-# Uncomment this if you want to add tests later
-# Set test files
-# set(TEST_FILES
-#        tests/DALTests.cpp
-#        DataAccessLayer.cpp
-#        User.cpp
-#        Movie.cpp
-#        test/End_to_End.cpp
-# )
+
+# Add main executable
+#add_executable(MainApp ${SOURCE_FILES})
 
 # Add test executable
-# add_executable(UserTests ${TEST_FILES})
+#add_executable(UserTests ${TEST_FILES})
 
 # Link GTest to the test executable
-# target_link_libraries(UserTests gtest_main)
+#target_link_libraries(UserTests gtest_main)
 
 # Enable testing
-# enable_testing()
-# add_test(NAME AllTests COMMAND UserTests)
+#enable_testing()
+#add_test(NAME AllTests COMMAND UserTests)

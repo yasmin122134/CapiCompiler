@@ -907,4 +907,6 @@ CMakeFiles/MainApp.dir/Main.cpp.o: /Users/omer/CapiCompiler/Main.cpp \
   /Users/omer/CapiCompiler/commands/./ICommand.h \
   /Users/omer/CapiCompiler/App.h /Users/omer/CapiCompiler/ConsoleMenu.h \
   /Users/omer/CapiCompiler/IMenu.h \
-  /Users/omer/CapiCompiler/DataAccessLayer.h
+  /Users/omer/CapiCompiler/DataAccessLayer.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/c++/v1/csignal \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/include/signal.h
