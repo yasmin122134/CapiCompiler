@@ -19,11 +19,10 @@ void Recommend::execute(std::string inputLine) {
     try {
         userId = stoi(userIdStr);
         User user = dal->getUser(userId);
-        cout << "User: " << user << endl;
         movieId = stoi(movieIdStr);
     }
     catch (...) {
-
+        return;
     }
     vector<int> recommendations = recommend(userId, movieId);
     for (int id : recommendations) {
@@ -92,10 +91,6 @@ vector<int> Recommend::recommend(int userId, int movieId) {
     User user = dal->getUser(userId);
     Movie movie = dal->getMovie(movieId);
     map<Movie, int> similarityScoreTable = calculateSimilarityScores(userId,movieId);
-    //print similarityScoreTable
-    for (const auto& pair : similarityScoreTable) {
-        cout << pair.first.getId() << " " << pair.second << endl;
-    }
     
     vector<pair<Movie, int>> sortedSimilarityScore(similarityScoreTable.begin(),
                                                    similarityScoreTable.end());

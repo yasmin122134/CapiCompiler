@@ -13,7 +13,6 @@ public:
     // constructor and destructor
     DataAccessLayer();
     ~DataAccessLayer();
-
     // add users and movies to the dal
     void add(User& user);
     void add(User user, const std::vector<Movie>& movieVec);
